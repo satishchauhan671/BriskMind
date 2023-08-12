@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+
+    </data>
+
+    <FrameLayout
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+
+                    <LinearLayout
+                        android:layout_marginTop="-100dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/splash" />
+
+                        <LinearLayout
+                            android:id="@+id/chooseUtilityLyt"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="50dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="@drawable/et_curve_bg"
+                            android:gravity="center"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp">
+
+                            <TextView
+                                android:id="@+id/edtUtility"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:clickable="true"
+                                android:focusable="false"
+                                android:hint="@string/sector"
+                                android:imeOptions="actionDone"
+                                android:inputType="none"
+                                android:maxLines="1"
+                                android:textColor="@color/color_0F2C52"
+                                android:textColorHint="@color/color_c2ccd9"
+                                android:textCursorDrawable="@null"
+                                android:textSize="14sp" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/et_curve_bg"
+                            android:gravity="center"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp">
+
+                            <EditText
+                                android:id="@+id/edtLoginId"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ellipsize="end"
+                                android:focusableInTouchMode="true"
+                                android:hint="@string/enrollment"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="20"
+                                android:maxLines="1"
+                                android:textColor="@color/color_0F2C52"
+                                android:textColorHint="@color/color_c2ccd9"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="@drawable/et_curve_bg"
+                            android:gravity="center"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp">
+
+                            <EditText
+                                android:id="@+id/edtPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ellipsize="end"
+                                android:focusableInTouchMode="true"
+                                android:hint="@string/pwd"
+                                android:imeOptions="actionDone"
+                                android:inputType="textPassword"
+                                android:maxLength="20"
+                                android:maxLines="1"
+                                android:textColor="@color/color_0F2C52"
+                                android:textColorHint="@color/color_c2ccd9"
+                                android:textSize="14sp" />
+
+                            <ImageView
+                                android:id="@+id/showPassword"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginTop="2dp"
+                                android:src="@drawable/ic_eye_close" />
+                        </RelativeLayout>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/sign_assessor"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:layout_below="@+id/sign_student"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/sign_fill_border"
+                            android:gravity="center"
+                            android:fontFamily="@font/roboto_bold_font"
+                            android:text="@string/sign_in"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+</layout>
