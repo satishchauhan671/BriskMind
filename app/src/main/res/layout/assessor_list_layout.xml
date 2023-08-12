@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+
+    </data>
+
+    <FrameLayout
+        android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:background="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/activity_margin_150dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:layout_marginTop="@dimen/activity_margin_10dp"
+                            android:layout_marginLeft="@dimen/activity_margin_10dp"
+                            android:textColor="@color/white"
+                            android:text="@string/assessor_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_size_14sp"
+                            android:layout_marginTop="@dimen/activity_margin_10dp"
+                            android:layout_marginLeft="@dimen/activity_margin_10dp"
+                            android:textColor="@color/white"
+                            android:text="XXXXXXXXXXXXXXXX"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:layout_marginTop="@dimen/activity_margin_20dp"
+                            android:layout_marginLeft="@dimen/activity_margin_10dp"
+                            android:textColor="@color/white"
+                            android:text="@string/assessor_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_size_14sp"
+                            android:layout_marginTop="@dimen/activity_margin_10dp"
+                            android:layout_marginLeft="@dimen/activity_margin_10dp"
+                            android:textColor="@color/white"
+                            android:text="XXXXXXXXXXXXXXXX"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        tools:listitem="@layout/assessor_list_adapter_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+</layout>

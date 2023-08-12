@@ -18,5 +18,13 @@
     <color name="batch_view_color">#f2f0f4</color>
     <color name="transparent">#00000000</color>
     <color name="date">#80000000</color>
-    <color name="color_green">#00c037</color>
+    <color name="gray_text">#80000000</color>
+    <color name="instruction_color">#0e51dd</color>
+    <color name="divider">#e6e6e6</color>
+    <color name="eef7fe">#eef7fe</color>
+    <color name="e6edfc">#e6edfc</color>
+    <color name="purple">#b432eb</color>
+    <color name="blue">#0b6deb</color>
+    <color name="eff8fe">#eff8fe</color>
+    <color name="green">#31C220</color>
 </resources>
