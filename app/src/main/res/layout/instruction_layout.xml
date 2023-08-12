@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/Instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@color/instruction_color"
+                android:fontFamily="@font/roboto_bold_font"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/Instruction"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/instruct_scollview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/Instruction">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:background="@color/e6edfc"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp">
+
+                        <LinearLayout
+                            android:layout_marginLeft="20dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:drawableLeft="@drawable/circle_green"
+                                android:layout_width="0dp"
+                                android:drawablePadding="5dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_horizontal"
+                                android:padding="5dp"
+                                android:text="@string/attempted_question" />
+
+                            <TextView
+                                android:drawableLeft="@drawable/circle_black"
+                                android:drawablePadding="5dp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_horizontal"
+                                android:padding="5dp"
+                                android:text="@string/skipped_question" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="20dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:drawableLeft="@drawable/circle_puple"
+                                android:layout_width="0dp"
+                                android:drawablePadding="5dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_horizontal"
+                                android:padding="5dp"
+                                android:text="@string/review_question" />
+
+                            <TextView
+                                android:drawableLeft="@drawable/circle_puple"
+                                android:drawablePadding="5dp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_horizontal"
+                                android:padding="5dp"
+                                android:text="@string/review_attempt_question" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="20dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:drawableLeft="@drawable/circle_blue"
+                                android:layout_width="0dp"
+                                android:drawablePadding="5dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_horizontal"
+                                android:padding="5dp"
+                                android:text="@string/ongoing_question" />
+
+                            <TextView
+                                android:drawableLeft="@drawable/circle_white"
+                                android:drawablePadding="5dp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_horizontal"
+                                android:padding="5dp"
+                                android:text="@string/question_remaining" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:fontFamily="@font/roboto_bold_font"
+                        android:layout_margin="10dp"
+                        android:textStyle="bold"
+                        android:text="Read All Instruction Carefully"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:text="1. This question paper is of objective type."
+                            android:textColor="@color/black"
+                            android:textSize="14dp"/>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:text="2. This question paper is of objective type."
+                            android:textColor="@color/black"
+                            android:textSize="14dp"/>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:text="3. This question paper is of objective type."
+                            android:textColor="@color/black"
+                            android:textSize="14dp"/>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:text="4. This question paper is of objective type."
+                            android:textColor="@color/black"
+                            android:textSize="14dp"/>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:text="5. This question paper is of objective type."
+                            android:textColor="@color/black"
+                            android:textSize="14dp"/>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="10dp"
+                            android:text="6. This question paper is of objective type."
+                            android:textColor="@color/black"
+                            android:textSize="14dp"/>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:background="@color/eff8fe"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox
+                            android:buttonTint="@color/color_c2ccd9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="@string/termscondition"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:id="@+id/button_login"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:background="@drawable/rounded_btn"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/txtLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:text="@string/starttest"
+                android:textAllCaps="true"
+                android:textColor="@color/blue"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:id="@+id/buttonLoginNow"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_bg_rounded"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="356dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:text="@string/starttest"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</layout>

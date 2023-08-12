@@ -132,4 +132,17 @@
     <string name="practicalTestJsonError">Practical Test Json Data is not available because batch has reached the end date or test is not assigned properly! Please contact to Assessor Body.</string>
     <string name="practical_test_status">Practical Test Status</string>
     <string name="practical_type">Tyre Fitter Practical same address as mentioned on</string>
+    <string name="Instruction">INSTRUCTION</string>
+    <string name="attempted_question">Attempted Question</string>
+    <string name="skipped_question">Skipped Question</string>
+    <string name="review_question">Review Question</string>
+    <string name="review_attempt_question">Review With Attempt</string>
+    <string name="ongoing_question">Ongoing Question</string>
+    <string name="question_remaining">Question Remaining</string>
+    <string name="tap_launch_camera">Tap to Launch Camera</string>
+    <string name="student_enrollment">Student Enrollment</string>
+    <string name="assessor_code">Enter Assessor Code</string>
+    <string name="assessor_login_image">Assessor Login Image</string>
+    <string name="start_batch">Start Batch</string>
+
 </resources>
