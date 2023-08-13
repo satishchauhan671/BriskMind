@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginFragment = LoginFragment()
-        Utility.addFragment(LoginFragment(), supportFragmentManager, R.id.layout_fragment)
+        Utility.addFragment(LoginFragment(), supportFragmentManager, R.id.layout_root)
     }
 
 
