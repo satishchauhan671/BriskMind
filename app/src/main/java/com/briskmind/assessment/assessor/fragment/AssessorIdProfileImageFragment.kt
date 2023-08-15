@@ -24,9 +24,9 @@ import com.briskmind.assessment.fragments.CameraFragment
 import com.briskmind.assessment.listner.ImageCallbackListener
 import java.io.File
 
-class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener , ImageCallbackListener{
+class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCallbackListener {
 
-    private var _binding : AssessorIdProfileLayoutBinding? = null
+    private var _binding: AssessorIdProfileLayoutBinding? = null
     private val binding get() = _binding!!
     private lateinit var mActivity: FragmentActivity
     val REQUEST_PERMISSION_CAMERA = 203
@@ -75,8 +75,7 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener , ImageC
                 val filepath = file.absolutePath
                 val rotation = Utility.getRotation(filepath)
 
-                if (firstimg)
-                {
+                if (firstimg) {
                     _binding!!.imgAssessorId.setImageBitmap(
                         Utility.getBitmapByStringImage(
                             Utility.bitmapToBASE64(
@@ -86,9 +85,7 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener , ImageC
                             )
                         )
                     )
-                }
-                else
-                {
+                } else {
                     _binding!!.imgAssessorProfile.setImageBitmap(
                         Utility.getBitmapByStringImage(
                             Utility.bitmapToBASE64(
@@ -151,7 +148,6 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener , ImageC
             }
         }
     }
-
 
 
     override fun onAttach(context: Context) {

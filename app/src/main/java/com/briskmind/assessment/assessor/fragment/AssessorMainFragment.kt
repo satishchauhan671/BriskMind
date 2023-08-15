@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.briskmind.assessment.R
 import com.briskmind.assessment.assessor.adapter.AssessorMainAdapter
+import com.briskmind.assessment.assessor.adapter.StudentListAdapter
 import com.briskmind.assessment.assessor.listener.ChooseAssessorMainListener
 import com.briskmind.assessment.common.Utility
 import com.briskmind.assessment.databinding.FragmentAssessorMainBinding

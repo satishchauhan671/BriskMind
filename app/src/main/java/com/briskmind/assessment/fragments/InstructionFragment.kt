@@ -1,6 +1,7 @@
 package com.briskmind.assessment.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +9,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.briskmind.assessment.R
+import com.briskmind.assessment.activities.StudentTestActivity
+import com.briskmind.assessment.assessor.activity.AssessorTestActivity
 import com.briskmind.assessment.assessor.fragment.AssessorLoginFragment
 import com.briskmind.assessment.common.Utility
 import com.briskmind.assessment.databinding.FragmentLoginBinding
+import com.briskmind.assessment.databinding.InstructionLayoutBinding
 
-class LoginFragment : Fragment(), View.OnClickListener {
-
-    private var _binding: FragmentLoginBinding? = null
+class InstructionFragment: Fragment(), View.OnClickListener {
+    private var _binding: InstructionLayoutBinding? = null
     private val binding get() = _binding!!
     private lateinit var mActivity: FragmentActivity
 
@@ -23,15 +26,15 @@ class LoginFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = InstructionLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.signStudent.setOnClickListener(this)
-        binding.signAssessor.setOnClickListener(this)
+        binding.buttonLoginNow.setOnClickListener(this)
+        binding.buttonLogin.setOnClickListener(this)
     }
 
     override fun onAttach(context: Context) {
@@ -41,14 +44,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
         when (p0) {
-            binding.signAssessor -> {
-                Utility.replaceFragment(AssessorLoginFragment(),mActivity.supportFragmentManager, R.id.layout_root)
-            }
-
-            binding.signStudent -> {
-                Utility.replaceFragment(StudentLoginFragment(),mActivity.supportFragmentManager, R.id.layout_root)
+            binding.buttonLogin,
+            binding.buttonLoginNow -> {
+                val intent = Intent(context, StudentTestActivity::class.java)
+                startActivity(intent)
             }
         }
     }
-
 }

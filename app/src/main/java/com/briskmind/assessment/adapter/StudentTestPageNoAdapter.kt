@@ -1,4 +1,4 @@
-package com.briskmind.assessment.assessor.adapter
+package com.briskmind.assessment.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,29 +9,30 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.briskmind.assessment.R
 import com.briskmind.assessment.assessor.listener.ChooseAssessorMainListener
+import com.briskmind.assessment.listner.ChooseStudentListListener
 
-class AssessorTestPageNoAdapter(mContext: Context, fragmentManager: FragmentManager) :
-    RecyclerView.Adapter<AssessorTestPageNoAdapter.ViewHolder>() {
+class StudentTestPageNoAdapter(mContext: Context, fragmentManager: FragmentManager) :
+    RecyclerView.Adapter<StudentTestPageNoAdapter.ViewHolder>() {
 
     private val mContext: Context = mContext
     private val fragmentManager: FragmentManager = fragmentManager
-    private lateinit var chooseAssessorMainListener: ChooseAssessorMainListener
+    private lateinit var chooseStudentMainListener: ChooseStudentListListener
     var selectedPos : Int = -1
     var lastSelectedPos : Int = -1
 
-    fun setAdapterListener(chooseAssessorMainListener: ChooseAssessorMainListener){
-        this.chooseAssessorMainListener = chooseAssessorMainListener
+    fun setAdapterListener(chooseStudentMainListener: ChooseStudentListListener){
+        this.chooseStudentMainListener = chooseStudentMainListener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.assessor_page_no_adapter, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.student_page_no_adapter, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.view.setOnClickListener{
-             chooseAssessorMainListener.chooseMemberAdapterListener(position,0)
+            chooseStudentMainListener   .chooseMemberAdapterListener(position,0)
         }
         val plusOnePos = position + 1
         holder.pageNoTv.text = plusOnePos.toString()

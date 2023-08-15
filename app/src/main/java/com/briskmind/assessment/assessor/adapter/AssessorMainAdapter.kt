@@ -14,11 +14,7 @@ import com.briskmind.assessment.assessor.listener.ChooseAssessorMainListener
 class AssessorMainAdapter(mContext: Context,fragmentManager: FragmentManager) :
     RecyclerView.Adapter<AssessorMainAdapter.ViewHolder>() {
 
-    private val mContext: Context = mContext
-    private val fragmentManager: FragmentManager = fragmentManager
     private lateinit var chooseAssessorMainListener: ChooseAssessorMainListener
-    var selectedPos : Int = -1
-    var lastSelectedPos : Int = -1
 
     fun setAdapterListener(chooseAssessorMainListener: ChooseAssessorMainListener){
         this.chooseAssessorMainListener = chooseAssessorMainListener
@@ -30,9 +26,10 @@ class AssessorMainAdapter(mContext: Context,fragmentManager: FragmentManager) :
         return ViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.startBatchAssessor.setOnClickListener{
-             chooseAssessorMainListener.chooseMemberAdapterListener(position,0)
+            chooseAssessorMainListener.chooseMemberAdapterListener(position,0)
         }
     }
 
