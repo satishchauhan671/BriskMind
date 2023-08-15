@@ -37,11 +37,11 @@
         android:background="@drawable/sign_in_border"
         android:gravity="center"
         android:text="@string/sign_in_student"
-        android:textColor="@color/background_color"
+        android:textColor="@color/app_theme"
         android:textSize="16sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/sign_assessor"
+        android:id="@+id/signAssessor"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_below="@+id/sign_student"

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_login"
+    app:startDestination="@id/LoginFragment">
+
+    <fragment android:id="@+id/LoginFragment"
+        android:name="com.briskmind.assessment.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action android:id="@+id/action_login_to_assessor_login"
+            app:destination="@+id/AssessorLoginFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/AssessorLoginFragment"
+        android:name="com.briskmind.assessment.assessor.fragment.AssessorLoginFragment"
+        android:label="assessor_login_layout"
+        tools:layout="@layout/assessor_login_layout">
+        <action android:id="@+id/action_assessor_login_to_assessor_login_image"
+            app:destination="@+id/assessorLoginImageFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/assessorLoginImageFragment"
+        android:name="com.briskmind.assessment.assessor.fragment.AssessorLoginImageFragment"
+        android:label="assessor_login_image_layout"
+        tools:layout="@layout/assessor_login_image_layout"/>
+
+    <include app:graph="@navigation/nav_graph_assessor_main"/>
+</navigation>
