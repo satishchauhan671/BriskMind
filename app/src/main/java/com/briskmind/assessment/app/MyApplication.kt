@@ -1,4 +1,4 @@
-package com.inventia.ugo_mici.app
+package com.briskmind.assessment.app
 
 import android.app.Application
 import android.app.NotificationChannel

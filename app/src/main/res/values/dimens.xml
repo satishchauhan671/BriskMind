@@ -63,5 +63,7 @@
     <dimen name="activity_margin_25sp">25sp</dimen>
     <dimen name="activity_margin_180dp">180dp</dimen>
     <dimen name="activity_margin_75dp">75dp</dimen>
+    <dimen name="text_size_24sp">24sp</dimen>
+    <dimen name="text_size_22sp">22sp</dimen>
 
 </resources>

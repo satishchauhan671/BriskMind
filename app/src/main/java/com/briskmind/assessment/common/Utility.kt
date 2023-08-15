@@ -38,8 +38,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.briskmind.assessment.R
 import com.briskmind.assessment.activities.LoginActivity
+import com.briskmind.assessment.app.MyApplication
 import com.google.android.material.snackbar.Snackbar
-import com.inventia.ugo_mici.app.MyApplication
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
