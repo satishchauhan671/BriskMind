@@ -30,4 +30,8 @@
     <color name="blue">#0b6deb</color>
     <color name="eff8fe">#eff8fe</color>
     <color name="green">#31C220</color>
+
+    <color name="color_272F38">#272F38</color>
+    <color name="color_747474">#747474</color>
+    <color name="color_8ba8bd">#8ba8bd</color>
 </resources>
