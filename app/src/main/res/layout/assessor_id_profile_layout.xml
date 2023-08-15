@@ -59,7 +59,7 @@
                                     android:gravity="center"
                                     android:textStyle="bold"
                                     android:textColor="@color/gray_text"
-                                    android:text="@string/assessor_id_image"
+                                    android:text="@string/id_image"
                                     android:layout_weight="1"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"/>
@@ -71,7 +71,7 @@
                                     android:gravity="center"
                                     android:textStyle="bold"
                                     android:textColor="@color/gray_text"
-                                    android:text="@string/assessor_profile_image"
+                                    android:text="@string/profile_image"
                                     android:layout_weight="1"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"/>
