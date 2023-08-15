@@ -17,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BriskMind">
         <activity
+            android:name=".activities.StudentTestActivity"
+            android:exported="false"
+            android:theme="@style/NoActionBar"/>
+        <activity
             android:name=".activities.LoginActivity"
             android:exported="true"
             android:theme="@style/NoActionBar">
@@ -26,20 +30,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".assessor.activity.AssessorActivityMain"
+        <activity
+            android:name=".assessor.activity.AssessorActivityMain"
             android:exported="true"
-            android:theme="@style/NoActionBar"/>
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/NoActionBar"/>
-        <activity android:name=".assessor.activity.AssessorTestActivity"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".assessor.activity.AssessorTestActivity"
             android:exported="false"
-            android:theme="@style/NoActionBar"/>
-
-        <activity android:name=".activities.CameraActivity"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".activities.CameraActivity"
             android:exported="false"
-            android:theme="@style/NoActionBar"/>
+            android:theme="@style/NoActionBar" />
     </application>
 
 </manifest>

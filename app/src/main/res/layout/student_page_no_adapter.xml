@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/activity_margin_10dp">
+
+    <TextView
+        android:id="@+id/pageNoTv"
+        android:layout_width="@dimen/activity_margin_30dp"
+        android:layout_height="@dimen/activity_margin_30dp"
+        android:background="@drawable/white_circle_bg"
+        android:text="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:padding="@dimen/activity_margin_5dp"/>
+
+</RelativeLayout>

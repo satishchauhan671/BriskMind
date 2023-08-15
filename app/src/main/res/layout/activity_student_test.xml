@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/studentTestLay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/studentTestPageLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="@color/app_theme_light">
+
+        <Spinner
+            android:id="@+id/spinnerLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/activity_margin_50dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:entries="@array/language_list" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/studentTestPageNoRv"
+            android:layout_alignBottom="@id/studentTestPageNoRv"
+            android:layout_toEndOf="@id/spinnerLanguage"
+            android:background="@color/white" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/studentTestPageNoRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/spinnerLanguage"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/activity_margin_10dp"
+            android:paddingTop="@dimen/activity_margin_8dp"
+            android:paddingEnd="@dimen/activity_margin_5dp"
+            android:paddingBottom="@dimen/activity_margin_8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="5"
+            tools:listitem="@layout/assessor_page_no_adapter" />
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/studentTestPageLay"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_margin_10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_margin_8dp"
+            android:text="@string/question_no"
+            android:textSize="@dimen/text_size_12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1/10"
+            android:textSize="@dimen/text_size_12sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <include
+        android:id="@+id/bottomToolbar"
+        layout="@layout/layout_bottom_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_margin_55dp"
+        android:layout_alignParentBottom="true" />
+
+    <!--
+        Instruction Dialog Layout Start
+    -->
+    <RelativeLayout
+        android:id="@+id/rlDimBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_transparent75"
+        android:visibility="gone" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardInstruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginStart="@dimen/activity_margin_15dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="@dimen/activity_margin_15dp"
+        android:visibility="gone"
+        app:cardCornerRadius="@dimen/activity_margin_10dp"
+        app:cardUseCompatPadding="true">
+
+        <include
+            android:id="@+id/instructionDialog"
+            layout="@layout/instruction_popup_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.cardview.widget.CardView>
+    <!--
+            Instruction Dialog Layout End
+        -->
+</RelativeLayout>

@@ -71,7 +71,7 @@
 
                 <LinearLayout
                     android:layout_marginTop="@dimen/activity_margin_10dp"
-                    android:id="@+id/buttonLoginNow"
+                    android:id="@+id/lytStartTest"
                     android:layout_width="@dimen/activity_margin_100dp"
                     android:layout_height="@dimen/activity_margin_60dp"
                     android:background="@drawable/btn_bg_green_rounded"
@@ -92,11 +92,6 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_marginTop="@dimen/activity_margin_10dp"
-                    android:background="@color/gray_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
 
             </LinearLayout>
 

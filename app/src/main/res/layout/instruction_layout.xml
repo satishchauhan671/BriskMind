@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:background="@color/instruction_color"
+                android:background="@color/app_theme"
                 android:fontFamily="@font/roboto_bold_font"
                 android:gravity="center"
                 android:padding="10dp"
@@ -283,7 +283,7 @@
                 android:paddingStart="16dp"
                 android:text="@string/starttest"
                 android:textAllCaps="true"
-                android:textColor="@color/blue"
+                android:textColor="@color/app_theme"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
