@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
 
 
@@ -82,19 +83,27 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
-                                <ImageView
+                                <com.makeramen.roundedimageview.RoundedImageView
+                                    android:id="@+id/imgAssessorId"
                                     android:layout_marginRight="@dimen/activity_margin_20dp"
-                                    android:src="@drawable/assessor_id_image"
+                                    android:background="@drawable/assessor_id_image"
                                     android:layout_weight="1"
                                     android:layout_width="0dp"
+                                    android:scaleType="centerCrop"
+                                    app:riv_corner_radius="22dp"
+                                    app:riv_oval="false"
                                     android:layout_height="wrap_content"/>
 
 
-                                <ImageView
+                                <com.makeramen.roundedimageview.RoundedImageView
+                                    android:id="@+id/imgAssessorProfile"
                                     android:layout_marginLeft="@dimen/activity_margin_20dp"
-                                    android:src="@drawable/assessor_profile_image"
+                                    android:background="@drawable/assessor_id_image"
                                     android:layout_weight="1"
                                     android:layout_width="0dp"
+                                    android:scaleType="centerCrop"
+                                    app:riv_corner_radius="22dp"
+                                    app:riv_oval="false"
                                     android:layout_height="wrap_content"/>
                             </LinearLayout>
 

@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -28,6 +34,10 @@
             android:exported="false"
             android:theme="@style/NoActionBar"/>
         <activity android:name=".assessor.activity.AssessorTestActivity"
+            android:exported="false"
+            android:theme="@style/NoActionBar"/>
+
+        <activity android:name=".activities.CameraActivity"
             android:exported="false"
             android:theme="@style/NoActionBar"/>
     </application>

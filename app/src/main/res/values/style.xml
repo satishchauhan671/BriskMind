@@ -20,4 +20,9 @@
         <item name="colorPrimary">@color/background_color</item>
         <item name="colorPrimaryDark">@color/background_color</item>
     </style>
+
+    <declare-styleable name="ViewFinderBackground">
+        <attr name="backgroundColor" format="color" />
+    </declare-styleable>
+
 </resources>

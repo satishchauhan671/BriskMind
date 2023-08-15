@@ -35,4 +35,6 @@
     <color name="color_272F38">#272F38</color>
     <color name="color_747474">#747474</color>
     <color name="color_8ba8bd">#8ba8bd</color>
+    <color name="notFoundBackground">#DD222222</color>
+    <color name="foundBackground">#DD222222</color>
 </resources>
