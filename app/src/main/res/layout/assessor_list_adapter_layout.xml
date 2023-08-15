@@ -37,6 +37,7 @@
 
 
                 <ImageView
+                    android:id="@+id/dotsIv"
                     android:src="@drawable/dots"
                     android:layout_weight=".2"
                     android:layout_width="@dimen/activity_margin_0dp"
@@ -81,8 +82,8 @@
 
 
                 <LinearLayout
+                    android:id="@+id/startBatchAssessor"
                     android:layout_marginTop="@dimen/activity_margin_10dp"
-                    android:id="@+id/buttonLoginNow"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/activity_margin_35dp"
                     android:background="@drawable/btn_bg_blue_rounded"

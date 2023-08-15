@@ -151,6 +151,10 @@
     <string name="assessor_id_image">Assessor Id Image</string>
     <string name="assessor_profile_image">Assessor Profile Image</string>
     <string name="submit">Submit</string>
+    <string name="submit_test">Submit Test</string>
+    <string name="assistance_technician_cctv">Assistance Technician CCTV...</string>
+    <string name="_01_57_00">01:57:00</string>
+    <string name="todo">TODO</string>
 
 
     <string-array name="language_list">

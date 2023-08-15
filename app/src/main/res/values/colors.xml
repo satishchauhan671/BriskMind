@@ -35,4 +35,10 @@
     <color name="color_272F38">#272F38</color>
     <color name="color_747474">#747474</color>
     <color name="color_8ba8bd">#8ba8bd</color>
+
+    <color name="black_transparent20">#33000000</color>
+    <color name="black_transparent50">#80000000</color>
+    <color name="black_transparent60">#99000000</color>
+    <color name="black_transparent90">#E6000000</color>
+    <color name="black_transparent75">#BF000000</color>
 </resources>

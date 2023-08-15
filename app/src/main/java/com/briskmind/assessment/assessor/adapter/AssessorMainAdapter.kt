@@ -6,13 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.briskmind.assessment.R
-import com.briskmind.assessment.assessor.fragment.AssessorIdProfileImageFragment
 import com.briskmind.assessment.assessor.listener.ChooseAssessorMainListener
-import com.briskmind.assessment.common.Utility
 
 class AssessorMainAdapter(mContext: Context,fragmentManager: FragmentManager) :
     RecyclerView.Adapter<AssessorMainAdapter.ViewHolder>() {
@@ -34,7 +31,7 @@ class AssessorMainAdapter(mContext: Context,fragmentManager: FragmentManager) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.setOnClickListener{
+        holder.startBatchAssessor.setOnClickListener{
              chooseAssessorMainListener.chooseMemberAdapterListener(position,0)
         }
     }
@@ -46,10 +43,13 @@ class AssessorMainAdapter(mContext: Context,fragmentManager: FragmentManager) :
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var view : View
-
+        var dotsIv : ImageView
+        var startBatchAssessor : LinearLayout
         init {
             view = itemView
-              }
+            startBatchAssessor = itemView.findViewById(R.id.startBatchAssessor)
+            dotsIv = itemView.findViewById(R.id.dotsIv)
+        }
     }
 
     fun removeAt(position: Int) {

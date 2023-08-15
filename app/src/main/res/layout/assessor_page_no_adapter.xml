@@ -5,6 +5,7 @@
     android:layout_marginEnd="@dimen/activity_margin_10dp">
 
     <TextView
+        android:id="@+id/pageNoTv"
         android:layout_width="@dimen/activity_margin_30dp"
         android:layout_height="@dimen/activity_margin_30dp"
         android:background="@drawable/white_circle_bg"

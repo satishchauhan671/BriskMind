@@ -16,14 +16,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Assistance Technician CCTV..."
+            android:text="@string/assistance_technician_cctv"
             android:textColor="@color/white"/>
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="01:57:00"
+            android:text="@string/_01_57_00"
             android:textStyle="bold"
             android:textColor="@color/white"/>
 
@@ -42,13 +42,15 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:src="@mipmap/ic_video_record"
-        android:layout_marginEnd="@dimen/activity_margin_10dp"/>
+        android:layout_marginEnd="@dimen/activity_margin_10dp"
+        android:contentDescription="@string/todo" />
 
 
         <TextView
+            android:id="@+id/submitTestTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit Test"
+            android:text="@string/submit_test"
             android:paddingStart="@dimen/activity_margin_3dp"
             android:paddingEnd="@dimen/activity_margin_3dp"
             android:paddingTop="@dimen/activity_margin_8dp"
@@ -58,10 +60,12 @@
             android:layout_marginEnd="@dimen/activity_margin_10dp"/>
 
         <ImageView
+            android:id="@+id/instructionDialogIv"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@mipmap/ic_dots_more"
-            android:layout_marginEnd="@dimen/activity_margin_10dp"/>
+            android:layout_marginEnd="@dimen/activity_margin_10dp"
+            android:contentDescription="@string/todo" />
 
     </LinearLayout>
 
