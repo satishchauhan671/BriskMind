@@ -144,13 +144,13 @@
     <string name="assessor_code">Enter Assessor Code</string>
     <string name="assessor_login_image">Assessor Login Image</string>
     <string name="start_batch">Start Batch</string>
+    <string name="submit">Submit</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
     <string name="question_no">Question no.</string>
     <string name="save_amp_next"><![CDATA[Save & Next]]></string>
     <string name="assessor_id_image">Assessor Id Image</string>
     <string name="assessor_profile_image">Assessor Profile Image</string>
-    <string name="submit">Submit</string>
     <string name="submit_test">Submit Test</string>
     <string name="assistance_technician_cctv">Assistance Technician CCTV...</string>
     <string name="_01_57_00">01:57:00</string>
