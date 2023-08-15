@@ -25,4 +25,11 @@
         <attr name="backgroundColor" format="color" />
     </declare-styleable>
 
+
+    <style name="CustomDialogTheme" parent="android:Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+    </style>
+
 </resources>

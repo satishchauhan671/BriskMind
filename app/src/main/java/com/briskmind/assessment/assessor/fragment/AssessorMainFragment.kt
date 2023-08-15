@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.briskmind.assessment.R
 import com.briskmind.assessment.assessor.adapter.AssessorMainAdapter
+import com.briskmind.assessment.assessor.listener.BatchImageListener
 import com.briskmind.assessment.assessor.listener.ChooseAssessorMainListener
 import com.briskmind.assessment.common.Utility
 import com.briskmind.assessment.databinding.FragmentAssessorMainBinding
@@ -42,6 +43,7 @@ class AssessorMainFragment : Fragment() {
         assessorMainAdapter = AssessorMainAdapter(mActivity,mActivity.supportFragmentManager)
         binding.assessorTestRv.layoutManager = LinearLayoutManager(mActivity,LinearLayoutManager.VERTICAL,false)
         assessorMainAdapter.setAdapterListener(chooseMainListener)
+        assessorMainAdapter.setBatchImageAdapterListener(batchImageListener)
         binding.assessorTestRv.adapter = assessorMainAdapter
 
     }
@@ -51,5 +53,24 @@ class AssessorMainFragment : Fragment() {
             Utility.replaceFragment(AssessorIdProfileImageFragment(), mActivity.supportFragmentManager, binding.layAssessor.id)
         }
 
+    }
+
+    private val batchImageListener = object : BatchImageListener{
+        override fun batchImageAdapterListener(pos: Int, id: Int, visible: Boolean) {
+
+            if (id == 0){
+                if (visible){
+                    binding.dimOverlay.root.visibility = View.VISIBLE
+                } else{
+                    binding.dimOverlay.root.visibility = View.GONE
+                }
+            }else {
+                Utility.replaceFragment(
+                    AssessorBatchImagesFragment(),
+                    mActivity.supportFragmentManager,
+                    binding.layAssessor.id
+                )
+            }
+        }
     }
 }

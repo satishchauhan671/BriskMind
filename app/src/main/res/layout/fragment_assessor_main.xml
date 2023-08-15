@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/F1EFF5"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/F1EFF5">
 
 
     <LinearLayout
@@ -13,47 +13,45 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:orientation="vertical"
-        android:paddingTop="@dimen/activity_margin_15dp"
-        android:paddingBottom="@dimen/activity_margin_15dp"
         android:paddingStart="@dimen/activity_margin_10dp"
-        android:paddingEnd="@dimen/activity_margin_10dp">
+        android:paddingTop="@dimen/activity_margin_15dp"
+        android:paddingEnd="@dimen/activity_margin_10dp"
+        android:paddingBottom="@dimen/activity_margin_15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/assessor_name"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_12sp"/>
+            android:textSize="@dimen/text_size_12sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Shivam Singhal"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="@dimen/text_size_13sp"/>
+            android:textSize="@dimen/text_size_13sp"
+            android:textStyle="bold" />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin_10dp"
             android:text="@string/assessor_id"
             android:textColor="@color/white"
-            android:layout_marginTop="@dimen/activity_margin_10dp"
-            android:textSize="@dimen/text_size_12sp"/>
+            android:textSize="@dimen/text_size_12sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_margin_10dp"
             android:text="11"
             android:textColor="@color/white"
-            android:textStyle="bold"
             android:textSize="@dimen/text_size_13sp"
-            android:layout_marginBottom="@dimen/activity_margin_10dp"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
-
-
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -62,12 +60,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lay_assessor"
         android:layout_marginStart="@dimen/activity_margin_10dp"
-        android:layout_marginEnd="@dimen/activity_margin_10dp"
         android:layout_marginTop="-20dp"
+        android:layout_marginEnd="@dimen/activity_margin_10dp"
+        android:padding="@dimen/activity_margin_5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/assessor_list_adapter_layout"
-        android:padding="@dimen/activity_margin_5dp">
+        tools:listitem="@layout/assessor_list_adapter_layout">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <!-- Your existing layout content -->
+    <!-- ... -->
+
+    <!-- Include the dimming overlay layout -->
+    <include
+        android:id="@+id/dim_overlay"
+        layout="@layout/dim_overlay"
+        android:visibility="gone" />
+
 
 </RelativeLayout>

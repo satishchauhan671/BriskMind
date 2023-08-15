@@ -18,6 +18,6 @@ class AssessorActivityMain : AppCompatActivity() {
         setContentView(view)
 
 
-        Utility.replaceFragment(AssessorMainFragment(),supportFragmentManager,binding.layAssessor.id)
+        Utility.addFragment(AssessorMainFragment(),supportFragmentManager,binding.layAssessor.id)
     }
 }

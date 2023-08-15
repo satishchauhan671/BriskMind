@@ -31,9 +31,9 @@ class AssessorTestPageNoAdapter(mContext: Context, fragmentManager: FragmentMana
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.setOnClickListener{
-             chooseAssessorMainListener.chooseMemberAdapterListener(position,0)
-        }
+//        holder.view.setOnClickListener{
+//             chooseAssessorMainListener.chooseMemberAdapterListener(position,0)
+//        }
         val plusOnePos = position + 1
         holder.pageNoTv.text = plusOnePos.toString()
 
