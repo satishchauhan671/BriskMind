@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.navigation.fragment.findNavController
 import com.briskmind.assessment.R
+import com.briskmind.assessment.assessor.fragment.AssessorLoginFragment
+import com.briskmind.assessment.common.Utility
 import com.briskmind.assessment.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment(), View.OnClickListener {
@@ -20,7 +21,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
@@ -40,7 +41,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when (p0) {
             binding.signAssessor -> {
-                findNavController().navigate(R.id.action_login_to_assessor_login)
+                Utility.replaceFragment(AssessorLoginFragment(),mActivity.supportFragmentManager, R.id.layout_root)
             }
         }
     }

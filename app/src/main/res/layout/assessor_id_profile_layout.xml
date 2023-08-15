@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-
     <data>
 
 
@@ -54,7 +52,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:textSize="@dimen/activity_margin_12dp"
+                                    android:textSize="@dimen/text_size_12sp"
                                     android:layout_marginRight="@dimen/activity_margin_20dp"
                                     android:gravity="center"
                                     android:textStyle="bold"
@@ -66,7 +64,7 @@
 
 
                                 <TextView
-                                    android:textSize="@dimen/activity_margin_12dp"
+                                    android:textSize="@dimen/text_size_12sp"
                                     android:layout_marginLeft="@dimen/activity_margin_20dp"
                                     android:gravity="center"
                                     android:textStyle="bold"
@@ -107,7 +105,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:textSize="@dimen/activity_margin_12dp"
+                                    android:textSize="@dimen/text_size_12sp"
                                     android:layout_marginRight="@dimen/activity_margin_20dp"
                                     android:gravity="center"
                                     android:textStyle="bold"
@@ -119,7 +117,7 @@
 
 
                                 <TextView
-                                    android:textSize="@dimen/activity_margin_12dp"
+                                    android:textSize="@dimen/text_size_12sp"
                                     android:layout_marginLeft="@dimen/activity_margin_20dp"
                                     android:gravity="center"
                                     android:textStyle="bold"
@@ -133,93 +131,96 @@
                         </LinearLayout>
 
 
+                        <LinearLayout
+                            android:layout_marginStart="@dimen/activity_margin_20dp"
+                            android:layout_marginEnd="@dimen/activity_margin_20dp"
+                            android:layout_marginTop="@dimen/activity_margin_80dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/text_size_22sp"
+                                android:gravity="center"
+                                android:text="@string/submit_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:padding="@dimen/activity_margin_10dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/gray_text"
+                                android:textSize="@dimen/text_size_14sp"
+                                android:gravity="center"
+                                android:text="@string/inform_verify"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/button_login"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="@dimen/activity_margin_20dp"
+                                android:foreground="?android:attr/selectableItemBackground"
+                                android:background="@drawable/rounded_btn"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:id="@+id/txtLogin"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:paddingStart="16dp"
+                                    android:text="@string/savenext"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/blue"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
+
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/save_next_lay"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/btn_bg_rounded"
+                                android:gravity="center"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="@dimen/activity_margin_20dp"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:paddingTop="@dimen/activity_margin_20dp"
+                                    android:paddingBottom="@dimen/activity_margin_20dp"
+                                    android:paddingStart="@dimen/activity_margin_40dp"
+                                    android:paddingEnd="@dimen/activity_margin_40dp"
+                                    android:text="@string/savenext"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/white"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
 
-                    <LinearLayout
-                        android:layout_marginStart="@dimen/activity_margin_20dp"
-                        android:layout_marginEnd="@dimen/activity_margin_20dp"
-                        android:orientation="vertical"
-                        android:layout_alignParentBottom="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="24dp"
-                            android:gravity="center"
-                            android:text="@string/submit_id"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:padding="@dimen/activity_margin_10dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/gray_text"
-                            android:textSize="@dimen/text_size_14sp"
-                            android:gravity="center"
-                            android:text="@string/inform_verify"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <LinearLayout
-                            android:visibility="gone"
-                            android:id="@+id/button_login"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="@dimen/activity_margin_20dp"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:background="@drawable/rounded_btn"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
-
-                            <TextView
-                                android:id="@+id/txtLogin"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:paddingStart="16dp"
-                                android:text="@string/savenext"
-                                android:textAllCaps="true"
-                                android:textColor="@color/blue"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/buttonLoginNow"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/activity_margin_60dp"
-                            android:background="@drawable/btn_bg_rounded"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="@dimen/activity_margin_20dp"
-                            android:weightSum="1">
-
-                            <TextView
-                                android:layout_width="356dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:paddingStart="16dp"
-                                android:text="@string/savenext"
-                                android:textAllCaps="true"
-                                android:textColor="@color/white"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
 
 
 

@@ -148,6 +148,9 @@
     <string name="next">Next</string>
     <string name="question_no">Question no.</string>
     <string name="save_amp_next"><![CDATA[Save & Next]]></string>
+    <string name="assessor_id_image">Assessor Id Image</string>
+    <string name="assessor_profile_image">Assessor Profile Image</string>
+    <string name="submit">Submit</string>
 
 
     <string-array name="language_list">
