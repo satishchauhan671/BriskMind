@@ -42,11 +42,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when (p0) {
             binding.signAssessor -> {
-                Utility.replaceFragment(AssessorLoginFragment(),mActivity.supportFragmentManager, R.id.layout_root)
+                Utility.replaceFragment(AssessorLoginFragment(),mActivity.supportFragmentManager, binding.layoutRoot.id)
             }
 
             binding.signStudent -> {
-                Utility.replaceFragment(StudentLoginFragment(),mActivity.supportFragmentManager, R.id.layout_root)
+                Utility.replaceFragment(StudentLoginFragment(),mActivity.supportFragmentManager, binding.layoutRoot.id)
             }
         }
     }

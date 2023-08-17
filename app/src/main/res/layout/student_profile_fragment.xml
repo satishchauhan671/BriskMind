@@ -53,7 +53,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/activity_margin_60dp"
+                            android:layout_height="@dimen/activity_margin_45dp"
                             android:layout_marginTop="@dimen/activity_margin_8dp"
                             android:layout_marginBottom="@dimen/activity_margin_12dp"
                             android:background="@drawable/et_curve_bg"
@@ -81,7 +81,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/activity_margin_60dp"
+                            android:layout_height="@dimen/activity_margin_45dp"
                             android:layout_marginTop="@dimen/activity_margin_8dp"
                             android:layout_marginBottom="@dimen/activity_margin_12dp"
                             android:background="@drawable/et_curve_bg"
@@ -108,7 +108,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/activity_margin_60dp"
+                            android:layout_height="@dimen/activity_margin_45dp"
                             android:layout_marginTop="@dimen/activity_margin_8dp"
                             android:layout_marginBottom="@dimen/activity_margin_12dp"
                             android:background="@drawable/et_curve_bg"
@@ -135,7 +135,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/activity_margin_60dp"
+                            android:layout_height="@dimen/activity_margin_45dp"
                             android:layout_marginTop="@dimen/activity_margin_8dp"
                             android:layout_marginBottom="@dimen/activity_margin_12dp"
                             android:background="@drawable/et_curve_bg"
@@ -167,7 +167,8 @@
                         <LinearLayout
                             android:id="@+id/btnSaveProfile"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/activity_margin_60dp"
+                            android:layout_marginTop="@dimen/activity_margin_20dp"
+                            android:layout_height="@dimen/activity_margin_45dp"
                             android:background="@drawable/btn_bg_rounded"
                             android:gravity="center"
                             android:orientation="horizontal"

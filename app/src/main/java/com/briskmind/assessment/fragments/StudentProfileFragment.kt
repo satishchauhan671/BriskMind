@@ -47,7 +47,7 @@ class StudentProfileFragment : Fragment, View.OnClickListener {
         when (p0) {
 
             binding.btnSaveProfile -> {
-                if (type.equals("Start")) {
+                if (type == "Start") {
                     Utility.replaceFragment(
                         StudentListFragment(),
                         mActivity.supportFragmentManager,

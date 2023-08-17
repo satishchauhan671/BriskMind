@@ -1,22 +1,12 @@
 package com.briskmind.assessment.activities
 
-import android.annotation.SuppressLint
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.PopupWindow
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.briskmind.assessment.R
 import com.briskmind.assessment.adapter.StudentTestPageNoAdapter
-import com.briskmind.assessment.assessor.adapter.AssessorTestPageNoAdapter
 import com.briskmind.assessment.common.Utility
-import com.briskmind.assessment.databinding.ActivityAssessorTestBinding
 import com.briskmind.assessment.databinding.ActivityStudentTestBinding
 import com.briskmind.assessment.fragments.StudentProfileFragment
 
@@ -69,7 +59,7 @@ class StudentTestActivity  : AppCompatActivity(), View.OnClickListener {
             }
 
             binding.toolbar.submitTestTv -> {
-                Utility.replaceFragment(StudentProfileFragment("Final"),supportFragmentManager, R.id.layout_root)
+                Utility.replaceFragment(StudentProfileFragment("Final"),supportFragmentManager, binding.studentTestLay.id)
             }
         }
     }
