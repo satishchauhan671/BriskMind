@@ -160,6 +160,7 @@
     <string name="enter_mobile_no">Enter Mobile No.</string>
     <string name="enter_address">Enter Address</string>
     <string name="remarks">Remark</string>
+    <string name="batch_image">Batch Image</string>
 
 
     <string-array name="language_list">
