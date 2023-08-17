@@ -163,51 +163,23 @@
 
 
 
-                        <LinearLayout
-                            android:id="@+id/btnStudentSignIn"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginTop="20dp"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:background="@drawable/rounded_btn"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
-
-                            <TextView
-                                android:id="@+id/txtLogin"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:paddingStart="16dp"
-                                android:text="@string/sign_in"
-                                android:textAllCaps="true"
-                                android:textColor="@color/app_theme"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-
-
-                        </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/buttonLoginNow"
+                            android:id="@+id/btnSaveProfile"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/activity_margin_60dp"
                             android:background="@drawable/btn_bg_rounded"
                             android:gravity="center"
                             android:orientation="horizontal"
-                            android:visibility="gone"
                             android:weightSum="1">
 
                             <TextView
-                                android:layout_width="356dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:paddingStart="16dp"
-                                android:text="@string/sign_in"
+                                android:text="@string/savenext"
                                 android:textAllCaps="true"
                                 android:textColor="@color/white"
                                 android:textSize="13sp"

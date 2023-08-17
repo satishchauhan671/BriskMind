@@ -9,22 +9,26 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.briskmind.assessment.R
 import com.briskmind.assessment.common.Utility
-import com.briskmind.assessment.databinding.StudentLoginLayoutBinding
+import com.briskmind.assessment.databinding.StudentIdProfileLayoutBinding
 
-class StudentLoginFragment: Fragment(), View.OnClickListener {
-    private var _binding : StudentLoginLayoutBinding? = null
+class StudentImagesFragments : Fragment(), View.OnClickListener {
+    private var _binding: StudentIdProfileLayoutBinding? = null
     private val binding get() = _binding!!
     private lateinit var mActivity: FragmentActivity
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = StudentLoginLayoutBinding.inflate(inflater, container, false)
-
-        binding.btnStudentSignIn.setOnClickListener(this)
+        // Inflate the layout for this fragment
+        _binding = StudentIdProfileLayoutBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonLoginNow.setOnClickListener(this)
     }
 
     override fun onAttach(context: Context) {
@@ -34,10 +38,10 @@ class StudentLoginFragment: Fragment(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
         when (p0) {
-            _binding!!.btnStudentSignIn-> {
-                Utility.replaceFragment(StudentImagesFragments(),mActivity.supportFragmentManager, R.id.layout_root)
+
+            binding.buttonLoginNow -> {
+                Utility.replaceFragment(StudentProfileFragment("Start"),mActivity.supportFragmentManager, R.id.layout_root)
             }
         }
     }
-
 }

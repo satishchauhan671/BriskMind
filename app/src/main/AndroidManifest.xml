@@ -16,9 +16,7 @@
         android:roundIcon="@mipmap/briskmind_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.BriskMind">
-        <activity
-            android:name=".activities.StudentProfileActivity"
-            android:exported="false" />
+
         <activity
             android:name=".activities.StudentTestActivity"
             android:exported="false"

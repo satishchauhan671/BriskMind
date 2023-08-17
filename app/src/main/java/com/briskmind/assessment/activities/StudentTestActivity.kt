@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.briskmind.assessment.R
 import com.briskmind.assessment.adapter.StudentTestPageNoAdapter
 import com.briskmind.assessment.assessor.adapter.AssessorTestPageNoAdapter
+import com.briskmind.assessment.common.Utility
 import com.briskmind.assessment.databinding.ActivityAssessorTestBinding
 import com.briskmind.assessment.databinding.ActivityStudentTestBinding
+import com.briskmind.assessment.fragments.StudentProfileFragment
 
 class StudentTestActivity  : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityStudentTestBinding
@@ -31,9 +33,8 @@ class StudentTestActivity  : AppCompatActivity(), View.OnClickListener {
 
         binding.toolbar.recordView.visibility=View.GONE
 
-        Handler().postDelayed({ popupWindow() }, 100)
 
-
+        binding.toolbar.submitTestTv.setOnClickListener(this)
         studentTestPageNoAdapter = StudentTestPageNoAdapter(this, supportFragmentManager)
         binding.studentTestPageNoRv.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -43,27 +44,6 @@ class StudentTestActivity  : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    @SuppressLint("MissingInflatedId")
-    private fun popupWindow() {
-        val inflater = getSystemService(
-            Context.LAYOUT_INFLATER_SERVICE
-        ) as LayoutInflater
-        val popupView = inflater.inflate(R.layout.popup_student_id_profile_layout, null)
-
-        // step 2
-        val wid = LinearLayout.LayoutParams.MATCH_PARENT
-        val high = LinearLayout.LayoutParams.MATCH_PARENT
-        val focus = true
-        val popupWindow = PopupWindow(popupView, wid, high, focus)
-
-        val close: LinearLayout = popupView.findViewById(R.id.btnSaveNext)
-
-        close.setOnClickListener { popupWindow.dismiss() }
-
-        // step 3
-        popupWindow.showAtLocation(binding.studentTestLay, Gravity.CENTER, 0, 0)
-        popupWindow.isOutsideTouchable=false
-    }
 
     override fun onClick(p0: View?) {
         when (p0) {
@@ -77,7 +57,6 @@ class StudentTestActivity  : AppCompatActivity(), View.OnClickListener {
                     binding.rlDimBg.visibility = View.VISIBLE
                     isVisible = true
                 }
-
             }
 
             binding.cardInstruction,
@@ -87,6 +66,10 @@ class StudentTestActivity  : AppCompatActivity(), View.OnClickListener {
                     binding.rlDimBg.visibility = View.GONE
                     isVisible = false
                 }
+            }
+
+            binding.toolbar.submitTestTv -> {
+                Utility.replaceFragment(StudentProfileFragment("Final"),supportFragmentManager, R.id.layout_root)
             }
         }
     }
