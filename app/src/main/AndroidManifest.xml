@@ -17,9 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BriskMind">
         <activity
+            android:name=".activities.StudentProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.StudentTestActivity"
             android:exported="false"
-            android:theme="@style/NoActionBar"/>
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"

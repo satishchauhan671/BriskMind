@@ -155,6 +155,11 @@
     <string name="assistance_technician_cctv">Assistance Technician CCTV...</string>
     <string name="_01_57_00">01:57:00</string>
     <string name="todo">TODO</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_email_id">Enter Email Id</string>
+    <string name="enter_mobile_no">Enter Mobile No.</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="remarks">Remark</string>
 
 
     <string-array name="language_list">

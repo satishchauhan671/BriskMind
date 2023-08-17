@@ -64,7 +64,7 @@
                         <EditText
                             android:id="@+id/edtLoginId"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:background="@null"
                             android:ellipsize="end"
                             android:focusableInTouchMode="true"
@@ -93,7 +93,7 @@
                         <EditText
                             android:id="@+id/edtPassword"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:background="@null"
                             android:ellipsize="end"
                             android:focusableInTouchMode="true"
@@ -107,11 +107,11 @@
                             android:textSize="@dimen/text_size_14sp" />
 
                         <ImageView
+                            android:layout_centerVertical="true"
                             android:id="@+id/showPassword"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginTop="@dimen/activity_margin_2dp"
                             android:src="@drawable/ic_eye_close" />
                     </RelativeLayout>
 
