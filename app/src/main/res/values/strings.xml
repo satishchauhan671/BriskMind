@@ -161,6 +161,19 @@
     <string name="enter_address">Enter Address</string>
     <string name="remarks">Remark</string>
     <string name="batch_image">Batch Image</string>
+    <string name="dummy_que">_______ is the potential difference between a negatively charged component and a component with positive charged</string>
+    <string name="take_attendance">Take Attendance</string>
+    <string name="practical">Practical</string>
+    <string name="complete">Complete</string>
+    <string name="attendance">Attendance</string>
+    <string name="pending">Pending</string>
+    <string name="in_progress">In-progress</string>
+    <string name="sync_batch">Sync Batch</string>
+    <string name="mark_in">Mark In</string>
+    <string name="mark_profile">Mark In Profile</string>
+    <string name="mark_out">Mark Out</string>
+    <string name="submit_your_attendance">Submit Your Attendance</string>
+    <string name="mark_out_profile">Mark Out Profile</string>
 
 
     <string-array name="language_list">

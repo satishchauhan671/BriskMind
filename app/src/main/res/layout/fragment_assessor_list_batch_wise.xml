@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_root"
+    android:background="@color/batch_view_color"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:id="@+id/mainLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/activity_margin_15dp"
+        android:paddingBottom="@dimen/activity_margin_15dp"
+        android:paddingStart="@dimen/activity_margin_15dp"
+        android:paddingEnd="@dimen/activity_margin_15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/student_name_txt"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_12sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Shivam Singhal"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_13sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/student_enrollment"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/activity_margin_10dp"
+                    android:textSize="@dimen/text_size_12sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="11"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_13sp"
+                    android:layout_marginBottom="@dimen/activity_margin_10dp"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/activity_margin_10dp"
+                android:id="@+id/syncBatch"
+                android:layout_width="@dimen/activity_margin_100dp"
+                android:layout_height="@dimen/activity_margin_35dp"
+                android:background="@drawable/btn_bg_theme_dark_rounded"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/sync_batch"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewStudent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mainLay"
+        android:layout_marginStart="@dimen/activity_margin_10dp"
+        android:layout_marginEnd="@dimen/activity_margin_10dp"
+        android:layout_marginTop="-20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/student_list_batch_wise_adapter"
+        android:padding="@dimen/activity_margin_5dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>

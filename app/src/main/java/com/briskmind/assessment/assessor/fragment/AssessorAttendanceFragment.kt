@@ -15,14 +15,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.briskmind.assessment.activities.CameraActivity
 import com.briskmind.assessment.common.Utility
-import com.briskmind.assessment.databinding.AssessorIdProfileLayoutBinding
+import com.briskmind.assessment.databinding.FragmentAssessorAttendanceBinding
 import com.briskmind.assessment.fragments.CameraFragment
 import com.briskmind.assessment.listner.ImageCallbackListener
 import java.io.File
 
-class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCallbackListener {
+class AssessorAttendanceFragment : Fragment(), View.OnClickListener, ImageCallbackListener {
 
-    private var _binding: AssessorIdProfileLayoutBinding? = null
+    private var _binding: FragmentAssessorAttendanceBinding? = null
     private val binding get() = _binding!!
     private lateinit var mActivity: FragmentActivity
     val REQUEST_PERMISSION_CAMERA = 203
@@ -33,28 +33,31 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = AssessorIdProfileLayoutBinding.inflate(inflater, container, false)
+        _binding = FragmentAssessorAttendanceBinding.inflate(inflater, container, false)
         CameraFragment.getImageCallback(this)
-        binding.saveNextLay.setOnClickListener(this)
-        binding.imgAssessorId.setOnClickListener(this)
-        binding.imgAssessorProfile.setOnClickListener(this)
+        binding.submitBtn.setOnClickListener(this)
+        binding.profileMarkOutIv.setOnClickListener(this)
+        binding.markOutIv.setOnClickListener(this)
+        binding.profileMarkInIv.setOnClickListener(this)
+        binding.markInIv.setOnClickListener(this)
         return binding.root
     }
 
 
     override fun onClick(p0: View?) {
         when (p0) {
-            binding.saveNextLay -> {
-                Utility.replaceFragment(AssessorBatchListFragment(), mActivity.supportFragmentManager, binding.layoutRoot.id)
+
+            binding.submitBtn ->{
+
             }
 
-            binding.imgAssessorId -> {
+            binding.markInIv -> {
                 firstimg = true
                 secondimg = false
                 checkCameraPermission()
             }
 
-            binding.imgAssessorProfile -> {
+            binding.profileMarkInIv -> {
                 firstimg = false
                 secondimg = true
                 checkCameraPermission()
@@ -71,7 +74,7 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
                 val rotation = Utility.getRotation(filepath)
 
                 if (firstimg) {
-                    _binding!!.imgAssessorId.setImageBitmap(
+                    _binding!!.markInIv.setImageBitmap(
                         Utility.getBitmapByStringImage(
                             Utility.bitmapToBASE64(
                                 Utility.rotateImage(
@@ -81,7 +84,7 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
                         )
                     )
                 } else {
-                    _binding!!.imgAssessorProfile.setImageBitmap(
+                    _binding!!.profileMarkInIv.setImageBitmap(
                         Utility.getBitmapByStringImage(
                             Utility.bitmapToBASE64(
                                 Utility.rotateImage(

@@ -1,4 +1,4 @@
-package com.briskmind.assessment.fragments
+package com.briskmind.assessment.assessor.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -8,15 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.briskmind.assessment.adapter.StudentListAdapter
+import com.briskmind.assessment.R
+import com.briskmind.assessment.assessor.adapter.AssessorBatchWiseAdapter
 import com.briskmind.assessment.common.Utility
-import com.briskmind.assessment.databinding.FragmentStudentListBinding
+import com.briskmind.assessment.databinding.FragmentAssessorListBatchWiseBinding
 import com.briskmind.assessment.listner.ChooseStudentListListener
 
-class StudentListFragment  : Fragment() {
-    private var _binding: FragmentStudentListBinding? = null
+class AssessorBatchListFragment  : Fragment() , View.OnClickListener{
+    private var _binding: FragmentAssessorListBatchWiseBinding? = null
     private val binding get() = _binding!!
-    private lateinit var studentListAdapter: StudentListAdapter
+    private lateinit var studentListAdapter: AssessorBatchWiseAdapter
     private lateinit var mActivity: FragmentActivity
 
     override fun onCreateView(
@@ -24,7 +25,7 @@ class StudentListFragment  : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentStudentListBinding.inflate(inflater, container, false)
+        _binding = FragmentAssessorListBatchWiseBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -36,8 +37,8 @@ class StudentListFragment  : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        studentListAdapter = StudentListAdapter(mActivity,mActivity.supportFragmentManager)
+        binding.syncBatch.setOnClickListener(this)
+        studentListAdapter = AssessorBatchWiseAdapter(mActivity,mActivity.supportFragmentManager)
         binding.recyclerViewStudent.layoutManager = LinearLayoutManager(mActivity,
             LinearLayoutManager.VERTICAL,false)
         studentListAdapter.setAdapterListener(chooseMainListener)
@@ -47,9 +48,17 @@ class StudentListFragment  : Fragment() {
 
     private val chooseMainListener = object : ChooseStudentListListener {
         override fun chooseMemberAdapterListener(pos: Int, id: Int) {
-            Utility.replaceFragment(InstructionFragment(), mActivity.supportFragmentManager, binding.lytStudent.id)
+            Utility.replaceFragment(AssessorAttendanceFragment(),mActivity.supportFragmentManager, binding.layoutRoot.id)
         }
 
+    }
+
+    override fun onClick(p0: View?) {
+        when (p0){
+            binding.syncBatch -> {
+                Utility.replaceFragment(AssessorFeedbackFragment(), mActivity.supportFragmentManager, binding.layoutRoot.id)
+            }
+        }
     }
 
 }

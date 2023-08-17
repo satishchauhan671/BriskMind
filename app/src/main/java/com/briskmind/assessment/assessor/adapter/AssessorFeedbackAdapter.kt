@@ -1,4 +1,4 @@
-package com.briskmind.assessment.adapter
+package com.briskmind.assessment.assessor.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.briskmind.assessment.R
 import com.briskmind.assessment.listner.ChooseStudentListListener
 
-class StudentListAdapter(mContext: Context, fragmentManager: FragmentManager) :
-    RecyclerView.Adapter<StudentListAdapter.ViewHolder>() {
+class AssessorFeedbackAdapter(mContext: Context, fragmentManager: FragmentManager) :
+    RecyclerView.Adapter<AssessorFeedbackAdapter.ViewHolder>() {
 
     private val mContext: Context = mContext
     private val fragmentManager: FragmentManager = fragmentManager
@@ -25,7 +25,7 @@ class StudentListAdapter(mContext: Context, fragmentManager: FragmentManager) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.student_list_adapter, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.feedback_adapter_layout, parent, false)
         return ViewHolder(view)
     }
 

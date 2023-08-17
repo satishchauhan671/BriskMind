@@ -50,7 +50,7 @@ class AssessorMainFragment : Fragment() {
 
     private val chooseMainListener = object : ChooseAssessorMainListener{
         override fun chooseMemberAdapterListener(pos: Int, id: Int) {
-            Utility.replaceFragment(AssessorIdProfileImageFragment(), mActivity.supportFragmentManager, binding.layAssessor.id)
+            Utility.replaceFragment(AssessorIdProfileImageFragment(), mActivity.supportFragmentManager, binding.layoutRoot.id)
         }
 
     }
@@ -68,7 +68,7 @@ class AssessorMainFragment : Fragment() {
                 Utility.replaceFragment(
                     AssessorBatchImagesFragment(),
                     mActivity.supportFragmentManager,
-                    binding.layAssessor.id
+                    binding.layoutRoot.id
                 )
             }
         }

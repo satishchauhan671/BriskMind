@@ -31,6 +31,8 @@
     <color name="eff8fe">#eff8fe</color>
     <color name="F1EFF5">#F1EFF5</color>
     <color name="green">#31C220</color>
+    <color name="dark_green">#22631A</color>
+    <color name="yellow">#FFEB3B</color>
 
     <color name="color_272F38">#272F38</color>
     <color name="color_747474">#747474</color>
@@ -42,4 +44,6 @@
     <color name="black_transparent60">#99000000</color>
     <color name="black_transparent90">#E6000000</color>
     <color name="black_transparent75">#BF000000</color>
+    <color name="accent1">#FC8D39</color>
+    <color name="accent2">#FFF03637</color>
 </resources>

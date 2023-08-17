@@ -8,15 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.briskmind.assessment.adapter.StudentListAdapter
+import com.briskmind.assessment.adapter.StudentFeedbackAdapter
 import com.briskmind.assessment.common.Utility
-import com.briskmind.assessment.databinding.FragmentStudentListBinding
+import com.briskmind.assessment.databinding.FragmentFeedbackBinding
 import com.briskmind.assessment.listner.ChooseStudentListListener
 
-class StudentListFragment  : Fragment() {
-    private var _binding: FragmentStudentListBinding? = null
+class StudentFeedbackFragment  : Fragment() {
+    private var _binding: FragmentFeedbackBinding? = null
     private val binding get() = _binding!!
-    private lateinit var studentListAdapter: StudentListAdapter
+    private lateinit var studentListAdapter: StudentFeedbackAdapter
     private lateinit var mActivity: FragmentActivity
 
     override fun onCreateView(
@@ -24,7 +24,7 @@ class StudentListFragment  : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentStudentListBinding.inflate(inflater, container, false)
+        _binding = FragmentFeedbackBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -37,17 +37,17 @@ class StudentListFragment  : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        studentListAdapter = StudentListAdapter(mActivity,mActivity.supportFragmentManager)
-        binding.recyclerViewStudent.layoutManager = LinearLayoutManager(mActivity,
+        studentListAdapter = StudentFeedbackAdapter(mActivity,mActivity.supportFragmentManager)
+        binding.feedbackRv.layoutManager = LinearLayoutManager(mActivity,
             LinearLayoutManager.VERTICAL,false)
         studentListAdapter.setAdapterListener(chooseMainListener)
-        binding.recyclerViewStudent.adapter = studentListAdapter
+        binding.feedbackRv.adapter = studentListAdapter
 
     }
 
     private val chooseMainListener = object : ChooseStudentListListener {
         override fun chooseMemberAdapterListener(pos: Int, id: Int) {
-            Utility.replaceFragment(InstructionFragment(), mActivity.supportFragmentManager, binding.lytStudent.id)
+            Utility.replaceFragment(InstructionFragment(), mActivity.supportFragmentManager, binding.layoutRoot.id)
         }
 
     }

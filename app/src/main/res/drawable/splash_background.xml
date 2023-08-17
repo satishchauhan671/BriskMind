@@ -1,0 +1,9 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Add a solid white background -->
+    <item android:drawable="@color/white" />
+
+    <!-- Add your existing image as a bitmap -->
+    <item android:gravity="center">
+        <bitmap android:src="@drawable/splash" />
+    </item>
+</layer-list>

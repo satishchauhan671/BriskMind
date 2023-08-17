@@ -63,7 +63,7 @@
         android:layout_marginEnd="@dimen/activity_margin_10dp"
         android:layout_marginTop="-20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/student_list_adapter_layout"
+        tools:listitem="@layout/student_list_adapter"
         android:padding="@dimen/activity_margin_5dp">
 
     </androidx.recyclerview.widget.RecyclerView>

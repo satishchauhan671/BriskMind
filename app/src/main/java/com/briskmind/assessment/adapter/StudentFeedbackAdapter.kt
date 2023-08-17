@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.briskmind.assessment.R
 import com.briskmind.assessment.listner.ChooseStudentListListener
 
-class StudentListAdapter(mContext: Context, fragmentManager: FragmentManager) :
-    RecyclerView.Adapter<StudentListAdapter.ViewHolder>() {
+class StudentFeedbackAdapter(mContext: Context, fragmentManager: FragmentManager) :
+    RecyclerView.Adapter<StudentFeedbackAdapter.ViewHolder>() {
 
     private val mContext: Context = mContext
     private val fragmentManager: FragmentManager = fragmentManager
@@ -25,14 +25,12 @@ class StudentListAdapter(mContext: Context, fragmentManager: FragmentManager) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.student_list_adapter, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.feedback_adapter_layout, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.lytStartTest.setOnClickListener{
-            chooseStudentListListener.chooseMemberAdapterListener(position,0)
-        }
+
     }
 
     override fun getItemCount(): Int {
@@ -42,11 +40,8 @@ class StudentListAdapter(mContext: Context, fragmentManager: FragmentManager) :
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var view : View
-        var lytStartTest : LinearLayout
         init {
             view = itemView
-            lytStartTest = itemView.findViewById(R.id.lytStartTest)
-
         }
     }
 

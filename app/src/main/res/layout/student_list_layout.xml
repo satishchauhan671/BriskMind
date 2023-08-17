@@ -83,7 +83,7 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
-                        tools:listitem="@layout/student_list_adapter_layout"
+                        tools:listitem="@layout/student_list_adapter"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 

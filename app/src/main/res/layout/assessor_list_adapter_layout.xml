@@ -102,7 +102,7 @@
             android:layout_marginTop="@dimen/activity_margin_10dp"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/activity_margin_35dp"
-            android:background="@drawable/btn_bg_blue_rounded"
+            android:background="@drawable/btn_bg_green_rounded"
             android:foreground="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:orientation="horizontal"

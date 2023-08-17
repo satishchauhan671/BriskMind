@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout_root"
     android:background="@color/F1EFF5">
 
 
     <LinearLayout
-        android:id="@+id/lay_assessor"
+        android:id="@+id/mainLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
@@ -58,7 +59,7 @@
         android:id="@+id/assessorTestRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lay_assessor"
+        android:layout_below="@+id/mainLay"
         android:layout_marginStart="@dimen/activity_margin_10dp"
         android:layout_marginTop="-20dp"
         android:layout_marginEnd="@dimen/activity_margin_10dp"
