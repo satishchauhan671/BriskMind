@@ -37,7 +37,7 @@ class AssessorFeedbackFragment  : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.toolbar.pageTitle.text = "Feedback"
         studentListAdapter = StudentFeedbackAdapter(mActivity,mActivity.supportFragmentManager)
         binding.feedbackRv.layoutManager = LinearLayoutManager(mActivity,
             LinearLayoutManager.VERTICAL,false)
