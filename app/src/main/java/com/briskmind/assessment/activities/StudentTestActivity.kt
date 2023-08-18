@@ -8,6 +8,7 @@ import com.briskmind.assessment.R
 import com.briskmind.assessment.adapter.StudentTestPageNoAdapter
 import com.briskmind.assessment.common.Utility
 import com.briskmind.assessment.databinding.ActivityStudentTestBinding
+import com.briskmind.assessment.fragments.StudentImagesFragments
 import com.briskmind.assessment.fragments.StudentProfileFragment
 
 class StudentTestActivity  : AppCompatActivity(), View.OnClickListener {
@@ -22,7 +23,6 @@ class StudentTestActivity  : AppCompatActivity(), View.OnClickListener {
         setContentView(view)
 
         binding.toolbar.recordView.visibility=View.GONE
-
 
         binding.toolbar.submitTestTv.setOnClickListener(this)
         studentTestPageNoAdapter = StudentTestPageNoAdapter(this, supportFragmentManager)
@@ -59,7 +59,7 @@ class StudentTestActivity  : AppCompatActivity(), View.OnClickListener {
             }
 
             binding.toolbar.submitTestTv -> {
-                Utility.replaceFragment(StudentProfileFragment("Final"),supportFragmentManager, binding.studentTestLay.id)
+                Utility.replaceFragment(StudentImagesFragments("Final"),supportFragmentManager, binding.studentTestLay.id)
             }
         }
     }

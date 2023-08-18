@@ -11,11 +11,17 @@ import com.briskmind.assessment.R
 import com.briskmind.assessment.common.Utility
 import com.briskmind.assessment.databinding.StudentIdProfileLayoutBinding
 
-class StudentImagesFragments : Fragment(), View.OnClickListener {
+class StudentImagesFragments : Fragment, View.OnClickListener {
     private var _binding: StudentIdProfileLayoutBinding? = null
     private val binding get() = _binding!!
     private lateinit var mActivity: FragmentActivity
+    private var type : String =""
+    constructor()
 
+    constructor(type : String)
+    {
+        this.type = type
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,7 +46,16 @@ class StudentImagesFragments : Fragment(), View.OnClickListener {
         when (p0) {
 
             binding.buttonLoginNow -> {
-                Utility.replaceFragment(StudentProfileFragment("Start"),mActivity.supportFragmentManager, R.id.layout_root)
+
+                if (type.equals("Start"))
+                {
+                    Utility.replaceFragment(StudentProfileFragment(),mActivity.supportFragmentManager, R.id.layout_root)
+                }
+                else
+                {
+                    Utility.replaceFragment(StudentFeedbackFragment(),mActivity.supportFragmentManager, R.id.layout_root)
+                }
+
             }
         }
     }

@@ -35,7 +35,7 @@ class StudentLoginFragment: Fragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when (p0) {
             _binding!!.btnStudentSignIn-> {
-                Utility.replaceFragment(StudentImagesFragments(),mActivity.supportFragmentManager, R.id.layout_root)
+                Utility.replaceFragment(StudentImagesFragments("Start"),mActivity.supportFragmentManager, R.id.layout_root)
             }
         }
     }
