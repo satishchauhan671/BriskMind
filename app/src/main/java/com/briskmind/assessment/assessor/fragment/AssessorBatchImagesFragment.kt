@@ -21,13 +21,18 @@ class AssessorBatchImagesFragment : Fragment(), View.OnClickListener{
         savedInstanceState: Bundle?
     ): View {
         _binding = BatchImagesLayoutBinding.inflate(inflater, container, false)
-        binding.backArrowIv.setOnClickListener(this)
+        binding.toolbar.backArrowIv.setOnClickListener(this)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.toolbar.pageTitle.text = "Batch Image"
     }
 
     override fun onClick(p0: View?) {
         when(p0){
-            binding.backArrowIv -> {
+            binding.toolbar.backArrowIv -> {
                     mActivity.onBackPressed()
             }
         }
