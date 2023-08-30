@@ -36,10 +36,10 @@ class AssessorAttendanceFragment : Fragment(), View.OnClickListener, ImageCallba
         _binding = FragmentAssessorAttendanceBinding.inflate(inflater, container, false)
         CameraFragment.getImageCallback(this)
         binding.submitBtn.setOnClickListener(this)
-        binding.profileMarkOutIv.setOnClickListener(this)
-        binding.markOutIv.setOnClickListener(this)
-        binding.profileMarkInIv.setOnClickListener(this)
-        binding.markInIv.setOnClickListener(this)
+        binding.lytEntryId.setOnClickListener(this)
+        binding.lytEntryProfile.setOnClickListener(this)
+        binding.lytExitId.setOnClickListener(this)
+        binding.lytExitProfile.setOnClickListener(this)
         return binding.root
     }
 
@@ -51,13 +51,13 @@ class AssessorAttendanceFragment : Fragment(), View.OnClickListener, ImageCallba
 
             }
 
-            binding.markInIv -> {
+            binding.lytEntryId -> {
                 firstimg = true
                 secondimg = false
                 checkCameraPermission()
             }
 
-            binding.profileMarkInIv -> {
+            binding.lytEntryProfile -> {
                 firstimg = false
                 secondimg = true
                 checkCameraPermission()
@@ -74,7 +74,7 @@ class AssessorAttendanceFragment : Fragment(), View.OnClickListener, ImageCallba
                 val rotation = Utility.getRotation(filepath)
 
                 if (firstimg) {
-                    _binding!!.markInIv.setImageBitmap(
+                    _binding!!.imgEntryID.setImageBitmap(
                         Utility.getBitmapByStringImage(
                             Utility.bitmapToBASE64(
                                 Utility.rotateImage(
@@ -84,7 +84,7 @@ class AssessorAttendanceFragment : Fragment(), View.OnClickListener, ImageCallba
                         )
                     )
                 } else {
-                    _binding!!.profileMarkInIv.setImageBitmap(
+                    _binding!!.imgEntryProfile.setImageBitmap(
                         Utility.getBitmapByStringImage(
                             Utility.bitmapToBASE64(
                                 Utility.rotateImage(

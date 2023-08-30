@@ -96,31 +96,70 @@
 
         </LinearLayout>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/startBatchAssessor"
-            android:layout_marginTop="@dimen/activity_margin_10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/activity_margin_35dp"
-            android:background="@drawable/btn_bg_green_rounded"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="1">
+                <LinearLayout
+                    android:id="@+id/startBatchAssessor"
+                    android:layout_marginTop="@dimen/activity_margin_10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/activity_margin_35dp"
+                    android:background="@drawable/btn_bg_green_rounded"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingStart="@dimen/activity_margin_10dp"
-                android:paddingEnd="@dimen/activity_margin_10dp"
-                android:paddingTop="@dimen/activity_margin_5dp"
-                android:paddingBottom="@dimen/activity_margin_5dp"
-                android:text="@string/start_batch"
-                android:textColor="@color/white"
-                android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/activity_margin_10dp"
+                        android:paddingEnd="@dimen/activity_margin_10dp"
+                        android:paddingTop="@dimen/activity_margin_5dp"
+                        android:paddingBottom="@dimen/activity_margin_5dp"
+                        android:text="@string/start_batch"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"/>
 
-        </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/removeBatchAssessor"
+                    android:layout_marginTop="@dimen/activity_margin_10dp"
+                    android:layout_marginLeft="@dimen/activity_margin_20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/activity_margin_35dp"
+                    android:background="@drawable/btn_bg_red_rounded"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/activity_margin_10dp"
+                        android:paddingEnd="@dimen/activity_margin_10dp"
+                        android:paddingTop="@dimen/activity_margin_5dp"
+                        android:paddingBottom="@dimen/activity_margin_5dp"
+                        android:text="@string/remove_batch"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"/>
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
 
         </LinearLayout>
 

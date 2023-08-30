@@ -41,7 +41,7 @@ class AssessorLoginImageFragment : Fragment(), View.OnClickListener, ImageCallba
         super.onViewCreated(view, savedInstanceState)
 
         binding.cardSaveNext.setOnClickListener(this)
-        binding.assessorLoginImage.setOnClickListener(this)
+        binding.lytAssessorLogin.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -51,7 +51,7 @@ class AssessorLoginImageFragment : Fragment(), View.OnClickListener, ImageCallba
                 startActivity(intent)
             }
 
-            binding.assessorLoginImage -> {
+            binding.lytAssessorLogin -> {
                 checkCameraPermission()
             }
 
@@ -110,7 +110,7 @@ class AssessorLoginImageFragment : Fragment(), View.OnClickListener, ImageCallba
                 val filepath = file.absolutePath
                 val rotation = Utility.getRotation(filepath)
 
-                _binding!!.assessorLoginImage.setImageBitmap(
+                _binding!!.imgAssessorLogin.setImageBitmap(
                     Utility.getBitmapByStringImage(
                         Utility.bitmapToBASE64(
                             Utility.rotateImage(

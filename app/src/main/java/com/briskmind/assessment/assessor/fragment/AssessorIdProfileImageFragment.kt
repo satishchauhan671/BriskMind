@@ -36,8 +36,8 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
         _binding = AssessorIdProfileLayoutBinding.inflate(inflater, container, false)
         CameraFragment.getImageCallback(this)
         binding.saveNextLay.setOnClickListener(this)
-        binding.imgAssessorId.setOnClickListener(this)
-        binding.imgAssessorProfile.setOnClickListener(this)
+        binding.lytAssessorId.setOnClickListener(this)
+        binding.lytAssessorProfile.setOnClickListener(this)
         return binding.root
     }
 
@@ -48,13 +48,13 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
                 Utility.replaceFragment(AssessorBatchListFragment(), mActivity.supportFragmentManager, binding.layoutRoot.id)
             }
 
-            binding.imgAssessorId -> {
+            binding.lytAssessorId -> {
                 firstimg = true
                 secondimg = false
                 checkCameraPermission()
             }
 
-            binding.imgAssessorProfile -> {
+            binding.lytAssessorProfile -> {
                 firstimg = false
                 secondimg = true
                 checkCameraPermission()

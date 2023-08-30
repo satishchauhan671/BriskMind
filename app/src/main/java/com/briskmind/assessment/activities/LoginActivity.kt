@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.briskmind.assessment.R
+import com.briskmind.assessment.assessor.fragment.AssessorLoginFragment
 import com.briskmind.assessment.common.Utility
 import com.briskmind.assessment.databinding.ActivityLoginBinding
 import com.briskmind.assessment.fragments.LoginFragment
@@ -19,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
         view = binding.root
         setContentView(view)
 
-        Utility.addFragment(LoginFragment(),supportFragmentManager,binding.layoutRoot.id)
+        Utility.addFragment(AssessorLoginFragment(),supportFragmentManager,binding.layoutRoot.id)
        }
 
 }

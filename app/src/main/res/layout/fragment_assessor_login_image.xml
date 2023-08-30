@@ -34,25 +34,50 @@
                     android:textColor="@color/assessor_txt_color"
                     android:textSize="10sp" />
 
-                <RelativeLayout
-                    android:id="@+id/id_image_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
                     android:layout_gravity="center"
-                    android:layout_marginTop="18sp"
-                    android:padding="15dp">
+                    android:layout_marginTop="@dimen/activity_margin_30dp"
+                    android:layout_width="200dp"
+                    android:layout_height="160dp"
+                    android:orientation="horizontal">
 
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        android:id="@+id/assessor_login_image"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:adjustViewBounds="true"
-                        android:background="@drawable/assessor_id_image"
-                        android:scaleType="centerCrop"
-                        app:riv_corner_radius="22dp"
-                        app:riv_oval="false" />
-                </RelativeLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="@dimen/activity_margin_15dp"
+                        android:layout_marginEnd="@dimen/activity_margin_5dp">
+
+                        <LinearLayout
+                            android:id="@+id/lytAssessorLogin"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:background="@drawable/cameraimgbackground">
+
+                            <ImageView
+                                android:id="@+id/imgAssessorLogin"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:visibility="gone" />
+
+                            <ImageView
+                                android:id="@+id/meterimage1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_camera_new"
+                                android:scaleType="centerCrop" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/change_remove"

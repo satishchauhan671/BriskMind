@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?android:attr/spinnerItemStyle"
+    android:textAppearance="?android:attr/textAppearanceSmallPopupMenu"
+    android:singleLine="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="marquee"
+    android:textSize="@dimen/text_size_13sp"
+    android:textAlignment="inherit"
+    android:gravity="left"
+    android:textColor="@color/color_272F38"
+    android:layout_marginStart="@dimen/activity_margin_5dp"
+    android:padding="2dp"/>
+

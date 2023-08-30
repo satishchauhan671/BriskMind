@@ -83,6 +83,7 @@
     <string name="no">No</string>
     <string name="ok">OK</string>
     <string name="submit_id">Submit your ID</string>
+    <string name="submit_identity">Submit your Identity</string>
     <string name="syncBatchMsg">We are synchronizing your assessed batch data to server. Request you to please don\'t close or kill the app otherwise data may be lost.</string>
     <string name="syncMessageNote">Your test is not submitted to the server, Kindly click on sync button.</string>
     <string name="termscondition">I have read and understood the instructions. I agree that in case of not adhering to the exam instructions, I will be disqualified from giving the exam.</string>
@@ -144,6 +145,7 @@
     <string name="assessor_code">Enter Assessor Code</string>
     <string name="assessor_login_image">Assessor Login Image</string>
     <string name="start_batch">Start Batch</string>
+    <string name="remove_batch">Remove Batch</string>
     <string name="submit">Submit</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
@@ -169,11 +171,15 @@
     <string name="pending">Pending</string>
     <string name="in_progress">In-progress</string>
     <string name="sync_batch">Sync Batch</string>
-    <string name="mark_in">Mark In</string>
-    <string name="mark_profile">Mark In Profile</string>
-    <string name="mark_out">Mark Out</string>
+    <string name="entry_id">Entry ID</string>
+    <string name="entry_profile">Entry Profile</string>
+    <string name="exit_out">Exit ID</string>
+    <string name="exit_profile">Exit Profile</string>
     <string name="submit_your_attendance">Submit Your Attendance</string>
-    <string name="mark_out_profile">Mark Out Profile</string>
+    <string name="login_as">Login As</string>
+    <string name="enter_login_id">Enter Login Id</string>
+    <string name="aadhar_front">Aadhar Front</string>
+    <string name="aadhar_back">Aadhar Back</string>
 
 
     <string-array name="language_list">

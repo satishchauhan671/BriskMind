@@ -46,4 +46,5 @@
     <color name="black_transparent75">#BF000000</color>
     <color name="accent1">#FC8D39</color>
     <color name="accent2">#FFF03637</color>
+    <color name="bordercolor">#80000000</color>
 </resources>

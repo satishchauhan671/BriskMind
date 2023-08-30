@@ -100,7 +100,7 @@
                                     android:id="@+id/groupimage1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_camera"
+                                    android:src="@drawable/ic_camera_new"
                                     android:scaleType="centerCrop" />
 
                                 <TextView
@@ -143,7 +143,7 @@
                                     android:id="@+id/bannerimage2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_camera"
+                                    android:src="@drawable/ic_camera_new"
                                     android:scaleType="centerCrop" />
 
                                 <TextView
@@ -201,7 +201,7 @@
                                     android:id="@+id/centerimage1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_camera"
+                                    android:src="@drawable/ic_camera_new"
                                     android:scaleType="centerCrop" />
 
                                 <TextView
