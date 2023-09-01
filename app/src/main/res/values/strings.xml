@@ -164,7 +164,7 @@
     <string name="remarks">Remark</string>
     <string name="batch_image">Batch Image</string>
     <string name="dummy_que">_______ is the potential difference between a negatively charged component and a component with positive charged</string>
-    <string name="take_attendance">Take Attendance</string>
+    <string name="take_attendance">Take\nAttendance</string>
     <string name="practical">Practical</string>
     <string name="complete">Complete</string>
     <string name="attendance">Attendance</string>
@@ -180,6 +180,10 @@
     <string name="enter_login_id">Enter Login Id</string>
     <string name="aadhar_front">Aadhar Front</string>
     <string name="aadhar_back">Aadhar Back</string>
+    <string name="viva">Viva</string>
+    <string name="done">Done</string>
+    <string name="absent">Absent</string>
+    <string name="mark_absent">Mark Absent</string>
 
 
     <string-array name="language_list">

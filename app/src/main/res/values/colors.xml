@@ -47,4 +47,5 @@
     <color name="accent1">#FC8D39</color>
     <color name="accent2">#FFF03637</color>
     <color name="bordercolor">#80000000</color>
+    <color name="red">#F44336</color>
 </resources>
