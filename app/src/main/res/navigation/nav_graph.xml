@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/permissions_fragment"
-        android:name="com.briskmind.assessment.fragments.PermissionsFragment"
+        android:name="com.brisk.assessment.fragments.PermissionsFragment"
         android:label="PermissionsFragment" >
 
         <action
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/camera_fragment"
-        android:name="com.briskmind.assessment.fragments.CameraFragment"
+        android:name="com.brisk.assessment.fragments.CameraFragment"
         android:label="CameraFragment" >
 
             <action

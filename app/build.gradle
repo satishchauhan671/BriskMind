@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'com.briskmind.assessment'
+    namespace 'com.brisk.assessment'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.briskmind.assessment"
+        applicationId "com.brisk.assessment"
         minSdk 24
         targetSdk 33
         versionCode 1
