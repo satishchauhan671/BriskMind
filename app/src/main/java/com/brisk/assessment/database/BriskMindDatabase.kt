@@ -4,14 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.brisk.assessment.common.DataConvertor
 import com.brisk.assessment.dao.LanguageDao
 import com.brisk.assessment.dao.TextsDao
 import com.brisk.assessment.dao.UserDao
-import com.brisk.assessment.entity.LanguagesEntity
-import com.brisk.assessment.entity.TextsEntity
-import com.brisk.assessment.entity.UserEntity
+import com.brisk.assessment.model.LanguageRes
+import com.brisk.assessment.model.LoginRes
+import com.brisk.assessment.model.TextsRes
 
-@Database(entities = [UserEntity::class,LanguagesEntity::class,TextsEntity::class], version = 1, exportSchema = false)
+@TypeConverters(DataConvertor::class)
+@Database(entities = [LoginRes::class,LanguageRes::class,TextsRes::class], version = 1, exportSchema = false)
 abstract class BriskMindDatabase : RoomDatabase(){
 
     abstract fun userDao() : UserDao

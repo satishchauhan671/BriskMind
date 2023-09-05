@@ -9,11 +9,11 @@ import com.brisk.assessment.repositories.LoginRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val loginRepo: LoginRepo) : ViewModel() {
+class MainViewModel(private val loginRepo: LoginRepo, loginReq: LoginReq) : ViewModel() {
 
     init {
         viewModelScope.launch ( Dispatchers.IO){
-            loginRepo.login("dddd","ZjFyOUxn","MDgwODIx","MS4wLjA=","com.brisk.assessment")
+            loginRepo.login(loginReq.deviceId,loginReq.password,loginReq.userid,loginReq.appVersion,loginReq.appType)
         }
     }
 

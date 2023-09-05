@@ -825,5 +825,8 @@ object Utility {
         return minutes
     }
 
-
+    fun stringToBase64(inputString: String): String {
+        val encodedBytes = Base64.encode(inputString.toByteArray(), Base64.DEFAULT)
+        return String(encodedBytes)
+    }
 }
