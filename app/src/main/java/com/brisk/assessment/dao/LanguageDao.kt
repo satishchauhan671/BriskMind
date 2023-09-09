@@ -15,7 +15,6 @@ interface LanguageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(languagesEntity: LanguageRes)
 
-
     @Query("Select * from languages")
     fun getLanguageList() : List<LanguageRes>
 }

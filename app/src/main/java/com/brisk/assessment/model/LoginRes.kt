@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "user")
+@Entity(tableName = "login_mst")
 class LoginRes {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

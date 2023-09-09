@@ -3,7 +3,7 @@ package com.brisk.assessment.activities
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.brisk.assessment.assessor.fragment.AssessorLoginFragment
+import com.brisk.assessment.fragments.LoginFragment
 import com.brisk.assessment.common.Utility
 import com.brisk.assessment.databinding.ActivityLoginBinding
 
@@ -18,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
         view = binding.root
         setContentView(view)
 
-        Utility.addFragment(AssessorLoginFragment(),supportFragmentManager,binding.layoutRoot.id)
+        Utility.addFragment(LoginFragment(),supportFragmentManager,binding.layoutRoot.id)
        }
 
 }

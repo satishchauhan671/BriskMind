@@ -6,8 +6,7 @@ import androidx.room.OnConflictStrategy
 import com.brisk.assessment.model.LoginRes
 
 @Dao
-interface UserDao {
-
+interface LoginDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(userEntity: LoginRes)
 }

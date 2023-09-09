@@ -1,5 +1,6 @@
 package com.brisk.assessment.retrofit
 
+import com.brisk.assessment.model.ImportAssessmentResponse
 import com.brisk.assessment.model.LoginRes
 import retrofit2.Response
 import retrofit2.http.POST
@@ -16,4 +17,12 @@ interface NetworkService {
         @Query("app_type") appType: String,
         @Query("login_type") loginType: String,
     ): Response<LoginRes>
+
+    @POST("import_assessment.php/{user_id}/{device_id}/{app_user_type}/{appVersion}")
+    suspend fun importAssessment(
+        @Query("user_id") userId: String,
+        @Query("device_id") deviceId: String,
+        @Query("app_user_type") appUserType: String,
+        @Query("appVersion") appVersion: String
+    ): Response<ImportAssessmentResponse>
 }

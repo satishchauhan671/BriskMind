@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.brisk.assessment.common.NetworkResult
+import com.brisk.assessment.model.ImportAssessmentReq
+import com.brisk.assessment.model.ImportAssessmentResponse
 import com.brisk.assessment.model.LoginReq
 import com.brisk.assessment.model.LoginRes
 import com.brisk.assessment.repositories.LoginRepo
@@ -15,11 +17,21 @@ class MainViewModel(private val loginRepo: LoginRepo) : ViewModel() {
 
     val loginRes: LiveData<NetworkResult<LoginRes>>
         get() = loginRepo.loginRes
+    val importAssessmentRes: LiveData<NetworkResult<ImportAssessmentResponse>>
+        get() = loginRepo.importAssessmentRes
 
     fun login(loginReq: LoginReq) {
         viewModelScope.launch(Dispatchers.IO) {
             loginRepo.login(
                 loginReq
+            )
+        }
+    }
+
+    fun importAssessmentData(importAssessment: ImportAssessmentReq) {
+        viewModelScope.launch(Dispatchers.IO) {
+            loginRepo.importAssessment(
+                importAssessment
             )
         }
     }

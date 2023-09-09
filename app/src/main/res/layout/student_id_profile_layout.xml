@@ -289,7 +289,7 @@
                             android:textStyle="bold"
                             android:textSize="24dp"
                             android:gravity="center"
-                            android:text="@string/submit_identity"
+                            android:text="@string/submit_id"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
 

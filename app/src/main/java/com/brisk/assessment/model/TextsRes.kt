@@ -44,6 +44,4 @@ class TextsRes {
         this.submit = submit
         this.text_instruction = text_instruction
     }
-
-
 }
