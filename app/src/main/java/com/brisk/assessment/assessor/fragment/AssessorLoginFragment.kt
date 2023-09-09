@@ -60,7 +60,7 @@ class AssessorLoginFragment : Fragment(), View.OnClickListener {
         dialog = Utility.progressDialog(mActivity)
         repo = LoginRepo(mActivity.application)
         mainViewModelFactory = MainViewModelFactory(repo)
-        mainViewModel = ViewModelProvider(mActivity,mainViewModelFactory)[MainViewModel::class.java]
+        mainViewModel = ViewModelProvider(this,mainViewModelFactory)[MainViewModel::class.java]
         MainViewModel(repo)
     }
 
@@ -83,16 +83,16 @@ class AssessorLoginFragment : Fragment(), View.OnClickListener {
                         bindObservers()
                         mainViewModel.login(loginReq)
                     } else {
-                        showValidationErrors(validateResult.second)
+                        showMessage(validateResult.second)
                     }
                 } else {
-                    showValidationErrors("Please Select Login Type")
+                    showMessage("Please Select Login Type")
                 }
             }
         }
     }
 
-    private fun showValidationErrors(error: String) {
+    private fun showMessage(error: String) {
         showSnackBar(binding.root, error)
     }
 
@@ -126,11 +126,12 @@ class AssessorLoginFragment : Fragment(), View.OnClickListener {
 
                 }
             }
+
     }
 
 
     private fun bindObservers() {
-        mainViewModel.loginRes.observe(viewLifecycleOwner, Observer {
+        mainViewModel.loginRes.observe(viewLifecycleOwner){
             dialog.show()
             when (it) {
                 is NetworkResult.Success -> {
@@ -153,27 +154,25 @@ class AssessorLoginFragment : Fragment(), View.OnClickListener {
                                    )
                                }
                            }
-
+                           showMessage(it.data.message ?: "Login Successfully.")
                        }else{
-                           showValidationErrors(it.data.message ?: "Something Went Wrong!")
+                           showMessage(it.data.message ?: "Something Went Wrong!")
                        }
                     }
                 }
 
                 is NetworkResult.Error -> {
-                    // binding.progressBar.isVisible = false
                     dialog.dismiss()
-                    showValidationErrors(it.message.toString())
+                    showMessage(it.message.toString())
                 }
 
                 is NetworkResult.Loading -> {
-                    // binding.progressBar.isVisible = true
                     if (!dialog.isShowing) {
                         dialog.show()
                     }
                 }
             }
-        })
+        }
     }
 
 
@@ -184,7 +183,7 @@ class AssessorLoginFragment : Fragment(), View.OnClickListener {
                 Utility.stringToBase64(password!!.trim()),
                 Utility.stringToBase64(loginId!!.trim()),
                 Utility.stringToBase64(versionName),
-                Utility.stringToBase64(appPackageName),
+                appPackageName,
                 loginAs
             )
         }
