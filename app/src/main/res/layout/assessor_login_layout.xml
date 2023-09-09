@@ -99,7 +99,6 @@
                             android:paddingEnd="@dimen/activity_margin_15dp">
 
                             <EditText
-                                android:id="@+id/edtLoginId"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@null"
@@ -127,6 +126,7 @@
                             android:paddingEnd="@dimen/activity_margin_15dp">
 
                             <EditText
+                                android:id="@+id/etLoginId"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@null"

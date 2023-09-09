@@ -43,4 +43,9 @@
         <!--<item name="android:windowBackground">@android:color/transparent</item>-->
     </style>
 
+    <style name="progressStyle" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:colorAccent">@color/yellow</item>
+        <item name="colorAccent">@color/yellow</item>
+    </style>
+
 </resources>

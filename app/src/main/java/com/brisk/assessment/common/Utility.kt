@@ -2,6 +2,7 @@ package com.brisk.assessment.common
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.app.ProgressDialog
 import android.bluetooth.BluetoothSocket
 import android.content.Context
@@ -13,11 +14,13 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.location.Geocoder
 import android.location.LocationManager
 import android.media.ExifInterface
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
@@ -30,7 +33,9 @@ import android.text.TextUtils
 import android.util.Base64
 import android.util.Log
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -174,6 +179,25 @@ object Utility {
             e.printStackTrace()
         }
         return connection
+    }
+
+    fun isInternetConnected(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val networkCapabilities = connectivityManager.activeNetwork ?: return false
+            val actNw = connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
+
+            return when {
+                actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                else -> false
+            }
+        } else {
+            val networkInfo = connectivityManager.activeNetworkInfo
+            return networkInfo != null && networkInfo.isConnected
+        }
     }
 
 
@@ -828,5 +852,33 @@ object Utility {
     fun stringToBase64(inputString: String): String {
         val encodedBytes = Base64.encode(inputString.toByteArray(), Base64.DEFAULT)
         return String(encodedBytes)
+    }
+
+    fun showSnackBar(view: View, message: String) {
+        val snackBar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
+        snackBar.show()
+    }
+
+    fun progressDialog(context: Context): Dialog {
+        val dialog = Dialog(context)
+        val inflate = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null)
+        dialog.setContentView(inflate)
+        dialog.setCancelable(false)
+        dialog.window!!.setBackgroundDrawable(
+            ColorDrawable(Color.TRANSPARENT)
+        )
+        return dialog
+    }
+
+    fun progressDialogWithMessage(context: Context, message: String): Dialog {
+        val dialog = Dialog(context)
+        val inflate = LayoutInflater.from(context).inflate(R.layout.progress_dialog, null)
+        dialog.setContentView(inflate)
+        dialog.setCancelable(false)
+        val dialogMessage = dialog.findViewById<TextView>(R.id.progressText)
+        dialogMessage.text = message
+        dialog.window!!.setBackgroundDrawable(
+            ColorDrawable(Color.TRANSPARENT))
+        return dialog
     }
 }
