@@ -5,5 +5,6 @@ data class LoginReq(
     var password: String,
     var userid: String,
     var appVersion: String,
-    var appType: String
+    var appType: String,
+    val loginType: String
 )

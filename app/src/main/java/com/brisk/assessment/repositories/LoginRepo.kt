@@ -7,6 +7,7 @@ import com.brisk.assessment.BriskMindApplication
 import com.brisk.assessment.common.NetworkResult
 import com.brisk.assessment.common.Utility
 import com.brisk.assessment.database.BriskMindDatabase
+import com.brisk.assessment.model.LoginReq
 import com.brisk.assessment.model.LoginRes
 import com.brisk.assessment.retrofit.ApiClient
 import com.brisk.assessment.retrofit.NetworkService
@@ -23,15 +24,12 @@ class LoginRepo(private val application : Application){
     get() = loginResLiveData
 
     suspend fun login(
-        deviceId: String,
-        password: String,
-        userid: String,
-        appVersion: String,
-        appType: String,
+        loginReq: LoginReq
     ) {
         if (Utility.isInternetConnected(application)){
             loginResLiveData.postValue(NetworkResult.Loading())
-            val result = networkService.login(deviceId, password, userid, appVersion, appType)
+            val result = networkService.login(loginReq.deviceId, loginReq.password,
+                loginReq.userid, loginReq.appVersion, loginReq.appType, loginReq.loginType)
             handleResponse(result)
         }else{
             loginResLiveData.postValue(NetworkResult.Error("No Internet Connection"))

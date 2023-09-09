@@ -10,7 +10,7 @@ class BriskMindApplication : Application() {
         mInstance = this
         appPackageName = this.packageName
         versionName = BuildConfig.VERSION_NAME
-        deviceId = Build.DEVICE
+        deviceId = Build.ID
 
     }
 

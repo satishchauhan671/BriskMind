@@ -14,5 +14,6 @@ interface NetworkService {
         @Query("userid") userid: String,
         @Query("appVersion") appVersion: String,
         @Query("app_type") appType: String,
+        @Query("login_type") loginType: String,
     ): Response<LoginRes>
 }

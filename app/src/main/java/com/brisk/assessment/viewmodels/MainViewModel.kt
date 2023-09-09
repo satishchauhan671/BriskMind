@@ -19,11 +19,7 @@ class MainViewModel(private val loginRepo: LoginRepo) : ViewModel() {
     fun login(loginReq: LoginReq) {
         viewModelScope.launch(Dispatchers.IO) {
             loginRepo.login(
-                loginReq.deviceId,
-                loginReq.password,
-                loginReq.userid,
-                loginReq.appVersion,
-                loginReq.appType
+                loginReq
             )
         }
     }

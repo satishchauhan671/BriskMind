@@ -3,6 +3,7 @@ package com.brisk.assessment.assessor.fragment
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,33 +73,20 @@ class AssessorLoginFragment : Fragment(), View.OnClickListener {
         when (p0) {
             binding.txtSignInAssessor,
             binding.signInLayAssessor -> {
-                when (loginAs) {
-                    "Candidate" -> {
-                        loginId = binding.etLoginId.text.toString()
-                        password = binding.edtPassword.text.toString()
-                        val validateResult = mainViewModel.isLoginValidRequest(loginId, password)
-                        if (validateResult.first) {
-                            val loginReq = getLoginRequest()
-                            mainViewModel = ViewModelProvider(mActivity,MainViewModelFactory(repo))[MainViewModel::class.java]
-                            bindObservers()
-                            mainViewModel.login(loginReq)
-                        } else {
-                            showValidationErrors(validateResult.second)
-                        }
+                if (!TextUtils.isEmpty(loginAs)){
+                    loginId = binding.etLoginId.text.toString()
+                    password = binding.edtPassword.text.toString()
+                    val validateResult = mainViewModel.isLoginValidRequest(loginId, password)
+                    if (validateResult.first) {
+                        val loginReq = getLoginRequest()
+                        mainViewModel = ViewModelProvider(mActivity,MainViewModelFactory(repo))[MainViewModel::class.java]
+                        bindObservers()
+                        mainViewModel.login(loginReq)
+                    } else {
+                        showValidationErrors(validateResult.second)
                     }
-
-                    "Assessor" -> {
-                        Utility.replaceFragment(
-                            AssessorLoginImageFragment(),
-                            mActivity.supportFragmentManager,
-                            R.id.layout_root
-                        )
-                    }
-
-                    else -> {
-                        Toast.makeText(mActivity, "Please Select Login Type", Toast.LENGTH_LONG)
-                            .show()
-                    }
+                } else {
+                    showValidationErrors("Please Select Login Type")
                 }
             }
         }
@@ -149,11 +137,23 @@ class AssessorLoginFragment : Fragment(), View.OnClickListener {
                    dialog.dismiss()
                     if (it.data != null) {
                        if (it.data.status.equals("success", ignoreCase = true)){
-                           Utility.replaceFragment(
-                               StudentImagesFragments("Start"),
-                               mActivity.supportFragmentManager,
-                               R.id.layout_root
-                           )
+                           when (loginAs) {
+                               "Candidate" -> {
+                                   Utility.replaceFragment(
+                                       StudentImagesFragments("Start"),
+                                       mActivity.supportFragmentManager,
+                                       R.id.layout_root
+                                   )
+                               }
+                               "Assessor" -> {
+                                   Utility.replaceFragment(
+                                       AssessorLoginImageFragment(),
+                                       mActivity.supportFragmentManager,
+                                       R.id.layout_root
+                                   )
+                               }
+                           }
+
                        }else{
                            showValidationErrors(it.data.message ?: "Something Went Wrong!")
                        }
@@ -184,7 +184,8 @@ class AssessorLoginFragment : Fragment(), View.OnClickListener {
                 Utility.stringToBase64(password!!.trim()),
                 Utility.stringToBase64(loginId!!.trim()),
                 Utility.stringToBase64(versionName),
-                Utility.stringToBase64(appPackageName)
+                Utility.stringToBase64(appPackageName),
+                loginAs
             )
         }
     }
