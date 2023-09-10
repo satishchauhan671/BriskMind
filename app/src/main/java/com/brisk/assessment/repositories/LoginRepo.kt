@@ -22,6 +22,7 @@ class LoginRepo(private val application: Application) {
     private val networkService = ApiClient.getApiClient()
     private val briskMindDatabase = BriskMindDatabase.getDatabaseInstance(application)
     private val loginResLiveData = MutableLiveData<NetworkResult<LoginRes>>()
+
     private val importAssessmentResLiveData =
         MutableLiveData<NetworkResult<ImportAssessmentResponse>>()
 
@@ -101,7 +102,7 @@ class LoginRepo(private val application: Application) {
     }
 
     private suspend fun dataInsertIntoDB(res: ImportAssessmentResponse) {
-        if (res.batch_array != null && res.batch_array!!.size > 0) {
+        if (res.batch_array != null && res.batch_array!!.isNotEmpty()) {
             briskMindDatabase.batchDao().insert(res.batch_array!!)
 
             for (batch in res.batch_array!!) {
@@ -111,32 +112,36 @@ class LoginRepo(private val application: Application) {
             }
         }
 
-        if (res.user_array != null && res.user_array!!.size > 0) {
+        if (res.user_array != null && res.user_array!!.isNotEmpty()) {
             briskMindDatabase.userDao().insertAll(res.user_array!!)
         }
 
-        if (res.lang_record != null && res.lang_record!!.size > 0) {
+        if (res.lang_record != null && res.lang_record!!.isNotEmpty()) {
             briskMindDatabase.importLanguageDao().insert(res.lang_record!!)
         }
 
-        if (res.feedback_array != null && res.feedback_array!!.size > 0) {
+        if (res.feedback_array != null && res.feedback_array!!.isNotEmpty()) {
             briskMindDatabase.feedbackDao().insert(res.feedback_array!!)
         }
 
         if (res.paper_array != null && res.paper_array!!.isNotEmpty()) {
-            for (item in res.paper_array!!) {
-                if (item is LinkedTreeMap<*, *>) {
-                    val paperResponse = convertToPaperResponse(item)
-                    briskMindDatabase.paperDao().insert(paperResponse)
-
-                    if (paperResponse.sub_questions != null) {
-                        briskMindDatabase.subQuestionsDao().insert(paperResponse.sub_questions!!)
+                for (item in res.paper_array!!) {
+                    if (item is ArrayList<*>) {
+                        // Handle the case where item is an ArrayList
+                        for (innerItem in item) {
+                            if (innerItem is LinkedTreeMap<*, *>) {
+                                val paperResponse = convertToPaperResponse(innerItem)
+                                briskMindDatabase.paperDao().insert(paperResponse)
+                                if (paperResponse.sub_questions != null) {
+                                    briskMindDatabase.subQuestionsDao().insert(paperResponse.sub_questions!!)
+                                }
+                            }
+                        }
                     }
                 }
-            }
         }
     }
-    fun convertToPaperResponse(item: LinkedTreeMap<*, *>): PaperResponse {
+    private fun convertToPaperResponse(item: LinkedTreeMap<*, *>): PaperResponse {
         // Use Gson to convert LinkedTreeMap to JSON string, and then parse it as PaperResponse
         val gson = Gson()
         val json = gson.toJson(item)

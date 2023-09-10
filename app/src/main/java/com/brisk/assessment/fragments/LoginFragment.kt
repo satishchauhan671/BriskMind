@@ -73,7 +73,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         when (p0) {
             binding.txtSignInAssessor,
             binding.signInLayAssessor -> {
-                if (!TextUtils.isEmpty(loginAs)){
+                if (!TextUtils.isEmpty(loginAs) && !loginAs.equals("Select", ignoreCase = true) ){
                     loginId = binding.etLoginId.text.toString()
                     password = binding.edtPassword.text.toString()
                     val validateResult = mainViewModel.isLoginValidRequest(loginId, password)
@@ -86,7 +86,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                         showMessage(validateResult.second)
                     }
                 } else {
-                    showMessage("Please Select Login Type")
+                    showMessage("Please Select Login As")
                 }
             }
         }
