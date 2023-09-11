@@ -2,6 +2,7 @@ package com.brisk.assessment.fragments
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.brisk.assessment.BriskMindApplication.Companion.appPackageName
 import com.brisk.assessment.BriskMindApplication.Companion.deviceId
 import com.brisk.assessment.BriskMindApplication.Companion.versionName
 import com.brisk.assessment.R
+import com.brisk.assessment.assessor.activity.AssessorActivityMain
 import com.brisk.assessment.common.NetworkResult
 import com.brisk.assessment.common.Utility
 import com.brisk.assessment.common.Utility.showSnackBar
@@ -35,11 +37,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
     private lateinit var mainViewModel: MainViewModel
     private lateinit var mainViewModelFactory: MainViewModelFactory
     private lateinit var dialog: Dialog
-    private var loginId : String? = ""
-    private var password : String? = ""
-    private var loginType : String? = ""
-    private var userId : String? = ""
-    private lateinit var repo : LoginRepo
+    private var loginId: String? = ""
+    private var password: String? = ""
+    private var loginType: String? = ""
+    private var userId: String? = ""
+    private lateinit var repo: LoginRepo
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,7 +62,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         dialog = Utility.progressDialog(mActivity)
         repo = LoginRepo(mActivity.application)
         mainViewModelFactory = MainViewModelFactory(repo)
-        mainViewModel = ViewModelProvider(this,mainViewModelFactory)[MainViewModel::class.java]
+        mainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
         MainViewModel(repo)
     }
 
@@ -73,13 +75,16 @@ class LoginFragment : Fragment(), View.OnClickListener {
         when (p0) {
             binding.txtSignInAssessor,
             binding.signInLayAssessor -> {
-                if (!TextUtils.isEmpty(loginAs) && !loginAs.equals("Select", ignoreCase = true) ){
+                if (!TextUtils.isEmpty(loginAs) && !loginAs.equals("Select", ignoreCase = true)) {
                     loginId = binding.etLoginId.text.toString()
                     password = binding.edtPassword.text.toString()
                     val validateResult = mainViewModel.isLoginValidRequest(loginId, password)
                     if (validateResult.first) {
                         val loginReq = getLoginRequest()
-                        mainViewModel = ViewModelProvider(mActivity,MainViewModelFactory(repo))[MainViewModel::class.java]
+                        mainViewModel = ViewModelProvider(
+                            mActivity,
+                            MainViewModelFactory(repo)
+                        )[MainViewModel::class.java]
                         bindObservers()
                         mainViewModel.login(loginReq)
                     } else {
@@ -131,28 +136,28 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
 
     private fun bindObservers() {
-        mainViewModel.loginRes.observe(viewLifecycleOwner){
+        mainViewModel.loginRes.observe(viewLifecycleOwner) {
             dialog.show()
             when (it) {
                 is NetworkResult.Success -> {
-                   dialog.dismiss()
+                    dialog.dismiss()
                     if (it.data != null) {
-                       if (it.data.status.equals("success", ignoreCase = true)){
+                        if (it.data.status.equals("success", ignoreCase = true)) {
 
-                           userId = it.data.user_id
-                           loginType = it.data.login_type
+                            userId = it.data.user_id
+                            loginType = it.data.login_type
 
-                           if (!Utility.isNullOrEmpty(userId))
-                           {
-                               val impAssessmentReq = getImportAssessmentRequest(userId!!,loginType!!)
-                               bindImportObserver()
-                               mainViewModel.importAssessmentData(impAssessmentReq)
-                           }
+                            if (!Utility.isNullOrEmpty(userId)) {
+                                val impAssessmentReq =
+                                    getImportAssessmentRequest(userId!!, loginType!!)
+                                bindImportObserver()
+                                mainViewModel.importAssessmentData(impAssessmentReq)
+                            }
 
-                           showMessage(it.data.message ?: "Login Successfully.")
-                       }else{
-                           showMessage(it.data.message ?: "Something Went Wrong!")
-                       }
+                            showMessage(it.data.message ?: "Login Successfully.")
+                        } else {
+                            showMessage(it.data.message ?: "Something Went Wrong!")
+                        }
                     }
                 }
 
@@ -172,30 +177,32 @@ class LoginFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun bindImportObserver()
-    {
-        mainViewModel.importAssessmentRes.observe(viewLifecycleOwner){
+    private fun bindImportObserver() {
+        mainViewModel.importAssessmentRes.observe(viewLifecycleOwner) {
             dialog.show()
             when (it) {
                 is NetworkResult.Success -> {
                     dialog.dismiss()
                     if (it.data != null) {
-                        //                           when (loginAs) {
-//                               "Candidate" -> {
-//                                   Utility.replaceFragment(
-//                                       StudentImagesFragments("Start"),
-//                                       mActivity.supportFragmentManager,
-//                                       R.id.layout_root
-//                                   )
-//                               }
-//                               "Assessor" -> {
-//                                   Utility.replaceFragment(
-//                                       AssessorLoginImageFragment(),
-//                                       mActivity.supportFragmentManager,
-//                                       R.id.layout_root
-//                                   )
-//                               }
-//                           }
+                        when (loginAs) {
+                            "Candidate" -> {
+                                Utility.replaceFragment(
+                                    StudentImagesFragments("Start"),
+                                    mActivity.supportFragmentManager,
+                                    R.id.layout_root
+                                )
+                            }
+
+                            "Assessor" -> {
+                                /*Utility.replaceFragment(
+                                    AssessorLoginImageFragment(),
+                                    mActivity.supportFragmentManager,
+                                    R.id.layout_root
+                                )*/
+                                val intent = Intent(context, AssessorActivityMain::class.java)
+                                startActivity(intent)
+                            }
+                        }
 
                     }
                 }
@@ -214,6 +221,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
         }
     }
+
     private fun getLoginRequest(): LoginReq {
         return binding.run {
             LoginReq(

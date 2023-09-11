@@ -39,6 +39,8 @@ class AssessorMainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         assessorMainAdapter = AssessorMainAdapter(mActivity,mActivity.supportFragmentManager)
         binding.assessorTestRv.layoutManager = LinearLayoutManager(mActivity,LinearLayoutManager.VERTICAL,false)
         assessorMainAdapter.setAdapterListener(chooseMainListener)
