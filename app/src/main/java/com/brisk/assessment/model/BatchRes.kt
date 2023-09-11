@@ -21,6 +21,7 @@ class BatchRes {
     var s3_secret_key: String? = ""
     var s3_secret_pwd: String? = ""
     var s3_group_path: String? = ""
+
     @Embedded(prefix = "batch_config_mst")
     @Ignore
     var batch_config: BatchConfigRes? = null
@@ -59,6 +60,13 @@ class BatchRes {
         this.s3_secret_pwd = s3_secret_pwd
         this.s3_group_path = s3_group_path
         this.batch_config = batch_config
+    }
+
+    override fun toString(): String {
+        return "BatchRes(id=$id, assessor_name=$assessor_name, batch_id=$batch_id, " +
+                "sector_id=$sector_id, sector_name=$sector_name, batch_no=$batch_no, assessment_date=$assessment_date, " +
+                "duration=$duration, client_id=$client_id, alt_lang_id=$alt_lang_id, s3_secret_key=$s3_secret_key, " +
+                "s3_secret_pwd=$s3_secret_pwd, s3_group_path=$s3_group_path, batch_config=$batch_config)"
     }
 
 

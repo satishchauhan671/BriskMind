@@ -18,4 +18,7 @@ interface PaperDao {
 
     @Query("Select * from paper_mst")
     fun getPaperData() : List<PaperResponse>
+
+    @Query("delete from paper_mst")
+    fun deleteAllPapers()
 }

@@ -7,12 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.brisk.assessment.assessor.adapter.AssessorMainAdapter
 import com.brisk.assessment.assessor.listener.BatchImageListener
 import com.brisk.assessment.assessor.listener.ChooseAssessorMainListener
 import com.brisk.assessment.common.Utility
 import com.brisk.assessment.databinding.FragmentAssessorMainBinding
+import com.brisk.assessment.model.BatchRes
+import com.brisk.assessment.model.LoginRes
+import com.brisk.assessment.repositories.LoginRepo
+import com.brisk.assessment.viewmodels.MainViewModel
+import com.brisk.assessment.viewmodels.MainViewModelFactory
 
 class AssessorMainFragment : Fragment() {
 
@@ -20,6 +27,11 @@ class AssessorMainFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var assessorMainAdapter: AssessorMainAdapter
     private lateinit var mActivity: FragmentActivity
+    private lateinit var repo: LoginRepo
+    private lateinit var mainViewModel: MainViewModel
+    private lateinit var mainViewModelFactory: MainViewModelFactory
+    private lateinit var loginRes: LoginRes
+    private lateinit var batchRes: List<BatchRes>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,40 +50,71 @@ class AssessorMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        repo = LoginRepo(mActivity.application)
+
+        // initialize model factory
+        mainViewModelFactory = MainViewModelFactory(repo)
+        mainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
 
 
 
-        assessorMainAdapter = AssessorMainAdapter(mActivity,mActivity.supportFragmentManager)
-        binding.assessorTestRv.layoutManager = LinearLayoutManager(mActivity,LinearLayoutManager.VERTICAL,false)
-        assessorMainAdapter.setAdapterListener(chooseMainListener)
-        assessorMainAdapter.setBatchImageAdapterListener(batchImageListener)
-        binding.assessorTestRv.adapter = assessorMainAdapter
+        getLoginData()
+        bindBatchData()
 
     }
 
-    private val chooseMainListener = object : ChooseAssessorMainListener{
+    private val chooseMainListener = object : ChooseAssessorMainListener {
         override fun chooseMemberAdapterListener(pos: Int, id: Int) {
-            Utility.replaceFragment(AssessorIdProfileImageFragment(), mActivity.supportFragmentManager, binding.layoutRoot.id)
+            Utility.replaceFragment(
+                AssessorIdProfileImageFragment(),
+                mActivity.supportFragmentManager,
+                binding.layoutRoot.id
+            )
         }
 
     }
 
-    private val batchImageListener = object : BatchImageListener{
+    private val batchImageListener = object : BatchImageListener {
         override fun batchImageAdapterListener(pos: Int, id: Int, visible: Boolean) {
 
-            if (id == 0){
-                if (visible){
+            if (id == 0) {
+                if (visible) {
                     binding.dimOverlay.root.visibility = View.VISIBLE
-                } else{
+                } else {
                     binding.dimOverlay.root.visibility = View.GONE
                 }
-            }else {
+            } else {
                 Utility.replaceFragment(
                     AssessorBatchImagesFragment(),
                     mActivity.supportFragmentManager,
                     binding.layoutRoot.id
                 )
             }
+        }
+    }
+
+    private fun getLoginData() {
+        mainViewModel.getLoginData().observe(viewLifecycleOwner) {
+            loginRes = it
+
+            binding.assessorNameTv.text = it.user_name
+            binding.assessorIdTv.text = it.user_id
+        }
+    }
+
+    private fun bindBatchData(){
+        mainViewModel.getAssessorBatchList().observe(viewLifecycleOwner){
+            batchRes = it
+
+            println(batchRes.toString())
+
+            assessorMainAdapter = AssessorMainAdapter(mActivity, mActivity.supportFragmentManager, batchRes)
+            binding.assessorTestRv.layoutManager =
+                LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false)
+            assessorMainAdapter.setAdapterListener(chooseMainListener)
+            assessorMainAdapter.setBatchImageAdapterListener(batchImageListener)
+            binding.assessorTestRv.adapter = assessorMainAdapter
+
         }
     }
 }

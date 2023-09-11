@@ -19,4 +19,7 @@ interface FeedbackDao {
 
     @Query("Select * from feedback_mst")
     fun getFeedbackData() : List<FeedbackResponse>
+
+    @Query("delete from feedback_mst")
+    fun deleteAllFeedback()
 }

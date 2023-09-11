@@ -21,4 +21,7 @@ interface ImportLanguageDao {
 
     @Query("Select * from import_language_mst")
     fun getImportLanguageData() : List<ImportLanguageResponse>
+
+    @Query("delete from import_language_mst")
+    fun deleteAllImportLanguage()
 }

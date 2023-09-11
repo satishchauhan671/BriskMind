@@ -27,6 +27,7 @@
             android:textSize="@dimen/text_size_12sp" />
 
         <TextView
+            android:id="@+id/assessorNameTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Shivam Singhal"
@@ -44,6 +45,7 @@
             android:textSize="@dimen/text_size_12sp" />
 
         <TextView
+            android:id="@+id/assessorIdTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_margin_10dp"

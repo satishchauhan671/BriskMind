@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.brisk.assessment.common.NetworkResult
 import com.brisk.assessment.common.Utility
 import com.brisk.assessment.database.BriskMindDatabase
+import com.brisk.assessment.model.BatchRes
 import com.brisk.assessment.model.ImportAssessmentReq
 import com.brisk.assessment.model.ImportAssessmentResponse
 import com.brisk.assessment.model.LoginReq
@@ -32,9 +33,6 @@ class LoginRepo(private val application: Application) {
 
     val importAssessmentRes: LiveData<NetworkResult<ImportAssessmentResponse>>
         get() = importAssessmentResLiveData
-
-
-
 
     suspend fun login(
         loginReq: LoginReq
@@ -67,6 +65,7 @@ class LoginRepo(private val application: Application) {
     }
 
     private suspend fun dataInsertIntoDB(res: LoginRes) {
+        deleteAllLoginData()
         briskMindDatabase.loginDao().insert(res)
         if (res.languages != null && res.languages!!.isNotEmpty()) {
             for (lang in res.languages!!) {
@@ -105,6 +104,7 @@ class LoginRepo(private val application: Application) {
     }
 
     private suspend fun dataInsertIntoDB(res: ImportAssessmentResponse) {
+        deleteAllAssessmentData()
         if (res.batch_array != null && res.batch_array!!.isNotEmpty()) {
             briskMindDatabase.batchDao().insert(res.batch_array!!)
 
@@ -149,5 +149,52 @@ class LoginRepo(private val application: Application) {
         val gson = Gson()
         val json = gson.toJson(item)
         return gson.fromJson(json, PaperResponse::class.java)
+    }
+
+
+    private fun deleteAllLoginData(){
+        briskMindDatabase.loginDao().deleteAll()
+        briskMindDatabase.languageDao().deleteAllLanguages()
+        briskMindDatabase.textsDao().deleteAllTexts()
+    }
+
+    private fun deleteAllAssessmentData(){
+        briskMindDatabase.userDao().deleteAllUser()
+        briskMindDatabase.batchConfigDao().deleteAllBatchConfig()
+        briskMindDatabase.batchDao().deleteAll()
+        briskMindDatabase.importLanguageDao().deleteAllImportLanguage()
+        briskMindDatabase.paperDao().deleteAllPapers()
+        briskMindDatabase.subQuestionsDao().deleteAllSubQuestion()
+        briskMindDatabase.feedbackDao().deleteAllFeedback()
+    }
+
+    /*
+    *
+    *  Login Mst Functions Start
+    *
+    * */
+    // Get Data from Login Mst
+    fun getLoginData() : LiveData<LoginRes> {
+        return briskMindDatabase.loginDao().getLoginDetails()
+    }
+
+    fun deleteAllUser(){
+        return briskMindDatabase.loginDao().deleteAll()
+    }
+
+    //
+    /*
+    *
+    *   Login Mst Functions End
+    *
+    * */
+
+    // Get Data from Batch Mst
+    fun getAssessorBatchList() : LiveData<List<BatchRes>>{
+        return briskMindDatabase.batchDao().getBatchData()
+    }
+
+    fun deleteAllBatch(){
+        return briskMindDatabase.batchDao().deleteAll()
     }
 }

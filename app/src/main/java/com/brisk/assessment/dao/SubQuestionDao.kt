@@ -15,4 +15,8 @@ interface SubQuestionDao {
 
     @Query("Select * from sub_question_mst")
     fun getSubQuestionsData() : List<SubQuestionResponse>
+
+
+    @Query("delete from sub_question_mst")
+    fun deleteAllSubQuestion()
 }

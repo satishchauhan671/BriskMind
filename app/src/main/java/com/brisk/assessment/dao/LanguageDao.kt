@@ -17,4 +17,7 @@ interface LanguageDao {
 
     @Query("Select * from languages")
     fun getLanguageList() : List<LanguageRes>
+
+    @Query("delete from languages")
+    fun deleteAllLanguages()
 }

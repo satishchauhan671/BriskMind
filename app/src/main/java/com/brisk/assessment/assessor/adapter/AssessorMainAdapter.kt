@@ -10,18 +10,21 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.brisk.assessment.R
 import com.brisk.assessment.assessor.listener.BatchImageListener
 import com.brisk.assessment.assessor.listener.ChooseAssessorMainListener
+import com.brisk.assessment.model.BatchRes
 
-class AssessorMainAdapter(mContext: Context, fragmentManager: FragmentManager) :
+class AssessorMainAdapter(mContext: Context, fragmentManager: FragmentManager, batchRes: List<BatchRes>) :
     RecyclerView.Adapter<AssessorMainAdapter.ViewHolder>() {
 
     private val mContext: Context = mContext
     private val fragmentManager: FragmentManager = fragmentManager
+    private val batchRes : List<BatchRes> = batchRes
     private lateinit var chooseAssessorMainListener: ChooseAssessorMainListener
     private lateinit var batchImageListener: BatchImageListener
     var selectedPos: Int = -1
@@ -43,9 +46,17 @@ class AssessorMainAdapter(mContext: Context, fragmentManager: FragmentManager) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        val batch = batchRes[position]
+
+        holder.batchNameTv.text = batch.batch_no
+        holder.assessmentDateTv.text = batch.assessment_date
+
+
         holder.startBatchAssessor.setOnClickListener {
             chooseAssessorMainListener.chooseMemberAdapterListener(position, 0)
         }
+
 
         holder.dotsIv.setOnClickListener {
             val popupView = LayoutInflater.from(mContext).inflate(R.layout.batch_img_pop_up, null)
@@ -81,7 +92,7 @@ class AssessorMainAdapter(mContext: Context, fragmentManager: FragmentManager) :
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return batchRes.size
     }
 
 
@@ -90,12 +101,16 @@ class AssessorMainAdapter(mContext: Context, fragmentManager: FragmentManager) :
         var dotsIv: ImageView
         var startBatchAssessor: LinearLayout
         var batchImgCard: CardView
+        var batchNameTv : TextView
+        var assessmentDateTv : TextView
 
         init {
             view = itemView
             startBatchAssessor = itemView.findViewById(R.id.startBatchAssessor)
             dotsIv = itemView.findViewById(R.id.dotsIv)
             batchImgCard = itemView.findViewById(R.id.batchImgCard)
+            batchNameTv = itemView.findViewById(R.id.batchNameTv)
+            assessmentDateTv = itemView.findViewById(R.id.assessmentDateTv)
         }
     }
 

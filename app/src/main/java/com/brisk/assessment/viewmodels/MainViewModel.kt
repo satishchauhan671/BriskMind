@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.brisk.assessment.common.NetworkResult
+import com.brisk.assessment.model.BatchRes
 import com.brisk.assessment.model.ImportAssessmentReq
 import com.brisk.assessment.model.ImportAssessmentResponse
 import com.brisk.assessment.model.LoginReq
@@ -44,5 +45,14 @@ class MainViewModel(private val loginRepo: LoginRepo) : ViewModel() {
             result = Pair(false, "Please Enter Password")
         }
         return result
+    }
+
+    fun getLoginData() : LiveData<LoginRes>{
+        return loginRepo.getLoginData()
+    }
+
+    // Get Data from Batch Mst
+    fun getAssessorBatchList() : LiveData<List<BatchRes>> {
+        return loginRepo.getAssessorBatchList()
     }
 }

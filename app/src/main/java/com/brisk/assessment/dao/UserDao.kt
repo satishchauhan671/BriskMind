@@ -15,4 +15,7 @@ interface UserDao {
 
     @Query("Select * from user_data_mst")
     fun getUserData() : List<UserResponse>
+
+    @Query("delete from user_data_mst")
+    fun deleteAllUser()
 }

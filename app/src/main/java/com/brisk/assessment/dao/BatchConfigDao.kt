@@ -18,4 +18,7 @@ interface BatchConfigDao {
 
     @Query("Select * from batch_config_mst")
     fun getBatchData() : List<BatchConfigRes>
+
+    @Query("delete from batch_config_mst")
+    fun deleteAllBatchConfig()
 }

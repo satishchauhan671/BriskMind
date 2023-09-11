@@ -1,12 +1,11 @@
 package com.brisk.assessment.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.brisk.assessment.model.BatchRes
-import com.brisk.assessment.model.ImportAssessmentResponse
-import com.brisk.assessment.model.LanguageRes
 
 @Dao
 interface BatchDao {
@@ -16,5 +15,8 @@ interface BatchDao {
 
 
     @Query("Select * from batch_mst")
-    fun getBatchData() : List<BatchRes>
+    fun getBatchData() : LiveData<List<BatchRes>>
+
+    @Query("delete from batch_mst")
+    fun deleteAll()
 }
