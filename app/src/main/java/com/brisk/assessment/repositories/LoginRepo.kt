@@ -12,6 +12,7 @@ import com.brisk.assessment.model.ImportAssessmentResponse
 import com.brisk.assessment.model.LoginReq
 import com.brisk.assessment.model.LoginRes
 import com.brisk.assessment.model.PaperResponse
+import com.brisk.assessment.model.UserResponse
 import com.brisk.assessment.retrofit.ApiClient
 import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
@@ -197,4 +198,18 @@ class LoginRepo(private val application: Application) {
     fun deleteAllBatch(){
         return briskMindDatabase.batchDao().deleteAll()
     }
+
+
+
+    /*
+    *   User Mst Functions Start
+    * */
+
+    fun getUserByBatchId(batchId : String) : LiveData<List<UserResponse>>{
+        return  briskMindDatabase.userDao().getUserByBatchId(batchId)
+    }
+
+    /*
+    *   User Mst Functions End
+    * */
 }

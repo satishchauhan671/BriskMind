@@ -22,14 +22,15 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/student_name_txt"
+            android:text="@string/batch_name_txt"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_12sp"/>
 
         <TextView
+            android:id="@+id/batchNameTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Shivam Singhal"
+            android:text=""
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="@dimen/text_size_13sp"/>
@@ -47,15 +48,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/student_enrollment"
+                    android:text="@string/batch_id"
                     android:textColor="@color/white"
                     android:layout_marginTop="@dimen/activity_margin_10dp"
                     android:textSize="@dimen/text_size_12sp"/>
 
                 <TextView
+                    android:id="@+id/batchIdTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="11"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="@dimen/text_size_13sp"

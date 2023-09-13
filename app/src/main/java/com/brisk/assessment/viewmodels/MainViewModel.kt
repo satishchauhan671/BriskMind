@@ -10,6 +10,7 @@ import com.brisk.assessment.model.ImportAssessmentReq
 import com.brisk.assessment.model.ImportAssessmentResponse
 import com.brisk.assessment.model.LoginReq
 import com.brisk.assessment.model.LoginRes
+import com.brisk.assessment.model.UserResponse
 import com.brisk.assessment.repositories.LoginRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -54,5 +55,10 @@ class MainViewModel(private val loginRepo: LoginRepo) : ViewModel() {
     // Get Data from Batch Mst
     fun getAssessorBatchList() : LiveData<List<BatchRes>> {
         return loginRepo.getAssessorBatchList()
+    }
+
+
+    fun getUserByBatchId(batchId : String) : LiveData<List<UserResponse>>{
+        return  loginRepo.getUserByBatchId(batchId)
     }
 }

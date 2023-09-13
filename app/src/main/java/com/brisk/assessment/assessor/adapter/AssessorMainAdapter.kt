@@ -54,7 +54,7 @@ class AssessorMainAdapter(mContext: Context, fragmentManager: FragmentManager, b
 
 
         holder.startBatchAssessor.setOnClickListener {
-            chooseAssessorMainListener.chooseMemberAdapterListener(position, 0)
+            chooseAssessorMainListener.chooseMemberAdapterListener(position, batch.batch_no ,batch.batch_id)
         }
 
 

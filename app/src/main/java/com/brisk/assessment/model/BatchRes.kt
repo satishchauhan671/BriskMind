@@ -10,10 +10,10 @@ class BatchRes {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
     var assessor_name: String? = null
-    var batch_id: String? = null
+    var batch_id: String = ""
     var sector_id: String? = null
     var sector_name: String? = null
-    var batch_no: String? = null
+    var batch_no: String = ""
     var assessment_date: String? = null
     var duration: String? = null
     var client_id: String? = null
@@ -33,10 +33,10 @@ class BatchRes {
     constructor(
         id: Int,
         assessor_name: String?,
-        batch_id: String?,
+        batch_id: String,
         sector_id: String?,
         sector_name: String?,
-        batch_no: String?,
+        batch_no: String,
         assessment_date: String?,
         duration: String?,
         client_id: String?,

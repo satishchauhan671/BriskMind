@@ -1,5 +1,6 @@
 package com.brisk.assessment.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -18,4 +19,7 @@ interface UserDao {
 
     @Query("delete from user_data_mst")
     fun deleteAllUser()
+
+    @Query("select * from user_data_mst where batch_id = :batchId")
+    fun getUserByBatchId(batchId : String) : LiveData<List<UserResponse>>
 }

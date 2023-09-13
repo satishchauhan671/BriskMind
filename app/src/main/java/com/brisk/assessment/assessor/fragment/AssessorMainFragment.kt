@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.brisk.assessment.assessor.adapter.AssessorMainAdapter
 import com.brisk.assessment.assessor.listener.BatchImageListener
 import com.brisk.assessment.assessor.listener.ChooseAssessorMainListener
+import com.brisk.assessment.common.Constants
 import com.brisk.assessment.common.Utility
 import com.brisk.assessment.databinding.FragmentAssessorMainBinding
 import com.brisk.assessment.model.BatchRes
@@ -64,11 +65,15 @@ class AssessorMainFragment : Fragment() {
     }
 
     private val chooseMainListener = object : ChooseAssessorMainListener {
-        override fun chooseMemberAdapterListener(pos: Int, id: Int) {
-            Utility.replaceFragment(
+        override fun chooseMemberAdapterListener(pos: Int, batchNo: String, batchId : String) {
+            val bundle = Bundle()
+            bundle.putString(Constants.batchId, batchId)
+            bundle.putString(Constants.batchNo, batchNo)
+            Utility.replaceFragmentWithBundle(
                 AssessorIdProfileImageFragment(),
                 mActivity.supportFragmentManager,
-                binding.layoutRoot.id
+                binding.layoutRoot.id,
+                bundle
             )
         }
 

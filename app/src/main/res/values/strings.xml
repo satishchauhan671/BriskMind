@@ -184,6 +184,8 @@
     <string name="done">Done</string>
     <string name="absent">Absent</string>
     <string name="mark_absent">Mark Absent</string>
+    <string name="batch_name_txt">Batch Name</string>
+    <string name="batch_id">Batch Id</string>
 
 
     <string-array name="language_list">

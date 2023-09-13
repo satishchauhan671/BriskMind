@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.brisk.assessment.activities.CameraActivity
+import com.brisk.assessment.common.Constants
 import com.brisk.assessment.common.Utility
 import com.brisk.assessment.databinding.AssessorIdProfileLayoutBinding
 import com.brisk.assessment.fragments.CameraFragment
@@ -22,12 +23,14 @@ import java.io.File
 
 class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCallbackListener {
 
-    private var _binding: AssessorIdProfileLayoutBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var _binding: AssessorIdProfileLayoutBinding
+    private val binding get() = _binding
     private lateinit var mActivity: FragmentActivity
     val REQUEST_PERMISSION_CAMERA = 203
     var firstimg: Boolean = false
     var secondimg: Boolean = false
+    var batchId = ""
+    var batchNo = ""
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,11 +44,24 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val bundle = arguments
+        if (bundle != null && !bundle.isEmpty) {
+            batchId = bundle.getString(Constants.batchId).toString()
+            batchNo = bundle.getString(Constants.batchNo).toString()
+        }
+    }
+
 
     override fun onClick(p0: View?) {
         when (p0) {
             binding.saveNextLay -> {
-                Utility.replaceFragment(AssessorBatchListFragment(), mActivity.supportFragmentManager, binding.layoutRoot.id)
+                val bundle = Bundle()
+                bundle.putString(Constants.batchId, batchId)
+                bundle.putString(Constants.batchNo, batchNo)
+                Utility.replaceFragmentWithBundle(AssessorBatchListFragment(), mActivity.supportFragmentManager, binding.layoutRoot.id,bundle)
             }
 
             binding.lytAssessorId -> {
@@ -65,33 +81,45 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
 
     override fun imageCallback(file: File) {
         try {
+
+
             if (file.exists()) {
 
                 val filepath = file.absolutePath
                 val rotation = Utility.getRotation(filepath)
 
-                if (firstimg) {
-                    _binding!!.imgAssessorId.setImageBitmap(
-                        Utility.getBitmapByStringImage(
-                            Utility.bitmapToBASE64(
-                                Utility.rotateImage(
-                                    Utility.getBitmap(filepath)!!, rotation.toFloat()
-                                )
-                            )
-                        )
-                    )
-                } else {
-                    _binding!!.imgAssessorProfile.setImageBitmap(
-                        Utility.getBitmapByStringImage(
-                            Utility.bitmapToBASE64(
-                                Utility.rotateImage(
-                                    Utility.getBitmap(filepath)!!, rotation.toFloat()
-                                )
-                            )
-                        )
-                    )
-                }
+                try {
+                    synchronized(this) {
 
+                        mActivity.runOnUiThread {
+                            if (firstimg) {
+                                binding.imgAssessorId.visibility = View.VISIBLE
+                                binding.imgAssessorId.setImageBitmap(
+                                    Utility.getBitmapByStringImage(
+                                        Utility.bitmapToBASE64(
+                                            Utility.rotateImage(
+                                                Utility.getBitmap(filepath)!!, rotation.toFloat()
+                                            )
+                                        )
+                                    )
+                                )
+                            } else {
+                                binding.imgAssessorProfile.visibility = View.VISIBLE
+                                binding.imgAssessorProfile.setImageBitmap(
+                                    Utility.getBitmapByStringImage(
+                                        Utility.bitmapToBASE64(
+                                            Utility.rotateImage(
+                                                Utility.getBitmap(filepath)!!, rotation.toFloat()
+                                            )
+                                        )
+                                    )
+                                )
+                            }
+                        }
+                    }
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                }
 
             }
         } catch (e: java.lang.Exception) {
