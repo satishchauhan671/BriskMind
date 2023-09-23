@@ -13,8 +13,10 @@ import com.brisk.assessment.dao.ImportLanguageDao
 import com.brisk.assessment.dao.LanguageDao
 import com.brisk.assessment.dao.TextsDao
 import com.brisk.assessment.dao.LoginDao
+import com.brisk.assessment.dao.OptionDao
 import com.brisk.assessment.dao.PaperDao
 import com.brisk.assessment.dao.SubQuestionDao
+import com.brisk.assessment.dao.TransOptionDao
 import com.brisk.assessment.dao.UserDao
 import com.brisk.assessment.model.BatchConfigRes
 import com.brisk.assessment.model.BatchRes
@@ -22,16 +24,18 @@ import com.brisk.assessment.model.FeedbackResponse
 import com.brisk.assessment.model.ImportLanguageResponse
 import com.brisk.assessment.model.LanguageRes
 import com.brisk.assessment.model.LoginRes
+import com.brisk.assessment.model.OptionRes
 import com.brisk.assessment.model.PaperResponse
 import com.brisk.assessment.model.SubQuestionResponse
 import com.brisk.assessment.model.TextsRes
+import com.brisk.assessment.model.TransOptionRes
 import com.brisk.assessment.model.UserResponse
 
 @TypeConverters(DataConvertor::class)
 @Database(
     entities = [LoginRes::class, LanguageRes::class, TextsRes::class, BatchRes::class, BatchConfigRes::class,
         UserResponse::class, ImportLanguageResponse::class, FeedbackResponse::class,PaperResponse::class,
-               SubQuestionResponse::class],
+               SubQuestionResponse::class, OptionRes::class, TransOptionRes::class],
     version = 1,
     exportSchema = false
 )
@@ -47,6 +51,8 @@ abstract class BriskMindDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun importLanguageDao(): ImportLanguageDao
     abstract fun feedbackDao(): FeedbackDao
+    abstract fun optionDao() : OptionDao
+    abstract fun transOptionDao() : TransOptionDao
 
     companion object {
         @Volatile

@@ -122,4 +122,5 @@ class AssessorMainFragment : Fragment() {
 
         }
     }
+
 }

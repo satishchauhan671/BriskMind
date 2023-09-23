@@ -10,19 +10,12 @@ import androidx.room.PrimaryKey
 class SubQuestionResponse {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
+    var question_id: String? = null
     var squestion_id: String? = null
     var question: String? = null
     var question_marks: String? = null
-    var option_1: String? = null
-    var option_2: String? = null
-    var option_3: String? = null
-    var option_4: String? = null
-    var option_5: String? = null
-    var option_6: String? = null
-    var option_7: String? = null
-    var option_8: String? = null
-    var option_9: String? = null
-    var option_10: String? = null
+    @Embedded(prefix = "option_mst")
+    @Ignore var option_array: List<OptionRes>? = null
     var seq_no: String? = null
     var option_count: String? = null
     var q_image: String? = null
@@ -36,23 +29,18 @@ class SubQuestionResponse {
     var option_8_image: String? = null
     var option_9_image: String? = null
     var option_10_image: String? = null
+    var trans_question: String? = null
+    @Embedded(prefix = "trans_option_mst")
+    @Ignore var trans_option_array: List<TransOptionRes>? = null
 
     constructor()
     constructor(
         id: Int,
+        question_id: String?,
         squestion_id: String?,
         question: String?,
         question_marks: String?,
-        option_1: String?,
-        option_2: String?,
-        option_3: String?,
-        option_4: String?,
-        option_5: String?,
-        option_6: String?,
-        option_7: String?,
-        option_8: String?,
-        option_9: String?,
-        option_10: String?,
+        option_array: List<OptionRes>?,
         seq_no: String?,
         option_count: String?,
         q_image: String?,
@@ -65,22 +53,16 @@ class SubQuestionResponse {
         option_7_image: String?,
         option_8_image: String?,
         option_9_image: String?,
-        option_10_image: String?
+        option_10_image: String?,
+        trans_question: String?,
+        trans_option_array: List<TransOptionRes>?,
     ) {
         this.id = id
+        this.question_id = question_id
         this.squestion_id = squestion_id
         this.question = question
         this.question_marks = question_marks
-        this.option_1 = option_1
-        this.option_2 = option_2
-        this.option_3 = option_3
-        this.option_4 = option_4
-        this.option_5 = option_5
-        this.option_6 = option_6
-        this.option_7 = option_7
-        this.option_8 = option_8
-        this.option_9 = option_9
-        this.option_10 = option_10
+        this.option_array = option_array
         this.seq_no = seq_no
         this.option_count = option_count
         this.q_image = q_image
@@ -94,5 +76,8 @@ class SubQuestionResponse {
         this.option_8_image = option_8_image
         this.option_9_image = option_9_image
         this.option_10_image = option_10_image
+        this.trans_question = trans_question
+        this.trans_option_array = trans_option_array
     }
+
 }

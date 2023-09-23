@@ -21,6 +21,9 @@ class BatchRes {
     var s3_secret_key: String? = ""
     var s3_secret_pwd: String? = ""
     var s3_group_path: String? = ""
+    var total_practical_marks: String? = ""
+    var total_theory_marks: String? = ""
+    var total_viva_marks: String? = ""
 
     @Embedded(prefix = "batch_config_mst")
     @Ignore
@@ -28,8 +31,6 @@ class BatchRes {
 
 
     constructor()
-
-
     constructor(
         id: Int,
         assessor_name: String?,
@@ -44,6 +45,9 @@ class BatchRes {
         s3_secret_key: String?,
         s3_secret_pwd: String?,
         s3_group_path: String?,
+        total_practical_marks: String?,
+        total_theory_marks: String?,
+        total_viva_marks: String?,
         batch_config: BatchConfigRes?
     ) {
         this.id = id
@@ -59,14 +63,14 @@ class BatchRes {
         this.s3_secret_key = s3_secret_key
         this.s3_secret_pwd = s3_secret_pwd
         this.s3_group_path = s3_group_path
+        this.total_practical_marks = total_practical_marks
+        this.total_theory_marks = total_theory_marks
+        this.total_viva_marks = total_viva_marks
         this.batch_config = batch_config
     }
 
     override fun toString(): String {
-        return "BatchRes(id=$id, assessor_name=$assessor_name, batch_id=$batch_id, " +
-                "sector_id=$sector_id, sector_name=$sector_name, batch_no=$batch_no, assessment_date=$assessment_date, " +
-                "duration=$duration, client_id=$client_id, alt_lang_id=$alt_lang_id, s3_secret_key=$s3_secret_key, " +
-                "s3_secret_pwd=$s3_secret_pwd, s3_group_path=$s3_group_path, batch_config=$batch_config)"
+        return "BatchRes(id=$id, assessor_name=$assessor_name, batch_id='$batch_id', sector_id=$sector_id, sector_name=$sector_name, batch_no='$batch_no', assessment_date=$assessment_date, duration=$duration, client_id=$client_id, alt_lang_id=$alt_lang_id, s3_secret_key=$s3_secret_key, s3_secret_pwd=$s3_secret_pwd, s3_group_path=$s3_group_path, total_practical_marks=$total_practical_marks, total_theory_marks=$total_theory_marks, total_viva_marks=$total_viva_marks, batch_config=$batch_config)"
     }
 
 

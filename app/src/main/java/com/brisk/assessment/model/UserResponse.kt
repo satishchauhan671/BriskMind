@@ -15,6 +15,8 @@ class UserResponse {
     var login_pass: String? = null
     var user_id: String? = null
     var user_name: String? = null
+    var enrollment_no: String? = null
+    var candidate_id: String? = null
     var father_name: String? = null
     var mobile_no: String? = null
     var jobrole: String? = null
@@ -25,7 +27,6 @@ class UserResponse {
     var client_id: String? = null
 
     constructor()
-
     constructor(
         id: Int,
         batch_id: String?,
@@ -34,6 +35,8 @@ class UserResponse {
         login_pass: String?,
         user_id: String?,
         user_name: String?,
+        enrollment_no: String?,
+        candidate_id: String?,
         father_name: String?,
         mobile_no: String?,
         jobrole: String?,
@@ -50,6 +53,8 @@ class UserResponse {
         this.login_pass = login_pass
         this.user_id = user_id
         this.user_name = user_name
+        this.enrollment_no = enrollment_no
+        this.candidate_id = candidate_id
         this.father_name = father_name
         this.mobile_no = mobile_no
         this.jobrole = jobrole

@@ -10,6 +10,10 @@ import com.brisk.assessment.model.ImportAssessmentReq
 import com.brisk.assessment.model.ImportAssessmentResponse
 import com.brisk.assessment.model.LoginReq
 import com.brisk.assessment.model.LoginRes
+import com.brisk.assessment.model.OptionRes
+import com.brisk.assessment.model.PaperResponse
+import com.brisk.assessment.model.SubQuestionResponse
+import com.brisk.assessment.model.TransOptionRes
 import com.brisk.assessment.model.UserResponse
 import com.brisk.assessment.repositories.LoginRepo
 import kotlinx.coroutines.Dispatchers
@@ -57,8 +61,35 @@ class MainViewModel(private val loginRepo: LoginRepo) : ViewModel() {
         return loginRepo.getAssessorBatchList()
     }
 
+    fun getBatchByBatchId(batchId : String) : LiveData<BatchRes>{
+        return loginRepo.getBatchByBatchId(batchId)
+    }
+
+
+
+    fun getPaperListByPaperSetId(paperSetId : String) : LiveData<List<PaperResponse>>{
+        return loginRepo.getPaperListByPaperSetId(paperSetId)
+    }
 
     fun getUserByBatchId(batchId : String) : LiveData<List<UserResponse>>{
         return  loginRepo.getUserByBatchId(batchId)
+    }
+
+    // Sub-Questions
+    fun getSubQueByQueId(queId : String) : LiveData<List<SubQuestionResponse>>{
+        return  loginRepo.getSubQueByQueId(queId)
+    }
+
+    // Options
+    fun getOptionBySubQuestionId(batchId : String) : LiveData<List<OptionRes>>{
+        return  loginRepo.getOptionBySubQuestionId(batchId)
+    }
+
+    fun getTransOptionBySubQuestionId(batchId : String) : LiveData<List<TransOptionRes>>{
+        return  loginRepo.getTransOptionBySubQuestionId(batchId)
+    }
+
+    fun getPaperDuration(batchId : String) : LiveData<String>{
+        return loginRepo.getPaperDuration(batchId)
     }
 }

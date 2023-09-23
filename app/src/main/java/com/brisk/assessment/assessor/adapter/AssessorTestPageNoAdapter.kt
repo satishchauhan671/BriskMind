@@ -9,12 +9,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.brisk.assessment.R
 import com.brisk.assessment.assessor.listener.ChooseAssessorMainListener
+import com.brisk.assessment.model.PaperResponse
 
-class AssessorTestPageNoAdapter(mContext: Context, fragmentManager: FragmentManager) :
+class AssessorTestPageNoAdapter(mContext: Context, fragmentManager: FragmentManager, paperList: List<PaperResponse>) :
     RecyclerView.Adapter<AssessorTestPageNoAdapter.ViewHolder>() {
 
     private val mContext: Context = mContext
     private val fragmentManager: FragmentManager = fragmentManager
+    private var paperList: List<PaperResponse> = paperList
     private lateinit var chooseAssessorMainListener: ChooseAssessorMainListener
     var selectedPos : Int = -1
     var lastSelectedPos : Int = -1
@@ -30,9 +32,9 @@ class AssessorTestPageNoAdapter(mContext: Context, fragmentManager: FragmentMana
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        holder.view.setOnClickListener{
-//             chooseAssessorMainListener.chooseMemberAdapterListener(position,0)
-//        }
+        holder.view.setOnClickListener{
+             chooseAssessorMainListener.chooseMemberAdapterListener(position,"0","0")
+        }
         val plusOnePos = position + 1
         holder.pageNoTv.text = plusOnePos.toString()
 
@@ -55,7 +57,7 @@ class AssessorTestPageNoAdapter(mContext: Context, fragmentManager: FragmentMana
     }
 
     override fun getItemCount(): Int {
-        return 11
+        return paperList.size
     }
 
 

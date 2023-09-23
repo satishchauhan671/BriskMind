@@ -186,6 +186,9 @@
     <string name="mark_absent">Mark Absent</string>
     <string name="batch_name_txt">Batch Name</string>
     <string name="batch_id">Batch Id</string>
+    <string name="question_serial_number">Question No: %1$d/%2$d</string>
+    <string name="ques_mark">Marks: %1$s</string>
+    <string name="total_marks">Total Marks: %1$s</string>
 
 
     <string-array name="language_list">

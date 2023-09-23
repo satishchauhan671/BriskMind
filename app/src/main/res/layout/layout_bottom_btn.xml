@@ -7,8 +7,9 @@
     android:paddingEnd="@dimen/activity_margin_15dp">
 
     <LinearLayout
+        android:id="@+id/previousLay"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_centerVertical="true"
         android:gravity="center_vertical">
@@ -29,9 +30,10 @@
 
 
     <LinearLayout
+        android:id="@+id/nextLay"
         android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_centerVertical="true"
         android:gravity="center_vertical">

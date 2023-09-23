@@ -11,7 +11,10 @@ import com.brisk.assessment.model.ImportAssessmentReq
 import com.brisk.assessment.model.ImportAssessmentResponse
 import com.brisk.assessment.model.LoginReq
 import com.brisk.assessment.model.LoginRes
+import com.brisk.assessment.model.OptionRes
 import com.brisk.assessment.model.PaperResponse
+import com.brisk.assessment.model.SubQuestionResponse
+import com.brisk.assessment.model.TransOptionRes
 import com.brisk.assessment.model.UserResponse
 import com.brisk.assessment.retrofit.ApiClient
 import com.google.gson.Gson
@@ -138,6 +141,25 @@ class LoginRepo(private val application: Application) {
                                 briskMindDatabase.paperDao().insert(paperResponse)
                                 if (paperResponse.sub_questions != null) {
                                     briskMindDatabase.subQuestionsDao().insert(paperResponse.sub_questions!!)
+
+                                    for(subQues in paperResponse.sub_questions!!){
+                                        if (subQues.option_array != null && subQues.option_array!!.isNotEmpty()){
+
+                                            for (option in subQues.option_array!!){
+                                                option.subQuestionId = subQues.squestion_id?: ""
+                                                briskMindDatabase.optionDao().insert(option)
+                                            }
+                                        }
+
+                                        if (subQues.trans_option_array != null && subQues.trans_option_array!!.isNotEmpty()){
+                                            briskMindDatabase.transOptionDao().insertAll(subQues.trans_option_array!!)
+
+                                            for (option in subQues.trans_option_array!!){
+                                                option.subQuestionId = subQues.squestion_id?: ""
+                                                briskMindDatabase.transOptionDao().insert(option)
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -167,6 +189,8 @@ class LoginRepo(private val application: Application) {
         briskMindDatabase.paperDao().deleteAllPapers()
         briskMindDatabase.subQuestionsDao().deleteAllSubQuestion()
         briskMindDatabase.feedbackDao().deleteAllFeedback()
+        briskMindDatabase.optionDao().deleteAll()
+        briskMindDatabase.transOptionDao().deleteAll()
     }
 
     /*
@@ -190,6 +214,18 @@ class LoginRepo(private val application: Application) {
     *
     * */
 
+    /*
+    *  Paper Mst Start
+    * */
+
+    fun getPaperListByPaperSetId(paperSetId : String) : LiveData<List<PaperResponse>>{
+        return briskMindDatabase.paperDao().getPaperListByPaperSetId(paperSetId)
+    }
+
+    /*
+    *  Paper Mst End
+    * */
+
     // Get Data from Batch Mst
     fun getAssessorBatchList() : LiveData<List<BatchRes>>{
         return briskMindDatabase.batchDao().getBatchData()
@@ -199,7 +235,14 @@ class LoginRepo(private val application: Application) {
         return briskMindDatabase.batchDao().deleteAll()
     }
 
+    fun getBatchByBatchId(batchId : String) : LiveData<BatchRes>{
+        return briskMindDatabase.batchDao().getBatchByBatchId(batchId)
+    }
 
+    // Sub-Questions
+    fun getSubQueByQueId(queId : String) : LiveData<List<SubQuestionResponse>>{
+        return  briskMindDatabase.subQuestionsDao().getSubQueByQueId(queId)
+    }
 
     /*
     *   User Mst Functions Start
@@ -212,4 +255,29 @@ class LoginRepo(private val application: Application) {
     /*
     *   User Mst Functions End
     * */
+
+
+    /*
+   *   Option Mst Functions Start
+   * */
+
+    fun getOptionBySubQuestionId(batchId : String) : LiveData<List<OptionRes>>{
+        return  briskMindDatabase.optionDao().getOptionBySubQuestionId(batchId)
+    }
+
+    /*
+    *   User Option Functions End
+    * */
+
+
+    /*
+    *     Trans Option Mst Functions Start
+    * */
+    fun getTransOptionBySubQuestionId(batchId : String) : LiveData<List<TransOptionRes>>{
+        return  briskMindDatabase.transOptionDao().getTransOptionBySubQuestionId(batchId)
+    }
+
+    fun getPaperDuration(batchId : String) : LiveData<String>{
+        return briskMindDatabase.batchDao().getPaperDuration(batchId)
+    }
 }

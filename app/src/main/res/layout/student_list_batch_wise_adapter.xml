@@ -83,6 +83,7 @@
 
 
                     <TextView
+                        android:id="@+id/enrollmentTv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -174,10 +175,11 @@
 
 
                             <TextView
+                                android:id="@+id/practicalTv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="@string/in_progress"
+                                android:text=""
                                 android:textColor="@color/blue"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
@@ -190,6 +192,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/activity_margin_3dp"
                             android:background="@drawable/btn_bg_red_rounded"
+                            android:foreground="?attr/selectableItemBackground"
                             android:gravity="center"
                             android:layout_alignParentRight="true"
                             android:layout_gravity="center"
@@ -244,6 +247,7 @@
 
 
                             <TextView
+                                android:id="@+id/vivaTv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
@@ -260,6 +264,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/activity_margin_3dp"
                             android:background="@drawable/btn_bg_red_rounded"
+                            android:foreground="?attr/selectableItemBackground"
                             android:gravity="center"
                             android:layout_gravity="center"
                             android:orientation="horizontal"

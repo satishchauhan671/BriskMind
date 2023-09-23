@@ -15,6 +15,7 @@ import com.brisk.assessment.common.Constants
 import com.brisk.assessment.common.Utility
 import com.brisk.assessment.databinding.FragmentAssessorListBatchWiseBinding
 import com.brisk.assessment.listner.ChooseStudentListListener
+import com.brisk.assessment.model.BatchRes
 import com.brisk.assessment.model.UserResponse
 import com.brisk.assessment.repositories.LoginRepo
 import com.brisk.assessment.viewmodels.MainViewModel
@@ -31,6 +32,7 @@ class AssessorBatchListFragment  : Fragment() , View.OnClickListener{
     private lateinit var mainViewModel: MainViewModel
     private lateinit var mainViewModelFactory: MainViewModelFactory
     private lateinit var userList : List<UserResponse>
+    private lateinit var batchRes : BatchRes
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,7 +70,7 @@ class AssessorBatchListFragment  : Fragment() , View.OnClickListener{
         }
 
 
-        bindBatchListData()
+        bindUserListData()
     }
 
     private val chooseMainListener = object : ChooseStudentListListener {
@@ -87,18 +89,28 @@ class AssessorBatchListFragment  : Fragment() , View.OnClickListener{
     }
 
 
-    private fun bindBatchListData(){
+    private fun bindUserListData(){
         mainViewModel.getUserByBatchId(batchId).observe(viewLifecycleOwner){
             userList = it
 
             println(userList.toString())
 
-            studentListAdapter = AssessorBatchWiseAdapter(mActivity,mActivity.supportFragmentManager, userList)
+           bindBatchListData()
+
+        }
+    }
+
+    private fun bindBatchListData(){
+        mainViewModel.getBatchByBatchId(batchId).observe(viewLifecycleOwner){
+            batchRes = it
+
+            println(batchRes.toString())
+
+            studentListAdapter = AssessorBatchWiseAdapter(mActivity,mActivity.supportFragmentManager, userList, batchRes)
             binding.recyclerViewStudent.layoutManager = LinearLayoutManager(mActivity,
                 LinearLayoutManager.VERTICAL,false)
             studentListAdapter.setAdapterListener(chooseMainListener)
             binding.recyclerViewStudent.adapter = studentListAdapter
-
         }
     }
 }

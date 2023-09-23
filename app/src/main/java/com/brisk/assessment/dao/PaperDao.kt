@@ -1,5 +1,6 @@
 package com.brisk.assessment.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -21,4 +22,7 @@ interface PaperDao {
 
     @Query("delete from paper_mst")
     fun deleteAllPapers()
+
+    @Query("select * from paper_mst where paper_set_id = :paperSetId")
+    fun getPaperListByPaperSetId(paperSetId : String) : LiveData<List<PaperResponse>>
 }
