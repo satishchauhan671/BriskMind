@@ -25,9 +25,7 @@ import com.brisk.assessment.repositories.LoginRepo
 import com.brisk.assessment.viewmodels.MainViewModel
 import com.brisk.assessment.viewmodels.MainViewModelFactory
 
-class PaperFragment(paperList : List<PaperResponse>, assessorTestActivity: AssessorTestActivity)  : Fragment() {
-
-     private val paperList : List<PaperResponse> = paperList
+class PaperFragment(assessorTestActivity: AssessorTestActivity)  : Fragment() {
 
     private val assessorTestActivity : AssessorTestActivity = assessorTestActivity
 
@@ -39,6 +37,7 @@ class PaperFragment(paperList : List<PaperResponse>, assessorTestActivity: Asses
     private lateinit var mainViewModel: MainViewModel
     private lateinit var mainViewModelFactory: MainViewModelFactory
     lateinit var subQuestionList : List<SubQuestionResponse>
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -58,7 +57,6 @@ class PaperFragment(paperList : List<PaperResponse>, assessorTestActivity: Asses
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        assessorTestActivity.setPaperListener(pageChangeListener)
     }
 
     override fun onAttach(context: Context) {

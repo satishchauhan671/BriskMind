@@ -3,8 +3,8 @@ package com.brisk.assessment.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "batch_mst")
-class SyncImageArrayModel {
+@Entity(tableName = "sync_image_arr")
+class SyncImageArray {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
     var batch_id: String? = null

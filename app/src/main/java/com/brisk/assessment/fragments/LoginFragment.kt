@@ -54,7 +54,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
         setLoginAs()
 
-        return binding.root
+        return binding.layoutRoot
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -98,7 +98,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     private fun showMessage(error: String) {
-        showSnackBar(binding.root, error)
+        showSnackBar(binding.layoutRoot, error)
     }
 
     private fun setLoginAs() {

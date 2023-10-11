@@ -1,12 +1,10 @@
 package com.brisk.assessment.model
 
-import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "batch_mst")
-class SyncUserProfileModel {
+@Entity(tableName = "sync_user_profile")
+class SyncUserProfile {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
     var aadhar_no: String? = null

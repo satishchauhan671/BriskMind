@@ -13,6 +13,6 @@ class PagerAdapter(fa: FragmentActivity, private val paperList : List<PaperRespo
 
     override fun getItemCount(): Int = paperList.size
 
-    override fun createFragment(position: Int): Fragment = PaperFragment(paperList,assessorTestActivity)
+    override fun createFragment(position: Int): Fragment = PaperFragment(assessorTestActivity)
 
 }

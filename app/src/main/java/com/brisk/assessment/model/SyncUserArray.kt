@@ -1,12 +1,10 @@
 package com.brisk.assessment.model
 
-import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "batch_mst")
-class SyncUserArrayModel {
+@Entity(tableName = "sync_user_arr")
+class SyncUserArray {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
     var attendance_status: String? = null
