@@ -8,76 +8,87 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.brisk.assessment.activities.CameraActivity
 import com.brisk.assessment.common.Utility
-import com.brisk.assessment.databinding.BatchImagesLayoutBinding
+import com.brisk.assessment.databinding.FragmentStudentTakeAttendanceBinding
 import com.brisk.assessment.fragments.CameraFragment
 import com.brisk.assessment.listner.ImageCallbackListener
 import java.io.File
 
-class AssessorBatchImagesFragment : Fragment(), View.OnClickListener, ImageCallbackListener {
+class StudentTakeAttendanceFragment : Fragment(), View.OnClickListener, ImageCallbackListener {
 
-    private lateinit var _binding : BatchImagesLayoutBinding
-    private val binding get() = _binding
-    private lateinit var mActivity : FragmentActivity
-    var firstimg: Boolean = false
-    var secondimg: Boolean = false
-    var thirdimg: Boolean = false
+    private var _binding: FragmentStudentTakeAttendanceBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var mActivity: FragmentActivity
     val REQUEST_PERMISSION_CAMERA = 203
+    var firstImg: Boolean = false
+    var secondImg: Boolean = false
+    var thirdImg: Boolean = false
+    var fourthImg: Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = BatchImagesLayoutBinding.inflate(inflater, container, false)
+        _binding = FragmentStudentTakeAttendanceBinding.inflate(inflater, container, false)
+        CameraFragment.getImageCallback(this)
+        binding.submitBtn.setOnClickListener(this)
+        binding.lytEntryId.setOnClickListener(this)
+        binding.lytEntryProfile.setOnClickListener(this)
+        binding.lytExitId.setOnClickListener(this)
+        binding.lytExitProfile.setOnClickListener(this)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.toolbar.pageTitle.text = "Batch Image"
-        binding.toolbar.backArrowIv.setOnClickListener(this)
-        CameraFragment.getImageCallback(this)
-        binding.lytGroupImage.setOnClickListener(this)
-        binding.lytBannerImage.setOnClickListener(this)
-        binding.lytCenterImage.setOnClickListener(this)
-    }
 
     override fun onClick(p0: View?) {
-        when(p0){
-            binding.toolbar.backArrowIv -> {
-                    mActivity.onBackPressed()
+        when (p0) {
+
+            binding.submitBtn ->{
+
             }
-            binding.lytGroupImage -> {
-                firstimg = true
-                secondimg = false
-                thirdimg = false
+
+            binding.lytEntryId -> {
+                firstImg = true
+                secondImg = false
+                thirdImg = false
+                fourthImg = false
                 checkCameraPermission()
             }
 
-            binding.lytBannerImage -> {
-                firstimg = false
-                secondimg = true
-                thirdimg = false
+            binding.lytEntryProfile -> {
+                firstImg = false
+                secondImg = true
+                thirdImg = false
+                fourthImg = false
                 checkCameraPermission()
             }
-            binding.lytCenterImage -> {
-                firstimg = false
-                secondimg = false
-                thirdimg = true
+            binding.lytExitId -> {
+                firstImg = false
+                secondImg = false
+                thirdImg = true
+                fourthImg = false
                 checkCameraPermission()
             }
+
+            binding.lytExitProfile -> {
+                firstImg = false
+                secondImg = false
+                thirdImg = false
+                fourthImg = true
+                checkCameraPermission()
+            }
+
         }
     }
 
     override fun imageCallback(file: File) {
         try {
-
-
             if (file.exists()) {
 
                 val filepath = file.absolutePath
@@ -87,9 +98,9 @@ class AssessorBatchImagesFragment : Fragment(), View.OnClickListener, ImageCallb
                     synchronized(this) {
 
                         mActivity.runOnUiThread {
-                            if (firstimg) {
-                                binding.groupImageCapture.visibility = View.VISIBLE
-                                binding.groupImageCapture.setImageBitmap(
+                            if (firstImg) {
+                                binding.imgEntryID.visibility = View.VISIBLE
+                                binding.imgEntryID.setImageBitmap(
                                     Utility.getBitmapByStringImage(
                                         Utility.bitmapToBASE64(
                                             Utility.rotateImage(
@@ -98,9 +109,9 @@ class AssessorBatchImagesFragment : Fragment(), View.OnClickListener, ImageCallb
                                         )
                                     )
                                 )
-                            } else if (secondimg) {
-                                binding.bannerImageCapture.visibility = View.VISIBLE
-                                binding.bannerImageCapture.setImageBitmap(
+                            } else if (secondImg) {
+                                binding.imgEntryProfile.visibility = View.VISIBLE
+                                binding.imgEntryProfile.setImageBitmap(
                                     Utility.getBitmapByStringImage(
                                         Utility.bitmapToBASE64(
                                             Utility.rotateImage(
@@ -109,9 +120,22 @@ class AssessorBatchImagesFragment : Fragment(), View.OnClickListener, ImageCallb
                                         )
                                     )
                                 )
-                            } else {
-                                binding.centerImageCapture.visibility = View.VISIBLE
-                                binding.centerImageCapture.setImageBitmap(
+                            }
+                            else if (thirdImg) {
+                                binding.imgExitId.visibility = View.VISIBLE
+                                binding.imgExitId.setImageBitmap(
+                                    Utility.getBitmapByStringImage(
+                                        Utility.bitmapToBASE64(
+                                            Utility.rotateImage(
+                                                Utility.getBitmap(filepath)!!, rotation.toFloat()
+                                            )
+                                        )
+                                    )
+                                )
+                            }
+                            else {
+                                binding.imgExitProfile.visibility = View.VISIBLE
+                                binding.imgExitProfile.setImageBitmap(
                                     Utility.getBitmapByStringImage(
                                         Utility.bitmapToBASE64(
                                             Utility.rotateImage(
@@ -133,6 +157,7 @@ class AssessorBatchImagesFragment : Fragment(), View.OnClickListener, ImageCallb
             Log.e("CKDemo", "Exception in photo callback")
         }
     }
+
     private fun checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(
                 mActivity,
@@ -176,8 +201,11 @@ class AssessorBatchImagesFragment : Fragment(), View.OnClickListener, ImageCallb
             }
         }
     }
+
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mActivity = context as FragmentActivity
+        mActivity = context as AppCompatActivity
     }
+
 }

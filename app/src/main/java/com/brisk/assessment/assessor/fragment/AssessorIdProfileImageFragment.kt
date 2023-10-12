@@ -81,8 +81,6 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
 
     override fun imageCallback(file: File) {
         try {
-
-
             if (file.exists()) {
 
                 val filepath = file.absolutePath

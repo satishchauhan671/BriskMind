@@ -2,7 +2,6 @@ package com.brisk.assessment.assessor.adapter
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.brisk.assessment.R
 import com.brisk.assessment.assessor.activity.AssessorTestActivity
 import com.brisk.assessment.common.Constants
-import com.brisk.assessment.databinding.StudentIdProfileLayoutBindingImpl
 import com.brisk.assessment.databinding.StudentListBatchWiseAdapterBinding
 import com.brisk.assessment.listner.ChooseStudentListListener
 import com.brisk.assessment.model.BatchRes
@@ -63,6 +61,7 @@ class AssessorBatchWiseAdapter(
                     val intent = Intent(mContext, AssessorTestActivity::class.java)
                     intent.putExtra(Constants.paperSetId, this.practical_paper_set_id)
                     intent.putExtra(Constants.batchId, this.batch_id)
+                    intent.putExtra(Constants.paperType, Constants.practical)
                     mContext.startActivity(intent)
                 }
 
@@ -70,6 +69,7 @@ class AssessorBatchWiseAdapter(
                     val intent = Intent(mContext, AssessorTestActivity::class.java)
                     intent.putExtra(Constants.paperSetId, this.viva_paper_set_id)
                     intent.putExtra(Constants.batchId, this.batch_id)
+                    intent.putExtra(Constants.paperType, Constants.viva)
                     mContext.startActivity(intent)
                 }
 
@@ -128,7 +128,6 @@ class AssessorBatchWiseAdapter(
         RecyclerView.ViewHolder(binding.root)
 
     fun removeAt(position: Int) {
-        //   userMemberList.removeAt(position)
         notifyDataSetChanged()
     }
 

@@ -13,5 +13,6 @@ class Constants {
         const val done : String = "Done"
         const val inProgress : String = "InProgress"
         const val paperSetId : String = "PaperSetId"
+        const val paperType : String = "paperType"
     }
 }

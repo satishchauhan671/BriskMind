@@ -248,6 +248,7 @@
                                         android:background="@drawable/cameraimgbackground">
 
                                         <ImageView
+                                            android:id="@+id/imgExitId"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:scaleType="centerCrop"
@@ -280,6 +281,7 @@
                                         android:background="@drawable/cameraimgbackground">
 
                                         <ImageView
+                                            android:id="@+id/imgExitProfile"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:scaleType="centerCrop"

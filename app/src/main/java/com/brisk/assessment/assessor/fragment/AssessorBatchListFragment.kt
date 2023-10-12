@@ -75,7 +75,7 @@ class AssessorBatchListFragment  : Fragment() , View.OnClickListener{
 
     private val chooseMainListener = object : ChooseStudentListListener {
         override fun chooseMemberAdapterListener(pos: Int, id: Int) {
-            Utility.replaceFragment(AssessorAttendanceFragment(),mActivity.supportFragmentManager, binding.layoutRoot.id)
+            Utility.replaceFragment(StudentTakeAttendanceFragment(),mActivity.supportFragmentManager, binding.layoutRoot.id)
         }
 
     }

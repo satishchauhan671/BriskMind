@@ -11,12 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.brisk.assessment.assessor.activity.AssessorTestActivity
-import com.brisk.assessment.assessor.adapter.AssessorBatchWiseAdapter
-import com.brisk.assessment.assessor.adapter.PagerAdapter
 import com.brisk.assessment.assessor.adapter.PaperAdapter
-import com.brisk.assessment.assessor.fragment.AssessorAttendanceFragment
-import com.brisk.assessment.common.Utility
-import com.brisk.assessment.databinding.AdapterPaperBinding
 import com.brisk.assessment.databinding.FragmentPaperBinding
 import com.brisk.assessment.listner.ChooseStudentListListener
 import com.brisk.assessment.model.PaperResponse

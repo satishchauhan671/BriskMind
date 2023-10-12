@@ -57,7 +57,7 @@
                             android:layout_marginEnd="@dimen/activity_margin_5dp">
 
                             <LinearLayout
-                                android:id="@+id/groupImage"
+                                android:id="@+id/lytGroupImage"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -65,21 +65,20 @@
                                 android:background="@drawable/cameraimgbackground">
 
                                 <ImageView
-                                    android:id="@+id/groupimageoriginal1"
+                                    android:id="@+id/groupImageCapture"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:scaleType="centerCrop"
                                     android:visibility="gone" />
 
                                 <ImageView
-                                    android:id="@+id/groupimage1"
+                                    android:id="@+id/groupImage"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_camera_new"
                                     android:scaleType="centerCrop" />
 
                                 <TextView
-                                    android:id="@+id/metertext1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Group Image"
@@ -100,7 +99,7 @@
                             android:layout_marginStart="@dimen/activity_margin_5dp">
 
                             <LinearLayout
-                                android:id="@+id/bannerImage"
+                                android:id="@+id/lytBannerImage"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -108,14 +107,14 @@
                                 android:background="@drawable/cameraimgbackground">
 
                                 <ImageView
-                                    android:id="@+id/bannerimageoriginal2"
+                                    android:id="@+id/bannerImageCapture"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:scaleType="centerCrop"
                                     android:visibility="gone" />
 
                                 <ImageView
-                                    android:id="@+id/bannerimage2"
+                                    android:id="@+id/bannerImage"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_camera_new"
@@ -158,7 +157,7 @@
                             android:layout_marginEnd="@dimen/activity_margin_5dp">
 
                             <LinearLayout
-                                android:id="@+id/centerImage"
+                                android:id="@+id/lytCenterImage"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -166,14 +165,14 @@
                                 android:background="@drawable/cameraimgbackground">
 
                                 <ImageView
-                                    android:id="@+id/centerimageoriginal1"
+                                    android:id="@+id/centerImageCapture"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:scaleType="centerCrop"
                                     android:visibility="gone" />
 
                                 <ImageView
-                                    android:id="@+id/centerimage1"
+                                    android:id="@+id/centerImage"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_camera_new"

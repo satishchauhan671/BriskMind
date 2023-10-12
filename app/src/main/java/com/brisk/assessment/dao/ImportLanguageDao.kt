@@ -1,5 +1,6 @@
 package com.brisk.assessment.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -20,7 +21,7 @@ interface ImportLanguageDao {
 
 
     @Query("Select * from import_language_mst")
-    fun getImportLanguageData() : List<ImportLanguageResponse>
+    fun getImportLanguageData() : LiveData<List<ImportLanguageResponse>>
 
     @Query("delete from import_language_mst")
     fun deleteAllImportLanguage()

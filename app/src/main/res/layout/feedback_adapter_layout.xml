@@ -8,8 +8,6 @@
     app:cardElevation="@dimen/activity_margin_5dp"
     app:cardCornerRadius="@dimen/activity_margin_5dp">
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,44 +15,31 @@
             android:padding="@dimen/activity_margin_10dp">
 
             <TextView
-                android:id="@+id/assignDate"
+                android:id="@+id/txtFeedbackQuestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:padding="@dimen/activity_margin_10dp"
-                android:text="Were the Training partner cooperative ?"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="@dimen/text_size_14sp" />
 
-
             <LinearLayout
+                android:id="@+id/lytFeedbackRadio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <RadioGroup
+                    android:visibility="gone"
+                    android:id="@+id/radioGroupFeedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:buttonTint="@color/app_theme"
-                        android:paddingStart="@dimen/activity_margin_10dp"
-                        android:text="YES" />
-
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:buttonTint="@color/app_theme"
-                        android:paddingStart="@dimen/activity_margin_10dp"
-                        android:text="NO" />
                 </RadioGroup>
 
                 <LinearLayout
+                    android:id="@+id/lytEdittextFeedback"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_gravity="center_vertical"
@@ -66,15 +51,13 @@
                     android:orientation="vertical"
                     android:visibility="gone">
 
-
                     <EditText
-                        android:id="@+id/txtRemarksAddition"
+                        android:id="@+id/txtFeedbackEdit"
                         android:layout_width="match_parent"
                         android:layout_height="45sp"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/activity_margin_3dp"
                         android:background="@null"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 "
                         android:gravity="start|center"
                         android:hint=""
                         android:imeOptions="actionNext"
@@ -92,7 +75,6 @@
 
                 </LinearLayout>
             </LinearLayout>
-
 
         </LinearLayout>
 

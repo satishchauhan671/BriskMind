@@ -91,7 +91,7 @@
                                     app:cardElevation="0dp">
 
                                     <LinearLayout
-                                        android:id="@+id/firstmeterimage"
+                                        android:id="@+id/lytAadharFront"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:background="@drawable/cameraimgbackground"
@@ -99,14 +99,13 @@
                                         android:orientation="vertical">
 
                                         <ImageView
-                                            android:id="@+id/meterimageoriginal1"
+                                            android:id="@+id/imgAadharFront"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:scaleType="centerCrop"
                                             android:visibility="gone" />
 
                                         <ImageView
-                                            android:id="@+id/meterimage1"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:scaleType="centerCrop"
@@ -125,7 +124,7 @@
                                     app:cardElevation="0dp">
 
                                     <LinearLayout
-                                        android:id="@+id/secondmeterimage"
+                                        android:id="@+id/lytAadharBack"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:background="@drawable/cameraimgbackground"
@@ -133,20 +132,17 @@
                                         android:orientation="vertical">
 
                                         <ImageView
-                                            android:id="@+id/meterimageoriginal2"
+                                            android:id="@+id/imgAadharBack"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:scaleType="centerCrop"
                                             android:visibility="gone" />
 
                                         <ImageView
-                                            android:id="@+id/meterimage2"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:scaleType="centerCrop"
                                             android:src="@drawable/ic_camera_new" />
-
-
                                     </LinearLayout>
 
                                 </androidx.cardview.widget.CardView>
@@ -227,6 +223,7 @@
                                     android:layout_marginEnd="@dimen/activity_margin_5dp">
 
                                     <LinearLayout
+                                        android:id="@+id/lytStudentProfile"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:orientation="vertical"
@@ -234,6 +231,7 @@
                                         android:background="@drawable/cameraimgbackground">
 
                                         <ImageView
+                                            android:id="@+id/imgStudentProfile"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:scaleType="centerCrop"

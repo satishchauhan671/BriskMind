@@ -3,9 +3,11 @@ package com.brisk.assessment.assessor.activity
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.text.Html
 import android.util.Log
 import android.util.Size
 import android.view.Surface
@@ -27,7 +29,9 @@ import com.brisk.assessment.assessor.adapter.AssessorTestPageNoAdapter
 import com.brisk.assessment.assessor.adapter.PagerAdapter
 import com.brisk.assessment.assessor.listener.ChooseAssessorMainListener
 import com.brisk.assessment.common.Constants
+import com.brisk.assessment.common.Utility
 import com.brisk.assessment.databinding.ActivityAssessorTestBinding
+import com.brisk.assessment.model.ImportLanguageResponse
 import com.brisk.assessment.model.PaperResponse
 import com.brisk.assessment.repositories.LoginRepo
 import com.brisk.assessment.viewmodels.MainViewModel
@@ -44,6 +48,7 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
     private var isVisible = false
     private lateinit var paperSetId : String
     private lateinit var batchId : String
+    private lateinit var paperType : String
     private lateinit var paperList : List<PaperResponse>
     private lateinit var repo: LoginRepo
     private lateinit var mainViewModel: MainViewModel
@@ -51,14 +56,11 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var viewPager : ViewPager2
     lateinit var pagerListener : PagerListener
     private lateinit var cameraExecutor: ExecutorService
-
     private val handler = Handler()
     private val captureIntervalMillis = 10000 // Capture an image every 5 seconds (adjust as needed)
-
-
     private val CAMERA_PERMISSION_CODE = 101
     private val STORAGE_PERMISSION_CODE = 102
-
+    private lateinit var importLanguageRes: List<ImportLanguageResponse>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +78,7 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
 
         paperSetId = intent.getStringExtra(Constants.paperSetId).toString()
         batchId = intent.getStringExtra(Constants.batchId).toString()
+        paperType = intent.getStringExtra(Constants.paperType).toString()
 
         bindPaperListData(paperSetId)
 
@@ -147,6 +150,7 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
                     binding.rlDimBg.visibility = View.GONE
                     isVisible = false
                 } else {
+                    getInstructionData()
                     binding.cardInstruction.visibility = View.VISIBLE
                     binding.rlDimBg.visibility = View.VISIBLE
                     isVisible = true
@@ -188,10 +192,46 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
         stopImageCapture()
     }
 
+    private fun getInstructionData() {
+        mainViewModel.getInstructionList().observeForever {
+            importLanguageRes = it
+            if (importLanguageRes != null && importLanguageRes.size > 0) {
+                if (paperType.equals(Constants.practical))
+                {
+                    if (!Utility.isNullOrEmpty(importLanguageRes[0].practical_instructions)) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            binding.instructionDialog.txtInstruction.text = Html.fromHtml(
+                                importLanguageRes[0].practical_instructions,
+                                Html.FROM_HTML_MODE_COMPACT
+                            )
+                        } else {
+                            binding.instructionDialog.txtInstruction.text =
+                                Html.fromHtml(importLanguageRes[0].practical_instructions)
+                        }
+                    }
+                }
+                else
+                {
+                    if (!Utility.isNullOrEmpty(importLanguageRes[0].viva_instructions)) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            binding.instructionDialog.txtInstruction.text = Html.fromHtml(
+                                importLanguageRes[0].viva_instructions,
+                                Html.FROM_HTML_MODE_COMPACT
+                            )
+                        } else {
+                            binding.instructionDialog.txtInstruction.text =
+                                Html.fromHtml(importLanguageRes[0].viva_instructions)
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
     private fun bindPaperListData(paperSetId: String){
         mainViewModel.getPaperListByPaperSetId(paperSetId).observe(this){
             paperList = it
-
             // Set Paper No Rv
             assessorTestPageNoAdapter = AssessorTestPageNoAdapter(this, supportFragmentManager, paperList)
             assessorTestPageNoAdapter.setAdapterListener(pageChangeListener)

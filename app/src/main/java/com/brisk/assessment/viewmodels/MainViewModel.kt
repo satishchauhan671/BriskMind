@@ -6,8 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.brisk.assessment.common.NetworkResult
 import com.brisk.assessment.model.BatchRes
+import com.brisk.assessment.model.FeedbackResponse
 import com.brisk.assessment.model.ImportAssessmentReq
 import com.brisk.assessment.model.ImportAssessmentResponse
+import com.brisk.assessment.model.ImportLanguageResponse
+import com.brisk.assessment.model.LanguageRes
 import com.brisk.assessment.model.LoginReq
 import com.brisk.assessment.model.LoginRes
 import com.brisk.assessment.model.OptionRes
@@ -61,11 +64,17 @@ class MainViewModel(private val loginRepo: LoginRepo) : ViewModel() {
         return loginRepo.getAssessorBatchList()
     }
 
+    fun getFeedbackList() : LiveData<List<FeedbackResponse>> {
+        return loginRepo.getFeedbackList()
+    }
+
+    fun getInstructionList() : LiveData<List<ImportLanguageResponse>> {
+        return loginRepo.getInstructionList()
+    }
+
     fun getBatchByBatchId(batchId : String) : LiveData<BatchRes>{
         return loginRepo.getBatchByBatchId(batchId)
     }
-
-
 
     fun getPaperListByPaperSetId(paperSetId : String) : LiveData<List<PaperResponse>>{
         return loginRepo.getPaperListByPaperSetId(paperSetId)

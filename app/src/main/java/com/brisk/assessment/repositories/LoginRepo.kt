@@ -7,8 +7,11 @@ import com.brisk.assessment.common.NetworkResult
 import com.brisk.assessment.common.Utility
 import com.brisk.assessment.database.BriskMindDatabase
 import com.brisk.assessment.model.BatchRes
+import com.brisk.assessment.model.FeedbackResponse
 import com.brisk.assessment.model.ImportAssessmentReq
 import com.brisk.assessment.model.ImportAssessmentResponse
+import com.brisk.assessment.model.ImportLanguageResponse
+import com.brisk.assessment.model.LanguageRes
 import com.brisk.assessment.model.LoginReq
 import com.brisk.assessment.model.LoginRes
 import com.brisk.assessment.model.OptionRes
@@ -229,6 +232,14 @@ class LoginRepo(private val application: Application) {
     // Get Data from Batch Mst
     fun getAssessorBatchList() : LiveData<List<BatchRes>>{
         return briskMindDatabase.batchDao().getBatchData()
+    }
+
+    fun getFeedbackList() : LiveData<List<FeedbackResponse>>{
+        return briskMindDatabase.feedbackDao().getFeedbackData()
+    }
+
+    fun getInstructionList() : LiveData<List<ImportLanguageResponse>>{
+        return briskMindDatabase.importLanguageDao().getImportLanguageData()
     }
 
     fun deleteAllBatch(){

@@ -1,5 +1,6 @@
 package com.brisk.assessment.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -18,7 +19,7 @@ interface FeedbackDao {
 
 
     @Query("Select * from feedback_mst")
-    fun getFeedbackData() : List<FeedbackResponse>
+    fun getFeedbackData() : LiveData<List<FeedbackResponse>>
 
     @Query("delete from feedback_mst")
     fun deleteAllFeedback()
