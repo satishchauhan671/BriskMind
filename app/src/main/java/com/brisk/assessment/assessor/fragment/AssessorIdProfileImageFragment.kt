@@ -19,7 +19,11 @@ import com.brisk.assessment.common.Utility
 import com.brisk.assessment.databinding.AssessorIdProfileLayoutBinding
 import com.brisk.assessment.fragments.CameraFragment
 import com.brisk.assessment.listner.ImageCallbackListener
+import com.brisk.assessment.repositories.AssessorRepo
+import com.brisk.assessment.viewmodels.AssessorViewModel
+import com.brisk.assessment.viewmodels.AssessorViewModelFactory
 import java.io.File
+import java.util.Date
 
 class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCallbackListener {
 
@@ -31,6 +35,13 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
     var secondimg: Boolean = false
     var batchId = ""
     var batchNo = ""
+    var assessorIdImg = ""
+    var assessorProfileImg = ""
+    var userId = ""
+    private lateinit var assessorRepo : AssessorRepo
+    private lateinit var assessorViewModel : AssessorViewModel
+    private lateinit var assessorViewModelFactory : AssessorViewModelFactory
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -81,6 +92,8 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
 
     override fun imageCallback(file: File) {
         try {
+
+
             if (file.exists()) {
 
                 val filepath = file.absolutePath
@@ -101,6 +114,12 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
                                         )
                                     )
                                 )
+
+                                assessorIdImg = Utility.bitmapToBASE64(
+                                        Utility.rotateImage(
+                                            Utility.getBitmap(filepath)!!, rotation.toFloat()
+                                        ))
+
                             } else {
                                 binding.imgAssessorProfile.visibility = View.VISIBLE
                                 binding.imgAssessorProfile.setImageBitmap(
@@ -112,6 +131,11 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
                                         )
                                     )
                                 )
+
+                                assessorProfileImg = Utility.bitmapToBASE64(
+                                    Utility.rotateImage(
+                                        Utility.getBitmap(filepath)!!, rotation.toFloat()
+                                    ))
                             }
                         }
                     }

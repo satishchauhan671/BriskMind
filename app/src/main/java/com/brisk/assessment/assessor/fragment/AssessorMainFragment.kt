@@ -33,6 +33,7 @@ class AssessorMainFragment : Fragment() {
     private lateinit var mainViewModelFactory: MainViewModelFactory
     private lateinit var loginRes: LoginRes
     private lateinit var batchRes: List<BatchRes>
+    private var userId = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,6 +70,7 @@ class AssessorMainFragment : Fragment() {
             val bundle = Bundle()
             bundle.putString(Constants.batchId, batchId)
             bundle.putString(Constants.batchNo, batchNo)
+            bundle.putString(Constants.userId, userId)
             Utility.replaceFragmentWithBundle(
                 AssessorIdProfileImageFragment(),
                 mActivity.supportFragmentManager,
@@ -104,6 +106,7 @@ class AssessorMainFragment : Fragment() {
 
             binding.assessorNameTv.text = it.user_name
             binding.assessorIdTv.text = it.user_id
+            userId = it.user_id?:""
         }
     }
 
