@@ -292,10 +292,10 @@ object Utility {
         get() = dateStringWithTime(Date())
 
 
-    fun dateStringWithTime(date: Date?): String? {
+    private fun dateStringWithTime(date: Date?): String? {
         var date1: String? = null
         try {
-            val formatter = SimpleDateFormat("dd-MMM-yyyy HH:mm:ss", Locale.ENGLISH)
+            val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
             date1 = formatter.format(date)
         } catch (pe: Exception) {
             pe.printStackTrace()
@@ -303,7 +303,7 @@ object Utility {
         return date1
     }
 
-    fun dateStringWithTimeHrMinute(date: Date?): String? {
+    private fun dateStringWithTimeHrMinute(date: Date?): String? {
         var date1: String? = null
         try {
             val formatter = SimpleDateFormat("dd-MMM-yyyy HH:mm", Locale.ENGLISH)
