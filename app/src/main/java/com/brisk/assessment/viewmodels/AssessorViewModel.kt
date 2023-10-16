@@ -1,6 +1,12 @@
 package com.brisk.assessment.viewmodels
 
+import android.app.Application
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.brisk.assessment.common.NetworkResult
+import com.brisk.assessment.model.LoginRes
 import com.brisk.assessment.model.SyncAssessorAttendance
 import com.brisk.assessment.model.SyncBatchArray
 import com.brisk.assessment.model.SyncFeedbackArray
@@ -14,12 +20,30 @@ import com.brisk.assessment.model.SyncUserProfile
 import com.brisk.assessment.model.SyncUserTheoryAttendance
 import com.brisk.assessment.model.SyncUserVivaAttendance
 import com.brisk.assessment.repositories.AssessorRepo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class AssessorViewModel(private val assessorRepo: AssessorRepo) : ViewModel() {
+class AssessorViewModel(private val application: Application) : ViewModel() {
+    private val updatedSyncBatchLiveData = MutableLiveData<SyncBatchArray>()
+    val assessorRepo = AssessorRepo(application)
+    // Expose it as LiveData to the fragment
+    val updatedSyncBatch: LiveData<SyncBatchArray>
+        get() = updatedSyncBatchLiveData
+     fun saveBatchDetail(syncBatchArray: SyncBatchArray){
+        viewModelScope.launch(Dispatchers.IO) {
+            assessorRepo.saveBatchDetail(syncBatchArray)
+        }
+    }
+
+     fun updateBatchDetail(syncBatchArray: SyncBatchArray){
+        viewModelScope.launch(Dispatchers.IO) {
+            assessorRepo.updateBatchDetail(syncBatchArray)
+        }
+    }
 
 
-    suspend fun saveBatchDetail(syncBatchArray: SyncBatchArray){
-        return assessorRepo.saveBatchDetail(syncBatchArray)
+    suspend fun isBatchIdExists(batchId : String) : Boolean{
+        return assessorRepo.isBatchIdExists(batchId)
     }
 
     // user attendance

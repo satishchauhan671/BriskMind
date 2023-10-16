@@ -76,16 +76,11 @@ class AssessorBatchImagesFragment : Fragment(), View.OnClickListener, ImageCallb
 
     override fun imageCallback(file: File) {
         try {
-
-
             if (file.exists()) {
-
                 val filepath = file.absolutePath
                 val rotation = Utility.getRotation(filepath)
-
                 try {
                     synchronized(this) {
-
                         mActivity.runOnUiThread {
                             if (firstimg) {
                                 binding.groupImageCapture.visibility = View.VISIBLE

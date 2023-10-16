@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.brisk.assessment.common.NetworkResult
 import com.brisk.assessment.common.Utility
 import com.brisk.assessment.database.BriskMindDatabase
+import com.brisk.assessment.model.BatchConfigRes
 import com.brisk.assessment.model.BatchRes
 import com.brisk.assessment.model.FeedbackResponse
 import com.brisk.assessment.model.ImportAssessmentReq
@@ -290,5 +291,9 @@ class LoginRepo(private val application: Application) {
 
     fun getPaperDuration(batchId : String) : LiveData<String>{
         return briskMindDatabase.batchDao().getPaperDuration(batchId)
+    }
+
+    fun getBatchConfigByBatchId(batchId : String) : LiveData<BatchConfigRes>{
+        return briskMindDatabase.batchConfigDao().getBatchConfigByBatchId(batchId)
     }
 }

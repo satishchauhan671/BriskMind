@@ -201,12 +201,12 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
                     if (!Utility.isNullOrEmpty(importLanguageRes[0].practical_instructions)) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             binding.instructionDialog.txtInstruction.text = Html.fromHtml(
-                                importLanguageRes[0].practical_instructions,
+                                importLanguageRes[0].practical_instructions!!.replace("\n","\n\n"),
                                 Html.FROM_HTML_MODE_COMPACT
                             )
                         } else {
                             binding.instructionDialog.txtInstruction.text =
-                                Html.fromHtml(importLanguageRes[0].practical_instructions)
+                                Html.fromHtml(importLanguageRes[0].practical_instructions!!.replace("\n","\n\n"))
                         }
                     }
                 }
@@ -215,12 +215,12 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
                     if (!Utility.isNullOrEmpty(importLanguageRes[0].viva_instructions)) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             binding.instructionDialog.txtInstruction.text = Html.fromHtml(
-                                importLanguageRes[0].viva_instructions,
+                                importLanguageRes[0].viva_instructions!!.replace("\n","\n\n"),
                                 Html.FROM_HTML_MODE_COMPACT
                             )
                         } else {
                             binding.instructionDialog.txtInstruction.text =
-                                Html.fromHtml(importLanguageRes[0].viva_instructions)
+                                Html.fromHtml(importLanguageRes[0].viva_instructions!!.replace("\n","\n\n"))
                         }
                     }
                 }

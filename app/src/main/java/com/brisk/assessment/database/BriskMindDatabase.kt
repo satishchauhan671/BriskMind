@@ -108,7 +108,8 @@ abstract class BriskMindDatabase : RoomDatabase() {
                         context.applicationContext,
                         BriskMindDatabase::class.java,
                         "briskMind.db"
-                    ).build()
+                    )
+                        .build()
                 }
             }
             return INSTANCE!!

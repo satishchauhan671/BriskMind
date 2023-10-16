@@ -1,6 +1,7 @@
 package com.brisk.assessment.repositories
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import com.brisk.assessment.database.BriskMindDatabase
 import com.brisk.assessment.model.SyncAssessorAttendance
 import com.brisk.assessment.model.SyncBatchArray
@@ -15,16 +16,33 @@ import com.brisk.assessment.model.SyncUserProfile
 import com.brisk.assessment.model.SyncUserTheoryAttendance
 import com.brisk.assessment.model.SyncUserVivaAttendance
 import com.brisk.assessment.retrofit.ApiClient
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class AssessorRepo(private val application: Application) {
 
     private val networkService = ApiClient.getApiClient()
     private val briskMindDatabase = BriskMindDatabase.getDatabaseInstance(application)
-    
+
     suspend fun saveBatchDetail(syncBatchArray: SyncBatchArray){
-        return briskMindDatabase.syncBatchDao().insert(syncBatchArray)
+        withContext(Dispatchers.IO) {
+            briskMindDatabase.syncBatchDao().insert(syncBatchArray)
+        }
     }
 
+     suspend fun updateBatchDetail(syncBatchArray: SyncBatchArray){
+         withContext(Dispatchers.IO){
+             briskMindDatabase.syncBatchDao().update(syncBatchArray)
+         }
+    }
+
+    fun isBatchIdExists(batchId : String) : Boolean{
+        return briskMindDatabase.syncBatchDao().isBatchIdExists(batchId)
+    }
+
+    fun getSyncBatchArrayList() : LiveData<List<SyncBatchArray>>{
+        return briskMindDatabase.syncBatchDao().getSyncBatchArrayList()
+    }
     // user attendance
     suspend fun saveUserAttendance(syncUserAttendance: SyncUserAttendance){
         return briskMindDatabase.syncUserAttendanceDao().insert(syncUserAttendance)
