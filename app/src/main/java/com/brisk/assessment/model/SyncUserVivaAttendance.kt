@@ -11,7 +11,7 @@ class SyncUserVivaAttendance {
     var entry_id: String = ""
     var entry_id_time: String? = null
     var entry_photo: String? = null
-    var entry_photo_time: String = ""
+    var entry_photo_time: String ? = null
     var exit_id: String? = null
     var exit_id_time: String? = null
     var exit_photo: String? = null

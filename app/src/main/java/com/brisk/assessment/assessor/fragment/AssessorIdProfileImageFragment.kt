@@ -14,14 +14,20 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.brisk.assessment.activities.CameraActivity
+import com.brisk.assessment.assessor.async.AssessorAttnImageAsync
+import com.brisk.assessment.assessor.async.TakeAttnImageAsync
 import com.brisk.assessment.common.Constants
 import com.brisk.assessment.common.Utility
+import com.brisk.assessment.database.LoginDataHelper
+import com.brisk.assessment.database.SyncAssessorAttendenceDataHelper
+import com.brisk.assessment.database.SyncUserAttendenceDataHelper
 import com.brisk.assessment.databinding.AssessorIdProfileLayoutBinding
 import com.brisk.assessment.fragments.CameraFragment
 import com.brisk.assessment.listner.ImageCallbackListener
-import com.brisk.assessment.repositories.AssessorRepo
-import com.brisk.assessment.viewmodels.AssessorViewModel
-import com.brisk.assessment.viewmodels.AssessorViewModelFactory
+import com.brisk.assessment.listner.PhotoCompressedListener
+import com.brisk.assessment.model.LoginRes
+import com.brisk.assessment.model.SyncAssessorAttendance
+import com.brisk.assessment.model.SyncUserAttendance
 import java.io.File
 import java.util.Date
 
@@ -31,16 +37,15 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
     private val binding get() = _binding
     private lateinit var mActivity: FragmentActivity
     val REQUEST_PERMISSION_CAMERA = 203
-    var firstimg: Boolean = false
-    var secondimg: Boolean = false
+    var firstImg: Boolean = false
+    var secondImg: Boolean = false
+    var thirdImg: Boolean = false
+    var fourthImg: Boolean = false
     var batchId = ""
     var batchNo = ""
     var assessorIdImg = ""
     var assessorProfileImg = ""
     var userId = ""
-    private lateinit var assessorRepo : AssessorRepo
-    private lateinit var assessorViewModel : AssessorViewModel
-    private lateinit var assessorViewModelFactory : AssessorViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,15 +53,20 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
         savedInstanceState: Bundle?
     ): View {
         _binding = AssessorIdProfileLayoutBinding.inflate(inflater, container, false)
-        CameraFragment.getImageCallback(this)
-        binding.saveNextLay.setOnClickListener(this)
-        binding.lytAssessorId.setOnClickListener(this)
-        binding.lytAssessorProfile.setOnClickListener(this)
+
         return binding.root
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CameraFragment.getImageCallback(this)
+        binding.submitBtn.setOnClickListener(this)
+        binding.lytEntryId.setOnClickListener(this)
+        binding.lytEntryProfile.setOnClickListener(this)
+        binding.lytExitId.setOnClickListener(this)
+        binding.lytExitProfile.setOnClickListener(this)
 
         val bundle = arguments
         if (bundle != null && !bundle.isEmpty) {
@@ -68,25 +78,44 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
 
     override fun onClick(p0: View?) {
         when (p0) {
-            binding.saveNextLay -> {
+            binding.submitBtn -> {
                 val bundle = Bundle()
                 bundle.putString(Constants.batchId, batchId)
                 bundle.putString(Constants.batchNo, batchNo)
                 Utility.replaceFragmentWithBundle(AssessorBatchListFragment(), mActivity.supportFragmentManager, binding.layoutRoot.id,bundle)
             }
 
-            binding.lytAssessorId -> {
-                firstimg = true
-                secondimg = false
+            binding.lytEntryId -> {
+                firstImg = true
+                secondImg = false
+                thirdImg = false
+                fourthImg = false
                 checkCameraPermission()
             }
 
-            binding.lytAssessorProfile -> {
-                firstimg = false
-                secondimg = true
+            binding.lytEntryProfile -> {
+                firstImg = false
+                secondImg = true
+                thirdImg = false
+                fourthImg = false
                 checkCameraPermission()
             }
 
+            binding.lytExitId -> {
+                firstImg = false
+                secondImg = false
+                thirdImg = true
+                fourthImg = false
+                checkCameraPermission()
+            }
+
+            binding.lytExitProfile -> {
+                firstImg = false
+                secondImg = false
+                thirdImg = false
+                fourthImg = true
+                checkCameraPermission()
+            }
         }
     }
 
@@ -96,47 +125,53 @@ class AssessorIdProfileImageFragment : Fragment(), View.OnClickListener, ImageCa
 
             if (file.exists()) {
 
-                val filepath = file.absolutePath
-                val rotation = Utility.getRotation(filepath)
+                var  syncAssessorAttendance =
+                    SyncAssessorAttendenceDataHelper.getSyncAssessorAttendanceDataByBatchId(batchId, mActivity)
+                if (syncAssessorAttendance==null)
+                {
+                    val loginRes: LoginRes? = LoginDataHelper.getLogin(mActivity)
+                    if (loginRes != null)
+                    {
+                        syncAssessorAttendance= SyncAssessorAttendance()
+                        syncAssessorAttendance.batch_id = batchId
+                        syncAssessorAttendance.user_id = loginRes.user_id
+                    }
+                }
 
                 try {
                     synchronized(this) {
 
                         mActivity.runOnUiThread {
-                            if (firstimg) {
-                                binding.imgAssessorId.visibility = View.VISIBLE
-                                binding.imgAssessorId.setImageBitmap(
-                                    Utility.getBitmapByStringImage(
-                                        Utility.bitmapToBASE64(
-                                            Utility.rotateImage(
-                                                Utility.getBitmap(filepath)!!, rotation.toFloat()
-                                            )
-                                        )
-                                    )
-                                )
 
-                                assessorIdImg = Utility.bitmapToBASE64(
-                                        Utility.rotateImage(
-                                            Utility.getBitmap(filepath)!!, rotation.toFloat()
-                                        ))
-
-                            } else {
-                                binding.imgAssessorProfile.visibility = View.VISIBLE
-                                binding.imgAssessorProfile.setImageBitmap(
-                                    Utility.getBitmapByStringImage(
-                                        Utility.bitmapToBASE64(
-                                            Utility.rotateImage(
-                                                Utility.getBitmap(filepath)!!, rotation.toFloat()
-                                            )
-                                        )
-                                    )
-                                )
-
-                                assessorProfileImg = Utility.bitmapToBASE64(
-                                    Utility.rotateImage(
-                                        Utility.getBitmap(filepath)!!, rotation.toFloat()
-                                    ))
-                            }
+                            AssessorAttnImageAsync(
+                                file,
+                                firstImg,
+                                secondImg,
+                                thirdImg,
+                                fourthImg,
+                                syncAssessorAttendance!!,
+                                batchId,
+                                object : PhotoCompressedListener {
+                                    override fun compressedPhoto(path: String?) {
+                                        if (syncAssessorAttendance != null) {
+                                            if (firstImg && syncAssessorAttendance?.entry_id != null) {
+                                                binding.imgEntryID.visibility = View.VISIBLE
+                                                binding.imgEntryID.setImageBitmap(Utility.getBitmapByStringImage(syncAssessorAttendance?.entry_id))
+                                            } else if (secondImg && syncAssessorAttendance?.entry_photo != null) {
+                                                binding.imgEntryProfile.visibility = View.VISIBLE
+                                                binding.imgEntryProfile.setImageBitmap(Utility.getBitmapByStringImage(syncAssessorAttendance?.entry_photo))
+                                            }
+                                            else if (thirdImg && syncAssessorAttendance?.exit_id != null) {
+                                                binding.imgExitId.visibility = View.VISIBLE
+                                                binding.imgExitId.setImageBitmap(Utility.getBitmapByStringImage(syncAssessorAttendance?.exit_id))
+                                            }
+                                            else if (fourthImg && syncAssessorAttendance?.exit_photo != null) {
+                                                binding.imgExitProfile.visibility = View.VISIBLE
+                                                binding.imgExitProfile.setImageBitmap(Utility.getBitmapByStringImage(syncAssessorAttendance?.exit_photo))
+                                            }
+                                        }
+                                    }
+                                }).execute()
                         }
                     }
                 } catch (e: InterruptedException) {

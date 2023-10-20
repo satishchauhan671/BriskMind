@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "paper_mst")
 class PaperResponse {
+
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
     var paper_set_id: String? = null

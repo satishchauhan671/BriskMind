@@ -15,12 +15,11 @@ import com.brisk.assessment.assessor.listener.BatchImageListener
 import com.brisk.assessment.assessor.listener.ChooseAssessorMainListener
 import com.brisk.assessment.common.Constants
 import com.brisk.assessment.common.Utility
+import com.brisk.assessment.database.BatchDataHelper
+import com.brisk.assessment.database.LoginDataHelper
 import com.brisk.assessment.databinding.FragmentAssessorMainBinding
 import com.brisk.assessment.model.BatchRes
 import com.brisk.assessment.model.LoginRes
-import com.brisk.assessment.repositories.LoginRepo
-import com.brisk.assessment.viewmodels.MainViewModel
-import com.brisk.assessment.viewmodels.MainViewModelFactory
 
 class AssessorMainFragment : Fragment() {
 
@@ -28,9 +27,6 @@ class AssessorMainFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var assessorMainAdapter: AssessorMainAdapter
     private lateinit var mActivity: FragmentActivity
-    private lateinit var repo: LoginRepo
-    private lateinit var mainViewModel: MainViewModel
-    private lateinit var mainViewModelFactory: MainViewModelFactory
     private lateinit var loginRes: LoginRes
     private lateinit var batchRes: List<BatchRes>
     private var userId = ""
@@ -52,13 +48,6 @@ class AssessorMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        repo = LoginRepo(mActivity.application)
-
-        // initialize model factory
-        mainViewModelFactory = MainViewModelFactory(repo)
-        mainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
-
-
 
         getLoginData()
         bindBatchData()
@@ -101,29 +90,30 @@ class AssessorMainFragment : Fragment() {
     }
 
     private fun getLoginData() {
-        mainViewModel.getLoginData().observe(viewLifecycleOwner) {
-            loginRes = it
-
-            binding.assessorNameTv.text = it.user_name
-            binding.assessorIdTv.text = it.user_id
-            userId = it.user_id?:""
+        val loginRes : LoginRes? =LoginDataHelper.getLogin(mActivity)
+        if (loginRes!=null)
+        {
+            binding.assessorNameTv.text = loginRes.user_name
+            binding.assessorIdTv.text = loginRes.user_id
+            userId = loginRes.user_id?:""
         }
+
     }
 
     private fun bindBatchData(){
-        mainViewModel.getAssessorBatchList().observe(viewLifecycleOwner){
-            batchRes = it
 
-            println(batchRes.toString())
+        val batchRes : ArrayList<BatchRes>? = BatchDataHelper.getBatchData(mActivity)
 
+        if (batchRes !=null)
+        {
             assessorMainAdapter = AssessorMainAdapter(mActivity, mActivity.supportFragmentManager, batchRes)
             binding.assessorTestRv.layoutManager =
                 LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false)
             assessorMainAdapter.setAdapterListener(chooseMainListener)
             assessorMainAdapter.setBatchImageAdapterListener(batchImageListener)
             binding.assessorTestRv.adapter = assessorMainAdapter
-
         }
+
     }
 
 }

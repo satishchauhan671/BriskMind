@@ -19,7 +19,7 @@ import com.brisk.assessment.assessor.listener.BatchImageListener
 import com.brisk.assessment.assessor.listener.ChooseAssessorMainListener
 import com.brisk.assessment.model.BatchRes
 
-class AssessorMainAdapter(mContext: Context, fragmentManager: FragmentManager, batchRes: List<BatchRes>) :
+class AssessorMainAdapter(mContext: Context, fragmentManager: FragmentManager, batchRes: ArrayList<BatchRes>) :
     RecyclerView.Adapter<AssessorMainAdapter.ViewHolder>() {
 
     private val mContext: Context = mContext

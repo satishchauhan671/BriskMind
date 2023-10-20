@@ -3,7 +3,6 @@ package com.brisk.assessment.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "sync_user_profile")
 class SyncUserProfile {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
@@ -14,28 +13,6 @@ class SyncUserProfile {
     var user_id: String = ""
     var user_name: String? = null
     var user_type: String? = null
-
-    constructor()
-
-    constructor(
-        id: Int,
-        aadhar_no: String?,
-        batch_id: String,
-        email_d: String?,
-        mobile_no: String?,
-        user_id: String,
-        user_name: String?,
-        user_type: String?
-    ) {
-        this.id = id
-        this.aadhar_no = aadhar_no
-        this.batch_id = batch_id
-        this.email_d = email_d
-        this.mobile_no = mobile_no
-        this.user_id = user_id
-        this.user_name = user_name
-        this.user_type = user_type
-    }
 
 
 }

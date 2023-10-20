@@ -537,7 +537,7 @@ object Utility {
         try {
             val dir = File(
                 Environment.getExternalStorageDirectory()
-                    .toString() + "/Android/media/com.inventia.ugo_mici/" + context.resources.getString(
+                    .toString() + "/Android/media/com.brisk.assessment/" + context.resources.getString(
                     R.string.app_name
                 )
             )

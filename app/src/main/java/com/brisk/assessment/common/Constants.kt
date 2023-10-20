@@ -8,6 +8,7 @@ class Constants {
         const val notApplicable: String = "NA"
         const val yes : String = "Yes"
         const val no : String = "No"
+        const val takeAttendance : String = "takeAttendance"
         const val viva : String = "Viva"
         const val practical : String = "Practical"
         const val done : String = "Done"
@@ -16,5 +17,6 @@ class Constants {
         const val paperType : String = "paperType"
         const val userId : String = "UserId"
         const val complete : String = "complete"
+        const val questionNo : String = "Question No :- "
     }
 }

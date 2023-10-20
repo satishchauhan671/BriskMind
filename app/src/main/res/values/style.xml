@@ -48,4 +48,8 @@
         <item name="colorAccent">@color/yellow</item>
     </style>
 
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/app_theme</item>
+        <item name="android:textColor">@color/color_c2ccd9</item>
+    </style>
 </resources>

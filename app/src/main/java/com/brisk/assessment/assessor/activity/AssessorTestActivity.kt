@@ -30,12 +30,14 @@ import com.brisk.assessment.assessor.adapter.PagerAdapter
 import com.brisk.assessment.assessor.listener.ChooseAssessorMainListener
 import com.brisk.assessment.common.Constants
 import com.brisk.assessment.common.Utility
+import com.brisk.assessment.database.BatchDataHelper
+import com.brisk.assessment.database.ImportLanguageDataHelper
+import com.brisk.assessment.database.PaperDataHelper
 import com.brisk.assessment.databinding.ActivityAssessorTestBinding
+import com.brisk.assessment.model.BatchRes
 import com.brisk.assessment.model.ImportLanguageResponse
 import com.brisk.assessment.model.PaperResponse
-import com.brisk.assessment.repositories.LoginRepo
-import com.brisk.assessment.viewmodels.MainViewModel
-import com.brisk.assessment.viewmodels.MainViewModelFactory
+import okhttp3.internal.Util
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -46,21 +48,18 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var view: View
     private lateinit var assessorTestPageNoAdapter: AssessorTestPageNoAdapter
     private var isVisible = false
-    private lateinit var paperSetId : String
-    private lateinit var batchId : String
-    private lateinit var paperType : String
-    private lateinit var paperList : List<PaperResponse>
-    private lateinit var repo: LoginRepo
-    private lateinit var mainViewModel: MainViewModel
-    private lateinit var mainViewModelFactory: MainViewModelFactory
-    private lateinit var viewPager : ViewPager2
-    lateinit var pagerListener : PagerListener
+    private lateinit var paperSetId: String
+    private lateinit var batchId: String
+    private lateinit var paperType: String
+    private lateinit var paperList: ArrayList<PaperResponse>
+    private lateinit var viewPager: ViewPager2
+    lateinit var pagerListener: PagerListener
     private lateinit var cameraExecutor: ExecutorService
     private val handler = Handler()
     private val captureIntervalMillis = 10000 // Capture an image every 5 seconds (adjust as needed)
     private val CAMERA_PERMISSION_CODE = 101
     private val STORAGE_PERMISSION_CODE = 102
-    private lateinit var importLanguageRes: List<ImportLanguageResponse>
+    private lateinit var importLanguageRes: ArrayList<ImportLanguageResponse>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,16 +68,11 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(view)
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        repo = LoginRepo(this.application)
-
-        // initialize model factory
-        mainViewModelFactory = MainViewModelFactory(repo)
-        mainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
-
-
         paperSetId = intent.getStringExtra(Constants.paperSetId).toString()
         batchId = intent.getStringExtra(Constants.batchId).toString()
         paperType = intent.getStringExtra(Constants.paperType).toString()
+        viewPager = binding.viewPager
+
 
         bindPaperListData(paperSetId)
 
@@ -89,10 +83,10 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
         binding.bottomToolbar.nextLay.setOnClickListener(this)
         binding.bottomToolbar.previousLay.setOnClickListener(this)
 
-        viewPager = binding.viewPager
 
 
-        viewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
@@ -155,7 +149,6 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
                     binding.rlDimBg.visibility = View.VISIBLE
                     isVisible = true
                 }
-
             }
 
             binding.cardInstruction,
@@ -171,16 +164,16 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
                 val currentItem = viewPager.currentItem
                 if (currentItem > 0) { // Check if not on the first page
                     viewPager.currentItem = currentItem - 1 // Go to the previous page
-
                     updateButtonValues(viewPager.currentItem)
                 }
             }
 
             binding.bottomToolbar.nextLay -> {
                 val currentItem = viewPager.currentItem
-                if (currentItem < (viewPager.adapter?.itemCount ?: 0) - 1) { // Check if not on the last page
+                if (currentItem < (viewPager.adapter?.itemCount
+                        ?: 0) - 1
+                ) { // Check if not on the last page
                     viewPager.currentItem = currentItem + 1 // Go to the next page
-
                     updateButtonValues(viewPager.currentItem)
                 }
             }
@@ -192,60 +185,60 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
         stopImageCapture()
     }
 
-    private fun getInstructionData() {
-        mainViewModel.getInstructionList().observeForever {
-            importLanguageRes = it
-            if (importLanguageRes != null && importLanguageRes.size > 0) {
-                if (paperType.equals(Constants.practical))
-                {
-                    if (!Utility.isNullOrEmpty(importLanguageRes[0].practical_instructions)) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            binding.instructionDialog.txtInstruction.text = Html.fromHtml(
-                                importLanguageRes[0].practical_instructions!!.replace("\n","\n\n"),
-                                Html.FROM_HTML_MODE_COMPACT
-                            )
-                        } else {
-                            binding.instructionDialog.txtInstruction.text =
-                                Html.fromHtml(importLanguageRes[0].practical_instructions!!.replace("\n","\n\n"))
-                        }
-                    }
-                }
-                else
-                {
-                    if (!Utility.isNullOrEmpty(importLanguageRes[0].viva_instructions)) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            binding.instructionDialog.txtInstruction.text = Html.fromHtml(
-                                importLanguageRes[0].viva_instructions!!.replace("\n","\n\n"),
-                                Html.FROM_HTML_MODE_COMPACT
-                            )
-                        } else {
-                            binding.instructionDialog.txtInstruction.text =
-                                Html.fromHtml(importLanguageRes[0].viva_instructions!!.replace("\n","\n\n"))
-                        }
-                    }
-                }
+        private fun getInstructionData() {
 
+            importLanguageRes= ImportLanguageDataHelper.getImportLanguageData(this@AssessorTestActivity)
+
+                if (importLanguageRes != null && importLanguageRes.size > 0) {
+                    if (paperType.equals(Constants.practical))
+                    {
+                        if (!Utility.isNullOrEmpty(importLanguageRes[0].practical_instructions)) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                binding.instructionDialog.txtInstruction.text = Html.fromHtml(
+                                    importLanguageRes[0].practical_instructions!!.replace("\n","\n\n"),
+                                    Html.FROM_HTML_MODE_COMPACT
+                                )
+                            } else {
+                                binding.instructionDialog.txtInstruction.text =
+                                    Html.fromHtml(importLanguageRes[0].practical_instructions!!.replace("\n","\n\n"))
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!Utility.isNullOrEmpty(importLanguageRes[0].viva_instructions)) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                binding.instructionDialog.txtInstruction.text = Html.fromHtml(
+                                    importLanguageRes[0].viva_instructions!!.replace("\n","\n\n"),
+                                    Html.FROM_HTML_MODE_COMPACT
+                                )
+                            } else {
+                                binding.instructionDialog.txtInstruction.text =
+                                    Html.fromHtml(importLanguageRes[0].viva_instructions!!.replace("\n","\n\n"))
+                            }
+                        }
+                }
             }
         }
-    }
 
-    private fun bindPaperListData(paperSetId: String){
-        mainViewModel.getPaperListByPaperSetId(paperSetId).observe(this){
-            paperList = it
-            // Set Paper No Rv
-            assessorTestPageNoAdapter = AssessorTestPageNoAdapter(this, supportFragmentManager, paperList)
-            assessorTestPageNoAdapter.setAdapterListener(pageChangeListener)
-            binding.assessorTestPageNoRv.layoutManager =
-                LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-            binding.assessorTestPageNoRv.adapter = assessorTestPageNoAdapter
+    private fun bindPaperListData(paperSetId: String) {
 
-            binding.questionSerialNoTv.text = resources.getString(R.string.question_serial_number,
-                viewPager.currentItem+1,paperList.size)
+        paperList = PaperDataHelper.getPaperListByPaperSetId(paperSetId, this)
 
-            val pagerAdapter = PagerAdapter(this@AssessorTestActivity, paperList, this)
-            viewPager.adapter = pagerAdapter
+        assessorTestPageNoAdapter =
+            AssessorTestPageNoAdapter(this, supportFragmentManager, paperList)
+        assessorTestPageNoAdapter.setAdapterListener(pageChangeListener)
+        binding.assessorTestPageNoRv.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.assessorTestPageNoRv.adapter = assessorTestPageNoAdapter
 
-        }
+        binding.questionSerialNoTv.text = resources.getString(
+            R.string.question_serial_number,
+            viewPager.currentItem + 1, paperList.size
+        )
+
+        val pagerAdapter = PagerAdapter(this@AssessorTestActivity, paperList, this)
+        viewPager.adapter = pagerAdapter
     }
 
     override fun onBackPressed() {
@@ -259,24 +252,25 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun setPaperListener(pagerListener: PagerListener){
+    fun setPaperListener(pagerListener: PagerListener) {
         this.pagerListener = pagerListener
     }
 
-    interface  PagerListener{
+    interface PagerListener {
         fun pagerChangeListener(position: Int, paperResponse: PaperResponse)
     }
 
     private val pageChangeListener = object : ChooseAssessorMainListener {
-        override fun chooseMemberAdapterListener(pos: Int, batchNo : String, batchId : String) {
-                viewPager.currentItem = pos
+        override fun chooseMemberAdapterListener(pos: Int, batchNo: String, batchId: String) {
+            viewPager.currentItem = pos
 
             updateButtonValues(pos)
         }
     }
 
-    fun updateButtonValues(position: Int){
-        binding.marksTv.text = resources.getString(R.string.total_marks, paperList[position].question_marks)
+    fun updateButtonValues(position: Int) {
+        binding.marksTv.text =
+            resources.getString(R.string.total_marks, paperList[position].question_marks)
 
         binding.questionSerialNoTv.text = resources.getString(
             R.string.question_serial_number,
@@ -291,32 +285,34 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun getPaperDuration(batchId : String){
-        mainViewModel.getPaperDuration(batchId).observeForever{
-            var time = it
-            object : CountDownTimer(time.toLong()* 1000+1000, 1000) {
-                override fun onTick(millisUntilFinished: Long) {
+    private fun getPaperDuration(batchId: String) {
+        val batchRes: BatchRes? = BatchDataHelper.getBatchByBatchId(batchId, this)
+        if (batchRes != null) {
+            if (!Utility.isNullOrEmpty(batchRes.duration))
+            {
+                var time = batchRes.duration!!
+                object : CountDownTimer(time.toLong() * 1000 + 1000, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {
 
-                    var seconds = (millisUntilFinished / 1000).toInt()
-                    val minutes = seconds / 60
-                    val hour = minutes / 60
-                    seconds %= 60
-                    var h = hour.toString()
-                    var m = minutes.toString()
-                    var s = seconds.toString()
-                    if (h.length == 1) h = "0$h"
-                    if (m.length == 1) m = "0$m"
-                    if (s.length == 1) s = "0$s"
-                    binding.toolbar.paperTimerTv.text = "${h}:${m}:${s}"
+                        var seconds = (millisUntilFinished / 1000).toInt()
+                        val minutes = seconds / 60
+                        val hour = minutes / 60
+                        seconds %= 60
+                        var h = hour.toString()
+                        var m = minutes.toString()
+                        var s = seconds.toString()
+                        if (h.length == 1) h = "0$h"
+                        if (m.length == 1) m = "0$m"
+                        if (s.length == 1) s = "0$s"
+                        binding.toolbar.paperTimerTv.text = "${h}:${m}:${s}"
+                    }
 
-
-                }
-
-                override fun onFinish() {
-                    binding.toolbar.paperTimerTv.text =  "done!"
-                }
-            }.start()
-            binding.toolbar.paperTimerTv
+                    override fun onFinish() {
+                        binding.toolbar.paperTimerTv.text = "done!"
+                    }
+                }.start()
+                binding.toolbar.paperTimerTv
+            }
         }
     }
 
@@ -342,7 +338,7 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
         // Create OutputFileOptions
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
-       // Capture the image
+        // Capture the image
         imageCapture.takePicture(cameraExecutor, object : ImageCapture.OnImageCapturedCallback() {
             override fun onCaptureSuccess(image: ImageProxy) {
                 // Get the captured image data as a ByteBuffer
@@ -382,11 +378,17 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
 
     /// Camera & Storage Permission
     private fun checkCameraPermission(): Boolean {
-        return ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+        return ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun checkStoragePermission(): Boolean {
-        return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+        return ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun requestPermissions() {
@@ -425,7 +427,7 @@ class AssessorTestActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    private fun camera(){
+    private fun camera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
         cameraProviderFuture.addListener(Runnable {

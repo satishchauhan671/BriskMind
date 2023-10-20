@@ -13,11 +13,9 @@ import com.brisk.assessment.databinding.StudentProfileFragmentBinding
 
 class StudentProfileFragment : Fragment(), View.OnClickListener {
 
-
     private var _binding: StudentProfileFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var mActivity: FragmentActivity
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

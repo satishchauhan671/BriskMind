@@ -8,10 +8,10 @@ class SyncFeedbackArray {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
     var batch_id: String? = null
-    var created_at: String = ""
+    var created_at: String? = null
     var feedback_q_id: String? = null
     var response: String? = null
-    var user_id: String = ""
+    var user_id: String? = null
     var user_type: String? = null
 
     constructor()
